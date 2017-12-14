@@ -1,11 +1,11 @@
 # 171106-Project2-SHOULDi
 
-##Contributors:
+## Contributors:
    Jeffrey Myers II (Sintrias)
    Mike Warren (MikeWarren2014)
    Xavier Garibay
    Caleb Schumake
 
-##The Application Concept:
+## The Application Concept:
 
-##Technologies Used:
+## Technologies Used:
