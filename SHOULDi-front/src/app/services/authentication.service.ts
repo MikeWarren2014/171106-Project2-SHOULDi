@@ -13,6 +13,7 @@ export class AuthenticationService {
 
     logout()
     {
-        // TODO: implement this
+        // log user out by removing them from local storage
+        localStorage.removeItem('currentUser');
     }
 }
