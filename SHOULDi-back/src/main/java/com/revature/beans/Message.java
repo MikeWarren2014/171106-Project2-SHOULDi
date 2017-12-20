@@ -15,14 +15,13 @@ public class Message {
 	@GeneratedValue(generator="MESSAGE_SEQ", strategy=GenerationType.SEQUENCE)
 	private int message_id;
 	@OneToOne
-	@JoinColumn(name="USER_ID")
-	private int to;
+	@JoinColumn(name="TO_ID")
+	private User to;
 	@OneToOne
-	@JoinColumn( name="USER_ID")
-	private int from;
+	@JoinColumn( name="FROM_ID")
+	private User from;
 	@Column(name="CONTENT")
 	private String content;
-	
 	
 	public int getMessage_id() {
 		return message_id;
@@ -30,16 +29,16 @@ public class Message {
 	public void setMessage_id(int message_id) {
 		this.message_id = message_id;
 	}
-	public int getTo() {
+	public User getTo() {
 		return to;
 	}
-	public void setTo(int to) {
+	public void setTo(User to) {
 		this.to = to;
 	}
-	public int getFrom() {
+	public User getFrom() {
 		return from;
 	}
-	public void setFrom(int from) {
+	public void setFrom(User from) {
 		this.from = from;
 	}
 	public String getContent() {
@@ -48,14 +47,14 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Message(int message_id, int to, int from, String content) {
+	public Message(int message_id, User to, User from, String content) {
 		super();
 		this.message_id = message_id;
 		this.to = to;
 		this.from = from;
 		this.content = content;
 	}
-	public Message(int to, int from, String content) {
+	public Message(User to, User from, String content) {
 		super();
 		this.to = to;
 		this.from = from;
@@ -64,5 +63,6 @@ public class Message {
 	public Message() {
 		super();
 	}
+	
 	
 }

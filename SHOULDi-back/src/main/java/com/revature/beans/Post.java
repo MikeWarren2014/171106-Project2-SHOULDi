@@ -1,11 +1,15 @@
 package com.revature.beans;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 public class Post {
@@ -14,50 +18,46 @@ public class Post {
 	@SequenceGenerator(sequenceName="POST_SEQ", name="POST_SEQ")
 	@GeneratedValue(generator="POST_SEQ", strategy=GenerationType.SEQUENCE)
 	private int post_id;
-	@OneToOne
-	@JoinColumn(name="USER_ID")
-	private int poster_id;
-	@OneToOne
-	@JoinColumn(name="IMAGE_ID")
-	private int image_id;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "poster_id")
+	private User poster;
+	@OneToMany(
+	        mappedBy = "Post", 
+	        orphanRemoval = true
+	    )
+	private ArrayList<Image> images;
+	@OneToMany(
+	        mappedBy = "Post", 
+	        orphanRemoval = true
+	    )
+	private ArrayList<Comment> post_comments;
 	@Column(name="FLAG")
 	private boolean flag;
 	
 	
-	
-	public Post() {
-		super();
-	}
-	public Post(int poster_id, int image_id, boolean flag) {
-		super();
-		this.poster_id = poster_id;
-		this.image_id = image_id;
-		this.flag = flag;
-	}
-	public Post(int post_id, int poster_id, int image_id, boolean flag) {
-		super();
-		this.post_id = post_id;
-		this.poster_id = poster_id;
-		this.image_id = image_id;
-		this.flag = flag;
-	}
 	public int getPost_id() {
 		return post_id;
 	}
 	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
-	public int getPoster_id() {
-		return poster_id;
+	public User getPoster() {
+		return poster;
 	}
-	public void setPoster_id(int poster_id) {
-		this.poster_id = poster_id;
+	public void setPoster(User poster) {
+		this.poster = poster;
 	}
-	public int getImage_id() {
-		return image_id;
+	public ArrayList<Image> getImages() {
+		return images;
 	}
-	public void setImage_id(int image_id) {
-		this.image_id = image_id;
+	public void setImages(ArrayList<Image> images) {
+		this.images = images;
+	}
+	public ArrayList<Comment> getPost_comments() {
+		return post_comments;
+	}
+	public void setPost_comments(ArrayList<Comment> post_comments) {
+		this.post_comments = post_comments;
 	}
 	public boolean isFlag() {
 		return flag;
@@ -65,4 +65,23 @@ public class Post {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+	public Post(int post_id, User poster, ArrayList<Image> images, ArrayList<Comment> post_comments, boolean flag) {
+		super();
+		this.post_id = post_id;
+		this.poster = poster;
+		this.images = images;
+		this.post_comments = post_comments;
+		this.flag = flag;
+	}
+	public Post(User poster, ArrayList<Image> images, ArrayList<Comment> post_comments, boolean flag) {
+		super();
+		this.poster = poster;
+		this.images = images;
+		this.post_comments = post_comments;
+		this.flag = flag;
+	}
+	public Post() {
+		super();
+	}
+
 }
