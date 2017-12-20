@@ -1,17 +1,17 @@
 <div class="pageCenter">
     <h1 class="textCenter">Register New User</h1>
-    <form>
+    <form (ngSubmit)="register()" >
         <span>
             <label for="firstName">first name</label>
-            <input type="text" id="firstName" name="firstName" [(ngModel)]="model.firstName" required>
+            <input type="text" id="firstName" name="firstName" pattern="[A-Za-z]+" [(ngModel)]="model.firstName" required>
         </span>
         <span>
             <label for="lastName">last name</label>
-            <input type="text" id="lastName" name="lastName" [(ngModel)]="model.lastName" required>
+            <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]+" [(ngModel)]="model.lastName" required>
         </span>
         <span>
             <label for="userName">user name</label>
-            <input type="text" id="userName" name="userName" [(ngModel)]="model.userName" required>
+            <input type="text" id="userName" name="userName" pattern="\w+" [(ngModel)]="model.userName" required>
         </span>
         <span>
             <label for="password">password</label>
@@ -22,7 +22,7 @@
             <input type="confirmPassword" id="confirmPassword" name="confirmPassword" [(ngModel)]="model.confirmPassword" required>
         </span>
         <span class="center">
-            <button routerLink="/register">Register</button>
+            <button [disabled]="loading">Register</button>
         </span>
     </form>
 </div>

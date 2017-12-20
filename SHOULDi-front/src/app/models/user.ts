@@ -1,9 +1,10 @@
 export class User
 {
     _id: number;
-    username : string;
-    password : string;
-    firstName: string;
-    lastName : string; 
-    gender   : string;
+    username        : string;
+    password        : string;
+    confirmPassword : string;
+    firstName       : string;
+    lastName        : string; 
+    gender          : string;
 }

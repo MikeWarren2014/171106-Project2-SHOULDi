@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
     templateUrl: './login.component.html'
 })
 
-export class Login
+export class LoginComponent
 {
-    public username : string;
-    public password : string;
+    username = '';
+    password = '';
     /* TODO: implement this */
 }
