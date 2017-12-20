@@ -39,5 +39,7 @@ hs_err_pid*
 .DS_Store
 /.recommenders/
 #custom BASH scripts
+**/pushChangesQuick.sh
 **/commitChangesQuick.sh
+**/pushChangesQuick.sh
 **/mergeIntoMaster.sh
