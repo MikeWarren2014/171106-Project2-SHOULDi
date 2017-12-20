@@ -10,6 +10,14 @@
     text-align: center;
 }
 
+.pageCenter
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .table
 {
     display: table;
