@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector   : 'login-component',
-    templateUrl: './login.component.html'
+    selector   : 'login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent
 {
     username = '';
     password = '';
-    /* TODO: implement this */
+    constructor(){
+
+    }
+    public submitForm(){
+        console.log(this.username + " " + this.password);
+    }
 }

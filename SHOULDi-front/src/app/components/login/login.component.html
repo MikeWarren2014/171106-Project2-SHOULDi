@@ -1,10 +1,11 @@
 <div class="main center">
+    <img id="ribbon" src="./assets/images/SHOULDi-ribbon.png" alt="SHOULDi Ribbon">
     <form>
-        <!-- TODO: complete this -->
         <!-- <label for="username">username</label> -->
         <input type="text" id="username" name="username" placeholder="username"/>
         <!-- <label for="password">password</label> -->
         <input type="password" id="password" name="password" placeholder="password" />
-        <a class="textCenter" href="NewUser">Register?</a>
+        <input type="submit" onsubmit="submitForm()">
+        <a class="textCenter" routerLink="register">Register?</a>
     </form>
 </div>
