@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { User } from '../../models/user';
 
 @Component({
     // do we need module id here?
@@ -27,7 +28,7 @@ export class RegisterComponent
     constructor(
         private router : Router,
         private userService : UserService
-        // TODO: decide what other members you need here and bring them in
+        // private alertService: 
     )
     {}
 

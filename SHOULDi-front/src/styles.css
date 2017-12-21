@@ -32,3 +32,26 @@
 {
     display: table-cell;
 }
+
+input.ng-invalid {
+    background-color: pink;
+    border-color: red;
+}
+
+button, input[type="submit"], input[type="reset"] {
+    width: 100px;
+    padding: 5px 5px;
+    border-radius: 3px;
+}
+
+button, input[type="submit"] {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+}
