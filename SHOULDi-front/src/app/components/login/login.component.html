@@ -1,11 +1,21 @@
-<div class="main center">
+<div class="login-content">
     <img id="ribbon" src="./assets/images/SHOULDi-ribbon.png" alt="SHOULDi Ribbon">
-    <form>
-        <!-- <label for="username">username</label> -->
-        <input type="text" id="username" name="username" placeholder="username" [(ngModel)]="username"/>
-        <!-- <label for="password">password</label> -->
-        <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="password"/>
-        <input type="submit" (click)="submitForm()"/>
-        <a class="textCenter" routerLink="register">Register?</a>
+    <div class="spacing"></div>
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" placeholder="USERNAME" required>
+        </div>
+        <div class="spacing"></div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="PASSWORD" required>
+            <div *ngIf="f.submitted && !password.valid" class="help-block"></div>
+        </div>
+        <div class="spacing"></div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Login</button>
+            <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+        </div>
+        <div class="spacing"></div>
+        <img *ngIf="loading" src="./assets/images/SHOULDi-fedora.png" alt="SHOULDi LoadingFedora">
     </form>
 </div>

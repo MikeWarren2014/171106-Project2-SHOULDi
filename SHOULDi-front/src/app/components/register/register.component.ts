@@ -7,11 +7,9 @@ import { AlertService } from '../../services/alert.service';
 import { HostListener } from '@angular/core/src/metadata/directives';
 
 @Component({
-    // do we need module id here?
-    templateUrl : './register.component.html',
     selector    : 'register',
+    templateUrl : './register.component.html',
     styleUrls   : ['./register.component.css']
-    
 })
 
 @NgModule({

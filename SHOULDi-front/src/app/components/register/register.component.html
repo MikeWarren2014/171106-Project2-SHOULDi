@@ -1,41 +1,28 @@
+
 <div class="pageCenter">
-    <h2 class="textCenter">Register New User</h2>
-    <form (ngSubmit)="register()" class="table" >
-        <span class="tableRow">
-            <label for="firstName" class="tableCell">first name</label>
-            <input type="text" id="firstName" name="firstName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.firstName" required>
-        </span>
-        <span class="tableRow">
-            <label for="lastName" class="tableCell">last name</label>
-            <input type="text" id="lastName" name="lastName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.lastName" required>
-        </span>
-        <span class="tableRow">
-            <label for="userName" class="tableCell">user name</label>
-            <input type="text" id="userName" name="userName" class="tableCell" pattern="\w+" [(ngModel)]="model.userName" required>
-        </span>
-        <span class="tableRow">
-            <label for="password" class="tableCell">password</label>
-            <input type="password" id="password" name="password" class="tableCell" [(ngModel)]="model.password" required>
-        </span>
-        <span class="tableRow">
-            <label for="confirmPassword" class="tableCell">confirm password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="tableCell" [(ngModel)]="model.confirmPassword" required>
-        </span>
-        <span class="tableRow">
-                <label for="gender"  class="tableCell">Gender</label>
-                <!-- TODO: bind this with Angular -->
-                <select id="gender" name="gender" class="tableCell" [(ngModel)]="model.gender">
-                    <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
-                </select>
-                <!-- TODO: make it such that, on focusout of the following element, model.gender gets the text entered in the following element -->
-                <input *ngIf="model.gender == 'other'" id="specificGender" name="specificGender" (blur)="this.model.gender = $event.target.value" placeholder="enter gender">
-        </span>
-        <span class="tableRow buttonRow">
-            <label class="tableCell">
-                <input type="reset" value="Reset">
-            </label>
-            <button [disabled]="loading" class="tableCell">Register</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        </span>
+    <h1 class="textCenter">Registration</h1>
+    <form id="registration" (ngSubmit)="register()" class="table" >
+        <input type="text" name="firstName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.firstName" placeholder="first name" required>
+        <div class="spacing"></div>
+        <input type="text" name="lastName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.lastName" placeholder="last name" required>
+        <div class="spacing"></div>
+        <select type="text" id="gender" name="gender" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.gender" value=" " required>
+            <option selected disabled hidden>gender</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+        </select>
+        <div class="spacing"></div>
+        <input type="text" name="userName" class="tableCell" pattern="\w+" [(ngModel)]="model.userName" placeholder="username" required>
+        <div class="spacing"></div>
+        <input type="password" name="password" class="tableCell" [(ngModel)]="model.password" placeholder="new password" required>
+        <div class="spacing"></div>
+        <input type="confirmPassword" name="confirmPassword" class="tableCell" [(ngModel)]="model.confirmPassword" placeholder="confirm password" required>
+        <div class="spacing"></div>
+        <button [disabled]="loading">Register</button>
+        <div class="spacing"></div>
     </form>
+    <div id="spinner">
+        <img *ngIf="loading" src="../../../assets/images/SHOULDi-fedora.png" style="width: 100%; transition: opacity 1.5s">
+    </div>
 </div>
