@@ -23,7 +23,7 @@
         </span>
         <span class="tableRow">
             <label for="gender"  class="tableCell">Gender</label>
-            <input list="genders" id="gender" name="gender">
+            <input list="genders" class="tableCell" id="gender" name="gender" [(ngModel)]="model.gender">
             <datalist id="genders">
                 <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
             </datalist>
