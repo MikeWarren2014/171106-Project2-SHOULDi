@@ -28,7 +28,7 @@
                     <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
                 </select>
                 <!-- TODO: make it such that, on focusout of the following element, model.gender gets the text entered in the following element -->
-                <input *ngIf="model.gender == 'other'" id="specificGender" name="specificGender" ng-blur="changeGenderOnBlur($event)" placeholder="enter gender">
+                <input *ngIf="model.gender == 'other'" id="specificGender" name="specificGender" (blur)="this.model.gender = $event.target.value" placeholder="enter gender">
         </span>
         <span class="tableRow buttonRow">
             <label class="tableCell">
