@@ -3,23 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.beans;
+package com.zenith.Beans;
+
+import java.io.Serializable;
 import java.sql.Blob;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-public class ImageBean {
+@Entity 
+@Table(name="Images")
+public class ImageBean implements Serializable {
+    
 	@Id //designates as primary key
 	@Column(name="IMAGE_ID")
 	@SequenceGenerator(sequenceName="IMAGE_SEQ", name="IMAGE_SEQ")
 	@GeneratedValue(generator="IMAGE_SEQ", strategy=GenerationType.SEQUENCE)
 	private int image_id;
+        
 	@Column(name="IMAGE_FILE_NAME")
 	private String image_file_name;
+        
+//        @Column(name="Post_ID")
+//        private String post_id; 
+        
+        @ManyToOne
+        @JoinColumn(name="POST_ID")
+        PostBean postBean; 
+        
 	@Column(name="FILE_DATA")
 	private Blob file_data; //definitely might change depending on storage implementation
 	

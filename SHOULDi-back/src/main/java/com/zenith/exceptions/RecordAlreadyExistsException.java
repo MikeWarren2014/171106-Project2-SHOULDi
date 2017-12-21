@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.userService.Interface;
-
-import com.zenith.beans.UserBean;
+package com.zenith.exceptions;
 
 /**
  *
  * @author calebschumake
  */
-public interface UserService {
+public class RecordAlreadyExistsException extends RuntimeException {
     
-    public UserBean createUser(UserBean user); 
-    
+    public RecordAlreadyExistsException(String message){
+        super(message); 
+    }
 }

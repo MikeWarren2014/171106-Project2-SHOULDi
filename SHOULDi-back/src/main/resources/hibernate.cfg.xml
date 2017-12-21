@@ -46,5 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:oracle:thin:@project2db.caqshguhoa4a.us-east-1.rds.amazonaws.com:1521:ORCL</property>
     <property name="hibernate.connection.username">dbadmin</property>
     <property name="hibernate.connection.password">DB0x41646c696d</property>
+    <mapping class="com.zenith.beans.UserBean"/>	
   </session-factory>
 </hibernate-configuration>

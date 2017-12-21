@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.DAOinterface;
+package com.zenith.DAO.Interface;
 
-import com.zenith.beans.UserBean;
+import com.zenith.Beans.UserBean;
 
 /**
  *
@@ -16,6 +16,6 @@ public interface DAO {
     public void openConnection();
     public void closeConnection(); 
     public UserBean getUserByUsername(String username); 
-    public UserBean saveUser(UserBean user); 
+    public void saveUser(UserBean user); 
     
 }

@@ -3,53 +3,66 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.beans;
+package com.zenith.Beans;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-public class RatingBean {
+
+@Entity 
+@Table(name="Ratings")
+public class RatingBean implements Serializable {
 	@Id //designates as primary key
 	@Column(name="RATING_ID")
 	@SequenceGenerator(sequenceName="RATING_SEQ", name="RATING_SEQ")
 	@GeneratedValue(generator="RATING_SEQ", strategy=GenerationType.SEQUENCE)
 	private int rating_id;
-	@OneToOne
-	@JoinColumn(name="USER_ID")
-	private int rater_id;
-	@OneToOne
-	@JoinColumn(name="POST_ID")
-	private int post_id;
-	@Column(name="LIKE")
+        
+        /* Rating does not need to be linked with users (I think) */ 
+//	@ManyToOne(fetch = FetchType.LAZY)
+//        @JoinColumn(name = "user_id")
+//	private UserBean rater_id;
+        
+	@ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "post_id")
+	private PostBean post;
+        
+	@Column(name="LIKES")
 	private boolean like;
-	@Column(name="DISLIKE")
+        
+	@Column(name="DISLIKES")
 	private boolean dislike;
-	@Column(name="RATING")
+        
+	@Column(name="RATING_")
 	private int rating;
-	
-	
+        
 	public int getRating_id() {
 		return rating_id;
 	}
 	public void setRating_id(int rating_id) {
 		this.rating_id = rating_id;
 	}
-	public int getRater_id() {
-		return rater_id;
+//	public UserBean getRater_id() {
+//		return rater_id;
+//	}
+//	public void setRater_id(UserBean rater_id) {
+//		this.rater_id = rater_id;
+//	}
+	public PostBean getPost() {
+		return post;
 	}
-	public void setRater_id(int rater_id) {
-		this.rater_id = rater_id;
-	}
-	public int getPost_id() {
-		return post_id;
-	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	public void setPost(PostBean post) {
+		this.post = post;
 	}
 	public boolean isLike() {
 		return like;
@@ -69,19 +82,19 @@ public class RatingBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public RatingBean(int rating_id, int rater_id, int post_id, boolean like, boolean dislike, int rating) {
+	public RatingBean(int rating_id, PostBean post, boolean like, boolean dislike, int rating) {
 		super();
 		this.rating_id = rating_id;
-		this.rater_id = rater_id;
-		this.post_id = post_id;
+		//this.rater_id = rater_id;
+		this.post = post;
 		this.like = like;
 		this.dislike = dislike;
 		this.rating = rating;
 	}
-	public RatingBean(int rater_id, int post_id, boolean like, boolean dislike, int rating) {
+	public RatingBean(PostBean post, boolean like, boolean dislike, int rating) {
 		super();
-		this.rater_id = rater_id;
-		this.post_id = post_id;
+		//this.rater_id = rater_id;
+		this.post = post;
 		this.like = like;
 		this.dislike = dislike;
 		this.rating = rating;
@@ -89,7 +102,6 @@ public class RatingBean {
 	public RatingBean() {
 		super();
 	}
-	
 	
 	
 }

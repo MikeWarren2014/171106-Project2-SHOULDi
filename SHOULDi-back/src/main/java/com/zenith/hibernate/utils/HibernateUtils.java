@@ -9,11 +9,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-class HibernateUtils {
+public class HibernateUtils {
 
     private static final SessionFactory sessionFactory;
 
     static {
+        
         Configuration conf = new Configuration();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
