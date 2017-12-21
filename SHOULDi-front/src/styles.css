@@ -55,3 +55,8 @@ button:hover, input[type="submit"]:hover {
     border: 1px solid white;
     color: white;
 }
+
+input[type="reset"]:hover {
+    background-color: black;
+    color: buttonface;
+}
