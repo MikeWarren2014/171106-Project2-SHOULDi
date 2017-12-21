@@ -1,42 +1,43 @@
-.login-content{
+#pageCenter{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#ribbon{
-    width: 70%;
-    max-width: 600px;
-    min-width: 300px;
-    padding-bottom: 20px;
-}
-:form{
+#spinner{
+    width: 100px;
+    height: 100px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
-.form-group{
+.textCenter{
+    font-family: Georgia;
+    font-size: 40px;
+}
+#formCenter{
     width: 200px;
 }
-.form-group > input{
+.tableCell{
     width: 200px;
     height: 20px;
     padding: 10px;
     border-radius: 5px;
     border-width: 1px;
     border-color: black;
-}
-.form-group > button{
     background: none;
-    width: 100px;
+}
+.tableCell > gender{
+    font: inherit;
+    height: 40px;
+    width: 220px;
+}
+#formCenter > button{
+    background: none;
+    width: 220px;
     height: 40px;
     border-radius: 5px;
     border-width: 1px;
     border-color: black;
-    float: left;
-}
-.form-group > a{
-    padding: 10px;
-    float: right;
 }
 .spacing{
     height: 5px;

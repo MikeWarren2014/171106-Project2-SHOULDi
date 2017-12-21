@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { appRoutes } from './routing';
 import { UserService } from './services/user.service';
 import { HttpModule } from '@angular/http';
+import { AlertService } from './services/alert.service';
 
 
 
@@ -34,7 +35,8 @@ import { HttpModule } from '@angular/http';
   providers: [
     AuthenticationService,
     AuthGuard,
-    UserService
+    UserService,
+    AlertService
     // TODO: bring in other providers here
   ],
   bootstrap: [AppComponent]

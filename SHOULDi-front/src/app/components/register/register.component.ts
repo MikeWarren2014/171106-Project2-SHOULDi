@@ -4,10 +4,10 @@ import { UserService } from '../../services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-    // do we need module id here?
+    moduleId: module.id,
+    selector    : 'register',
     templateUrl : './register.component.html',
-    selector    : 'register'
-    
+    styleUrls: ['./register.component.css']
 })
 
 @NgModule({
