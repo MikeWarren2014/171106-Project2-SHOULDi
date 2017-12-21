@@ -11,7 +11,7 @@ if [[ $1 == "--help" || $2 == "--help" || $3  == "--help" ]]; then
 	echo "This script quickly commits changes to your GitHub repo. By default, this script pulls FROM your repo."
 	echo ""
 	echo "Parameters : "
-	echo "• message to commit changes with"
+	echo "• message to commit changes with. MUST be in quotes iff it's more than one word!"
 	echo "• the name of the branch to pull from"
 	echo "• (optional) the name of the branch to push to"
 	echo ""
