@@ -60,3 +60,7 @@ input[type="reset"]:hover {
     background-color: black;
     color: buttonface;
 }
+
+.tableCell + .tableCell {
+    margin-left: 10px;
+}

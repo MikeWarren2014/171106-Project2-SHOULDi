@@ -7,7 +7,8 @@ import { User } from '../../models/user';
 @Component({
     // do we need module id here?
     templateUrl : './register.component.html',
-    selector    : 'register'
+    selector    : 'register',
+    styleUrls   : ['./register.component.css']
     
 })
 
@@ -24,6 +25,11 @@ export class RegisterComponent
         lastName  : ''
     };
     loading = false;
+    genders = [
+        "female",
+        "male",
+        "other"
+    ]
 
     constructor(
         private router : Router,
@@ -46,5 +52,10 @@ export class RegisterComponent
                     this.loading = false;
                 }
             )
+    }
+
+    changeGenderOnBlur(event)
+    {
+        this.model.gender = event.target.value;
     }
 }

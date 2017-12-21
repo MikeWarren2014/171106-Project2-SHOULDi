@@ -21,7 +21,16 @@
             <label for="confirmPassword" class="tableCell">confirm password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" class="tableCell" [(ngModel)]="model.confirmPassword" required>
         </span>
-        <span class="tableRow center">
+        <span class="tableRow">
+                <label for="gender"  class="tableCell">Gender</label>
+                <!-- TODO: bind this with Angular -->
+                <select id="gender" name="gender" class="tableCell" [(ngModel)]="model.gender">
+                    <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
+                </select>
+                <!-- TODO: make it such that, on focusout of the following element, model.gender gets the text entered in the following element -->
+                <input *ngIf="model.gender == 'other'" id="specificGender" name="specificGender" ng-blur="changeGenderOnBlur($event)" placeholder="enter gender">
+        </span>
+        <span class="tableRow buttonRow">
             <label class="tableCell">
                 <input type="reset" value="Reset">
             </label>
