@@ -41,5 +41,4 @@ hs_err_pid*
 #custom BASH scripts
 **/pushChangesQuick.sh
 **/commitChangesQuick.sh
-**/pushChangesQuick.sh
 **/mergeIntoMaster.sh
