@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+.center
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textCenter
+{
+    text-align: center;
+}
+
+.pageCenter
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.table
+{
+    display: table;
+}
+
+.tableRow
+{
+    display: table-row;
+}
+
+.tableCell
+{
+    display: table-cell;
+}
+
+input.ng-invalid {
+    background-color: pink;
+    border-color: red;
+}
+
+button, input[type="submit"], input[type="reset"] {
+    width: 100px;
+    padding: 5px 5px;
+    border-radius: 3px;
+}
+
+button, input[type="submit"] {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+}

@@ -38,3 +38,8 @@ hs_err_pid*
 #Mac
 .DS_Store
 /.recommenders/
+#custom BASH scripts
+**/pushChangesQuick.sh
+**/commitChangesQuick.sh
+**/pushChangesQuick.sh
+**/mergeIntoMaster.sh
