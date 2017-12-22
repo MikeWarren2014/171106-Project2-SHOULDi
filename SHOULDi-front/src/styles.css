@@ -51,13 +51,13 @@ button, input[type="submit"] {
 }
 
 button:hover, input[type="submit"]:hover {
-    background-color: black;
-    border: 1px solid white;
-    color: white;
+    background-color: black !important;
+    border: 1px solid white !important;
+    color: white !important;
 }
 
 input[type="reset"]:hover {
-    background-color: black;
+    background-color: black !important;
     color: buttonface;
 }
 

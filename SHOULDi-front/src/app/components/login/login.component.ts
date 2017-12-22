@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     ){}
 
     ngOnInit() {
-        // TO DO: implement these
+        // TODO: implement these
         this.authenticationService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }

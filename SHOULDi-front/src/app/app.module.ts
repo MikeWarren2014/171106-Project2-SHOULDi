@@ -16,8 +16,6 @@ import { UserService } from './services/user.service';
 
 import { appRoutes } from './routing';
 import { HttpModule } from '@angular/http';
-import { AlertService } from './services/alert.service';
-
 
 
 @NgModule({
@@ -37,8 +35,7 @@ import { AlertService } from './services/alert.service';
     AlertService,
     AuthenticationService,
     AuthGuard,
-    UserService,
-    AlertService
+    UserService
     // TODO: bring in other providers here
   ],
   bootstrap: [AppComponent]

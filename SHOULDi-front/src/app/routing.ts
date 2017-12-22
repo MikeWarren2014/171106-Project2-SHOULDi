@@ -7,7 +7,38 @@ import { HomeComponent } from './components/home/home.component';
 export const appRoutes : Routes = [
     {
         path     : 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        children : [
+            {
+                path       : '',
+                // redirectTo : '',
+                pathMatch  : 'full'
+            },
+            {
+                path       : 'leaderboard'
+                // component  : 
+            },
+            {
+                path       : 'feed'
+                // component  : 
+            },
+            {
+                path       : 'favorites'
+                // component  : 
+            },
+            {
+                path       : 'my-posts'
+                // component  : 
+            },
+            {
+                path       : 'create-posts'
+                // component  : 
+            },
+            {
+                path       : 'edit-posts'
+                // component  : 
+            }
+        ]
     },
     {
         path     : '',
