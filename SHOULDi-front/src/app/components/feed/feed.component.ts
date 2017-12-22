@@ -16,8 +16,9 @@ export class FeedComponent
     }
     ngOnInit() {
     }
-    deleteUser(id: string){
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
+    deletePost()
+    {
+        
     }
     private loadPosts() {
         this.userService.getAll().subscribe(users => { this.users = users; });
