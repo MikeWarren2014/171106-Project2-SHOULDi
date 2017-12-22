@@ -10,4 +10,5 @@ export class User
     isSponsor       : boolean;
     company         : string;
     email           : string;
+    rating          : number;
 }
