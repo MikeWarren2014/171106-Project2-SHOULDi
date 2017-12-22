@@ -11,7 +11,7 @@ export const appRoutes : Routes = [
         children : [
             {
                 path       : '',
-                // redirectTo : '',
+                redirectTo : 'feed',
                 pathMatch  : 'full'
             },
             {
