@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.user.entrypoint;
+package com.zenith.entrypoints;
 
-import com.user.service.implementation.UserServiceImpl;
-import com.zenith.Beans.UserBean;
-import com.zenith.request.model.UserSignUpModel;
-import com.zenith.user.service.Interface.UserService;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import org.springframework.beans.BeanUtils;
+
+import com.zenith.Beans.UserBean;
+import com.zenith.interfaces.UserService;
+import com.zenith.request.model.UserSignUpModel;
+import com.zenith.service.UserServiceImpl;
 
 /**
  * This will be our resource class, it will accept an
@@ -32,26 +35,30 @@ public class UserEntryPoint {
     * completion this method will convert the CreateUserResponseModel POJO
     * back into JSON that can be read by our front-end
     */
-    @POST 
+    @POST
+    @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON) // our method consumes or takes in json data
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML }) // our method produces json data to send back to angular
     public UserBean createUser(UserSignUpModel requestObject){
-        
-      
-        
-       
-        
         // create new user
         UserService userService = new UserServiceImpl(); 
         UserBean createdUserProfile = userService.createUser(requestObject); 
-        
         
         //prepare response 
         //BeanUtils.copyProperties(createdUserProfile, returnValue);
         
         /* return use data to client */ 
-        return createdUserProfile; 
-        
+        return createdUserProfile;
     }
+    
+    @GET
+    @Path("/favorites")
+    @Consumes(MediaType.APPLICATION_JSON) // our method consumes or takes in json data
+    @Produces({MediaType.APPLICATION_JSON}) // our method produces json data to send back to angular    
+    public List<UserBean> getFavoriteUsers(){
+    	UserService userService = new UserServiceImpl();
+    	return userService.getFavoriteUsers();
+    }
+    
     
 }

@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.DAO.Interface;
+package com.zenith.interfaces;
 
+import java.util.List;
+
+import com.zenith.Beans.PostBean;
 import com.zenith.Beans.UserBean;
 
 /**
@@ -17,5 +20,7 @@ public interface DAO {
     public void closeConnection(); 
     public UserBean getUserByUsername(String username); 
     public void saveUser(UserBean user); 
+    public List<UserBean> getFavoriteUsers();
+    public List<PostBean> getFlaggedPosts();
     
 }

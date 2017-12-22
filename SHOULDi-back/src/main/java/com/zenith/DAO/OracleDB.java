@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.com.DAO.Implementation;
+package com.zenith.DAO;
 
-import com.zenith.DAO.Interface.DAO;
-import com.zenith.Beans.UserBean;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import com.zenith.hibernate.utils.HibernateUtils;  
 import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.springframework.beans.BeanUtils;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import com.revature.util.HibernateUtil;
+import com.zenith.Beans.PostBean;
+import com.zenith.Beans.UserBean;
+import com.zenith.hibernate.utils.HibernateUtils;
+import com.zenith.interfaces.DAO;
 
 /**
  *
@@ -23,7 +29,8 @@ import org.springframework.beans.BeanUtils;
  */
 public class OracleDB implements DAO {
     
-    Session session; 
+	Session session= HibernateUtil.getSession();
+
     
 
     public void openConnection() {
@@ -77,6 +84,36 @@ public class OracleDB implements DAO {
         session.save(user); 
         session.getTransaction().commit(); 
                 
+    }
+    
+    public List<UserBean> getFavoriteUsers() {
+
+        session.beginTransaction();
+        Criteria criteria;
+		
+		List<UserBean> favorites=session.createCriteria(UserBean.class).list();
+		
+		favorites= session.createCriteria(UserBean.class).add(Restrictions.gt("score", 2000)).list();
+		return favorites;
+                
+    }
+    
+    public List<PostBean> getFlaggedPosts(){
+    	
+        session.beginTransaction();
+        Criteria criteria;
+		
+		List<PostBean> flagged=session.createCriteria(PostBean.class).list();
+		
+		flagged= session.createCriteria(PostBean.class).add(Restrictions.eq("flagged", 1)).list();
+		return flagged;
+    }
+    
+    public void test() {
+    	Transaction tx= session.beginTransaction(); 
+    	UserBean test= new UserBean();
+    	session.save(test);
+    	tx.commit();
     }
     
 }

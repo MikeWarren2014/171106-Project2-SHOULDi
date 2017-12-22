@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.user.service.Interface;
+package com.zenith.interfaces;
+
+import java.util.List;
 
 import com.zenith.Beans.UserBean;
 import com.zenith.request.model.UserSignUpModel;
@@ -15,5 +17,6 @@ import com.zenith.request.model.UserSignUpModel;
 public interface UserService {
     
     public UserBean createUser(UserSignUpModel requestObject); 
+    public List<UserBean> getFavoriteUsers();
     
 }

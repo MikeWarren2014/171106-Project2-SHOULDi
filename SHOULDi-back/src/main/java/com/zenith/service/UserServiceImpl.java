@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.user.service.implementation;
+package com.zenith.service;
 
-import com.zenith.DAO.Interface.DAO;
+import com.zenith.DAO.OracleDB;
 import com.zenith.Beans.UserBean;
-import com.zenith.com.DAO.Implementation.OracleDB;
 import com.zenith.exceptions.RecordAlreadyExistsException;
+import com.zenith.interfaces.DAO;
+import com.zenith.interfaces.UserService;
 import com.zenith.request.model.UserSignUpModel;
 import com.zenith.user.response.ErrorMessages;
-import com.zenith.user.service.Interface.UserService;
+
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -81,4 +84,15 @@ public class UserServiceImpl implements UserService {
         
     }
     
+    public List<UserBean> getFavoriteUsers() {
+    	try 
+    	{
+    		this.database.openConnection();
+    		return database.getFavoriteUsers();
+    	}
+    	finally
+    	{
+    		database.closeConnection();
+    	}
+    }
 }

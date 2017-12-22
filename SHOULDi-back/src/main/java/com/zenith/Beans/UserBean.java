@@ -14,19 +14,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="User")
+@Table(name="SIUser")
 //@Inheritance(strategy=InheritanceType.JOINED)  
 public class UserBean implements Serializable {
     
@@ -46,10 +46,10 @@ public class UserBean implements Serializable {
 	private int gender;
         
 	@Column(name="is_moderator")
-	private boolean moderator;
+	private int moderator;
         
 	@Column(name="locked_account")
-	private boolean lock;
+	private int lock;
 	
 	@OneToMany(
 	        mappedBy = "poster", 
@@ -58,10 +58,10 @@ public class UserBean implements Serializable {
 	private List<PostBean> user_posts;
 	
 	@OneToMany(
-	        mappedBy = "poster", 
+	        mappedBy = "viewer", 
 	        orphanRemoval = true
 	    )
-	private List<PostBean> viewed_posts;
+	private List<VPBean> viewed_posts;
         
 
 	@OneToMany(
@@ -75,6 +75,19 @@ public class UserBean implements Serializable {
 	        orphanRemoval = true
 	    )
 	private List<CommentBean> user_comments;
+
+	@OneToMany(
+	        mappedBy = "user", 
+	        orphanRemoval = true
+	    )
+	private List<LikeBean> likes;
+	
+	@OneToMany(
+	        mappedBy = "user", 
+	        orphanRemoval = true
+	    )
+	private List<DislikeBean> dislikes;
+	
 	
 	@Column(name="score")
 	private int score;
@@ -111,19 +124,19 @@ public class UserBean implements Serializable {
 		this.gender = gender;
 	}
 
-	public boolean isModerator() {
+	public int isModerator() {
 		return moderator;
 	}
 
-	public void setModerator(boolean moderator) {
+	public void setModerator(int moderator) {
 		this.moderator = moderator;
 	}
 
-	public boolean isLock() {
+	public int isLock() {
 		return lock;
 	}
 
-	public void setLock(boolean lock) {
+	public void setLock(int lock) {
 		this.lock = lock;
 	}
 //
@@ -135,11 +148,11 @@ public class UserBean implements Serializable {
 		this.user_posts = user_posts;
 	}
 
-	public List<PostBean> getViewed_posts() {
+	public List<VPBean> getViewed_posts() {
 		return viewed_posts;
 	}
 
-	public void setViewed_posts(ArrayList<PostBean> viewed_posts) {
+	public void setViewed_posts(ArrayList<VPBean> viewed_posts) {
 		this.viewed_posts = viewed_posts;
 	}
 
@@ -166,10 +179,50 @@ public class UserBean implements Serializable {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	public List<LikeBean> getLikes() {
+		return likes;
+	}
 
-	public UserBean(int user_id, String username, String password, int gender, boolean moderator, boolean lock,
-			ArrayList<PostBean> user_posts, ArrayList<PostBean> viewed_posts, ArrayList<MessageBean> messages,
-			ArrayList<CommentBean> user_comments, int score) {
+	public void setLikes(List<LikeBean> likes) {
+		this.likes = likes;
+	}
+
+	public List<DislikeBean> getDislikes() {
+		return dislikes;
+	}
+
+	public void setDislikes(List<DislikeBean> dislikes) {
+		this.dislikes = dislikes;
+	}
+
+	public int getModerator() {
+		return moderator;
+	}
+
+	public int getLock() {
+		return lock;
+	}
+
+	public void setUser_posts(List<PostBean> user_posts) {
+		this.user_posts = user_posts;
+	}
+
+	public void setViewed_posts(List<VPBean> viewed_posts) {
+		this.viewed_posts = viewed_posts;
+	}
+
+	public void setMessages(List<MessageBean> messages) {
+		this.messages = messages;
+	}
+
+	public void setUser_comments(List<CommentBean> user_comments) {
+		this.user_comments = user_comments;
+	}
+
+	public UserBean(int user_id, String username, String password, int gender, int moderator, int lock,
+			ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> messages,
+			ArrayList<CommentBean> user_comments, ArrayList<LikeBean> likes, ArrayList<DislikeBean> dislikes, int score) {
 		super();
 		this.user_id = user_id;
 		this.username = username;
@@ -180,6 +233,8 @@ public class UserBean implements Serializable {
 		this.user_posts = user_posts;
 		this.viewed_posts = viewed_posts;
 		this.messages = messages;
+		this.likes=likes;
+		this.dislikes=dislikes;
 		this.user_comments = user_comments;
 		this.score = score;
 	}
@@ -188,9 +243,9 @@ public class UserBean implements Serializable {
 		super();
 	}
 
-	public UserBean(String username, String password, int gender, boolean moderator, boolean lock,
-			ArrayList<PostBean> user_posts, ArrayList<PostBean> viewed_posts, ArrayList<MessageBean> messages,
-			ArrayList<CommentBean> user_comments, int score) {
+	public UserBean(String username, String password, int gender, int moderator, int lock,
+			ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> messages,
+			ArrayList<CommentBean> user_comments, ArrayList<LikeBean> likes, ArrayList<DislikeBean> dislikes, int score) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -201,6 +256,8 @@ public class UserBean implements Serializable {
 		this.viewed_posts = viewed_posts;
 		this.messages = messages;
 		this.user_comments = user_comments;
+		this.likes=likes;
+		this.dislikes=dislikes;
 		this.score = score;
 	}
 

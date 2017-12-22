@@ -6,12 +6,12 @@
 package com.zenith.Beans;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,16 +52,40 @@ public class PostBean implements Serializable {
         @JoinColumn(name="user_id")
         UserBean poster; 
         
- 
+    	@OneToMany(
+    	        mappedBy = "viewed", 
+    	        orphanRemoval = true
+    	    )
+    	private List<VPBean> viewed_by;
         
 	@OneToMany(
 	        mappedBy = "postBean", 
 	        orphanRemoval = true
 	    )
 	private List<CommentBean> post_comments;
-        
+    
+	@OneToMany(
+	        mappedBy = "post", 
+	        orphanRemoval = true
+	    )
+	private List<LikeBean> likes;
+	
+	@OneToMany(
+	        mappedBy = "post", 
+	        orphanRemoval = true
+	    )
+	private List<DislikeBean> dislikes;
+	
+	@Column(name="date_created")
+	private Date created;
+	
+	@Column(name="COMPLETED")
+	private int completed;
+	
 	@Column(name="FLAG")
-	private boolean flag;
+	private int flag;
+	
+	
 	
 	
 	public int getPost_id() {
@@ -88,13 +112,13 @@ public class PostBean implements Serializable {
 	public void setPost_comments(ArrayList<CommentBean> post_comments) {
 		this.post_comments = post_comments;
 	}
-	public boolean isFlag() {
+	public int isFlag() {
 		return flag;
 	}
-	public void setFlag(boolean flag) {
+	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	public PostBean(int post_id, UserBean poster, ArrayList<ImageBean> images, ArrayList<CommentBean> post_comments, boolean flag) {
+	public PostBean(int post_id, UserBean poster, ArrayList<ImageBean> images, ArrayList<CommentBean> post_comments, int flag) {
 		super();
 		this.post_id = post_id;
 		this.poster = poster;
@@ -102,7 +126,7 @@ public class PostBean implements Serializable {
 		this.post_comments = post_comments;
 		this.flag = flag;
 	}
-	public PostBean(UserBean poster, ArrayList<ImageBean> images, ArrayList<CommentBean> post_comments, boolean flag) {
+	public PostBean(UserBean poster, ArrayList<ImageBean> images, ArrayList<CommentBean> post_comments, int flag) {
 		super();
 		this.poster = poster;
 		this.images = images;

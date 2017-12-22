@@ -59,10 +59,10 @@ public class SponsorBean extends UserBean  implements Serializable {
 	public void setAds(ArrayList<AdvertisementBean> ads) {
 		this.ads = ads;
 	}
-	public SponsorBean(int user_id, String username, String password, int gender, boolean moderator, boolean lock,
-			ArrayList<PostBean> user_posts, ArrayList<PostBean> viewed_posts, ArrayList<MessageBean> messages,
-			ArrayList<CommentBean> user_comments, int score, String email, int balance, ArrayList<AdvertisementBean> ads) {
-		super(user_id, username, password, gender, moderator, lock, user_posts, viewed_posts, messages, user_comments,
+	public SponsorBean(int user_id, String username, String password, int gender, int moderator, int lock,
+			ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> messages,
+			ArrayList<CommentBean> user_comments, int score, String email, int balance, ArrayList<AdvertisementBean> ads, ArrayList<LikeBean> likes, ArrayList<DislikeBean> dislikes) {
+		super(user_id, username, password, gender, moderator, lock, user_posts, viewed_posts, messages, user_comments, likes, dislikes,
 				score);
 		this.email = email;
 		this.balance = balance;
@@ -71,10 +71,10 @@ public class SponsorBean extends UserBean  implements Serializable {
 	public SponsorBean() {
 		super();
 	}
-	public SponsorBean(String username, String password, int gender, boolean moderator, boolean lock,
-			ArrayList<PostBean> user_posts, ArrayList<PostBean> viewed_posts, ArrayList<MessageBean> messages,
-			ArrayList<CommentBean> user_comments, int score, String email, int balance, ArrayList<AdvertisementBean> ads) {
-		super(username, password, gender, moderator, lock, user_posts, viewed_posts, messages, user_comments,
+	public SponsorBean(String username, String password, int gender, int moderator, int lock,
+			ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> messages,
+			ArrayList<CommentBean> user_comments, int score, String email, int balance, ArrayList<AdvertisementBean> ads, ArrayList<LikeBean> likes, ArrayList<DislikeBean> dislikes) {
+		super(username, password, gender, moderator, lock, user_posts, viewed_posts, messages, user_comments, likes, dislikes,
 				score);
 		this.email = email;
 		this.balance = balance;

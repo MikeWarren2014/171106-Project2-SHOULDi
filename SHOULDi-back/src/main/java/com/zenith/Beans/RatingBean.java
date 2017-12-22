@@ -29,19 +29,19 @@ public class RatingBean implements Serializable {
 	private int rating_id;
         
         /* Rating does not need to be linked with users (I think) */ 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//        @JoinColumn(name = "user_id")
-//	private UserBean rater_id;
+	@ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id")
+	private UserBean rater;
         
 	@ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "post_id")
 	private PostBean post;
         
 	@Column(name="LIKES")
-	private boolean like;
+	private int like;
         
 	@Column(name="DISLIKES")
-	private boolean dislike;
+	private int dislike;
         
 	@Column(name="RATING_")
 	private int rating;
@@ -52,28 +52,28 @@ public class RatingBean implements Serializable {
 	public void setRating_id(int rating_id) {
 		this.rating_id = rating_id;
 	}
-//	public UserBean getRater_id() {
-//		return rater_id;
-//	}
-//	public void setRater_id(UserBean rater_id) {
-//		this.rater_id = rater_id;
-//	}
+	public UserBean getRater() {
+		return rater;
+	}
+	public void setRater_id(UserBean rater) {
+		this.rater = rater;
+	}
 	public PostBean getPost() {
 		return post;
 	}
 	public void setPost(PostBean post) {
 		this.post = post;
 	}
-	public boolean isLike() {
+	public int isLike() {
 		return like;
 	}
-	public void setLike(boolean like) {
+	public void setLike(int like) {
 		this.like = like;
 	}
-	public boolean isDislike() {
+	public int isDislike() {
 		return dislike;
 	}
-	public void setDislike(boolean dislike) {
+	public void setDislike(int dislike) {
 		this.dislike = dislike;
 	}
 	public int getRating() {
@@ -82,18 +82,18 @@ public class RatingBean implements Serializable {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public RatingBean(int rating_id, PostBean post, boolean like, boolean dislike, int rating) {
+	public RatingBean(int rating_id, PostBean post, UserBean rater,  int like, int dislike, int rating) {
 		super();
 		this.rating_id = rating_id;
-		//this.rater_id = rater_id;
+		this.rater = rater;
 		this.post = post;
 		this.like = like;
 		this.dislike = dislike;
 		this.rating = rating;
 	}
-	public RatingBean(PostBean post, boolean like, boolean dislike, int rating) {
+	public RatingBean(PostBean post, UserBean rater, int like, int dislike, int rating) {
 		super();
-		//this.rater_id = rater_id;
+		this.rater = rater;
 		this.post = post;
 		this.like = like;
 		this.dislike = dislike;

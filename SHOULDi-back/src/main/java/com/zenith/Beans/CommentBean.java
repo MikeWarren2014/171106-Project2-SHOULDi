@@ -35,7 +35,7 @@ public class CommentBean implements Serializable {
 	
 
         @Column(name="is_flagged")
-        boolean isFlagged; 
+        int isFlagged; 
         
         /* Link to Posts */ 
         @ManyToOne

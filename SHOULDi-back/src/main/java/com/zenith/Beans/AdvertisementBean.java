@@ -38,6 +38,12 @@ public class AdvertisementBean implements Serializable  {
         
 	@Column(name="AD_LINK")
 	private String ad_link;
+	
+	@Column(name="CLICK_THRU")
+	private String num_clicked;
+	
+	@Column(name="NUM_SHOWN")
+	private String num_shown;
         
 	public int getAd_id() {
 		return ad_id;
