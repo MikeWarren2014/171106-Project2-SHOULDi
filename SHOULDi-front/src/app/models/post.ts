@@ -5,6 +5,6 @@ export class Post {
     _imageId    : number;
     imageUrl    : string;
     isFlagged   : boolean;
-    comments    : string[]; // convert to Comment[] ? 
+    comments    : Comment[]; 
     timestamp   : number;
 }

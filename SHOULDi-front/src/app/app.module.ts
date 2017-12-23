@@ -8,10 +8,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { BannerComponent } from './components/dashboard/banner/banner.component';
+import { MenuComponent } from './components/dashboard/menu/menu.component';
+
+import { FeedComponent } from './components/feed/feed.component';
 
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
+import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
 
 import { appRoutes } from './routing';
@@ -23,7 +28,10 @@ import { HttpModule } from '@angular/http';
     AppComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    BannerComponent,
+    MenuComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,8 @@ import { HttpModule } from '@angular/http';
     AlertService,
     AuthenticationService,
     AuthGuard,
-    UserService
+    UserService,
+    PostService
     // TODO: bring in other providers here
   ],
   bootstrap: [AppComponent]

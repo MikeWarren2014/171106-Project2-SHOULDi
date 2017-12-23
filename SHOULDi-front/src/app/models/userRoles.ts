@@ -1,6 +1,6 @@
 export class UserRoles
 {
-    const MODERATOR  = "moderator";
-    const SPONSOR    = "sponsor";
-    const BASE_USER  = "user";
-}
+    public static readonly MODERATOR  = "moderator";
+    public static readonly SPONSOR    = "sponsor";
+    public static readonly BASE_USER  = "user";
+} 

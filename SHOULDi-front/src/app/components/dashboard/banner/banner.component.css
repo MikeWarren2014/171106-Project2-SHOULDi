@@ -11,3 +11,24 @@ a, .dropbtn {
     padding: 14px 16px;
     text-decoration: none;
 }
+
+#menuButton
+{
+    float: left;
+    margin-left: 20px;
+}
+
+#ribbon
+{
+    width: 125px;
+}
+
+#logoutButton
+{
+    float: right;
+    margin-right: 20px;
+}
+
+#logoutButton img {
+    width: 25px;
+}

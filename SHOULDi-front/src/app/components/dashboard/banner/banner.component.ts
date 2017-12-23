@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
     selector    : 'banner',
     templateUrl : './banner.component.html',
     styleUrls   : [
-
+        './banner.component.css'
     ]
 })
 

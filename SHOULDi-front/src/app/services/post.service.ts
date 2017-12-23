@@ -12,7 +12,10 @@ export class PostService{
     getSomeFeed(){
         return this.http.get('/posts/feed').map((res : Response) => res.json());
     }
-    // gets all posts from the logged in poster
+    /**
+     * get all posts from the logged in user
+     * @param poster : the user to pull posts from
+     */
     getPostsFromUser(poster : User)
     {
         return this.http.get('/posts/poster=' + poster._id).map((res : Response) => res.json());
