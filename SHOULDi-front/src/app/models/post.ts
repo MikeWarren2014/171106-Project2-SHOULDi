@@ -1,10 +1,10 @@
 
 export class Post {
     _id         : number;
-    _posterId   : number;
-    _imageId    : number;
-    imageUrl    : string;
-    isFlagged   : boolean;
+    postDate    : Date;
+    image       : Blob;
     comments    : Comment[]; 
-    timestamp   : number;
+    likes       : number;
+    dislikes    : number;
+    isFlagged   : boolean;
 }
