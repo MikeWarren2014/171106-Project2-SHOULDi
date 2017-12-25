@@ -45,8 +45,8 @@
                 [(ngModel)]="model.isSponsor" 
                 ng-value="true">
             </span>
-        <div *ngIf="model.isSponsor" class="tableRow">
-            <h3 class="textCenter">Sponsor Info </h3>
+        <div *ngIf="model.isSponsor" class="tableRowGroup">
+            <h3 class="textCenter tableRow">Sponsor Info </h3>
             <span class="tableRow">
                 <label class="tableCell" for="company">Company name</label>
                 <input type="text" class="tableCell" id="company" name="company" [(ngModel)]="model.company" required>

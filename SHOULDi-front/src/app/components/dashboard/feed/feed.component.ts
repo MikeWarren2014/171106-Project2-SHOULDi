@@ -1,9 +1,9 @@
 import { Component,OnInit } from "@angular/core";
-import { Post } from "../../models/post";
-import { User } from "../../models/user"
+import { Post } from "../../../models/post";
+import { User } from "../../../models/user"
 
-import { PostService } from "../../services/post.service";
-import { UserService } from "../../services/user.service"
+import { PostService } from "../../../services/post.service";
+import { UserService } from "../../../services/user.service"
 
 @Component({
     selector   : 'feed',

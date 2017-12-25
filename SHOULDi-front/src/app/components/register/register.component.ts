@@ -54,9 +54,4 @@ export class RegisterComponent
             )
     }
 
-    // @HostListener('input#specificGender', ['$event'])
-    // changeGenderOnBlur(event)
-    // {
-    //     this.model.gender = event.target.value;
-    // }
 }

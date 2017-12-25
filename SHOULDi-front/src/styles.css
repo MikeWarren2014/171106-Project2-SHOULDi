@@ -33,6 +33,11 @@
     display: table-row;
 }
 
+.tableRowGroup
+{
+    display: table-row-group;
+}
+
 .tableCell
 {
     display: table-cell;

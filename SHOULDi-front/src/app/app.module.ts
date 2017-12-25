@@ -12,9 +12,12 @@ import { HomeComponent } from './components/home/home.component';
 import { BannerComponent } from './components/dashboard/banner/banner.component';
 import { MenuComponent } from './components/dashboard/menu/menu.component';
 
-import { FeedComponent } from './components/feed/feed.component';
-import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FeedComponent } from './components/dashboard/feed/feed.component';
+import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderboard.component';
+import { FavoritesComponent } from './components/dashboard/favorites/favorites.component';
+import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
+import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
+import { EditPostsComponent } from './components/dashboard/posts/edit/edit.posts.component';
 
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -39,7 +42,10 @@ import { HttpModule } from '@angular/http';
     MenuComponent,
     FeedComponent,
     LeaderboardComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    CreatePostsComponent,
+    MyPostsComponent,
+    EditPostsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,6 @@ import { HttpModule } from '@angular/http';
     PostService,
     MessageService,
     CommentService
-    // TODO: bring in other providers here
   ],
   bootstrap: [AppComponent]
 })
