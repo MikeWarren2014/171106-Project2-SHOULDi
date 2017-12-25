@@ -11,5 +11,9 @@ import { Component } from "@angular/core";
 
 export class BannerComponent
 {
-    
+    public visible = false;
+
+    public toggleVisible() { 
+        this.visible = !this.visible;
+    }
 }
