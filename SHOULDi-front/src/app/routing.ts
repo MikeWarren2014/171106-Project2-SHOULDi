@@ -1,10 +1,13 @@
 import { Routes } from '@angular/router';
 
+import { AuthGuard } from './guards/auth.guard';
+
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FeedComponent } from './components/feed/feed.component';
-import { AuthGuard } from './guards/auth.guard';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 export const appRoutes : Routes = [
     {
@@ -22,18 +25,18 @@ export const appRoutes : Routes = [
                 redirectTo : 'feed',
                 pathMatch  : 'full'
             },
-            // {
-            //     path       : 'leaderboard'
-            //     // component  : 
-            // },
+            {
+                path       : 'leaderboard',
+                component  : LeaderboardComponent
+            },
             {
                 path       : 'feed',
                 component  : FeedComponent
-            }//,
-            // {
-            //     path       : 'favorites'
-            //     // component  : 
-            // },
+            },
+            {
+                path       : 'favorites',
+                component  : FavoritesComponent
+            },
             // {
             //     path       : 'my-posts'
             //     // component  : 
@@ -46,6 +49,11 @@ export const appRoutes : Routes = [
             //     path       : 'edit-posts'
             //     // component  : 
             // }
+            // for everything else, we simply go to the default screen
+            {
+                path       : '**',
+                redirectTo : '' 
+            }
         ]
     },
     {

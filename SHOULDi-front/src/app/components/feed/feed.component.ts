@@ -6,8 +6,11 @@ import { PostService } from "../../services/post.service";
 import { UserService } from "../../services/user.service"
 
 @Component({
-    selector: 'feed',
-    templateUrl: './feed.component.html'
+    selector   : 'feed',
+    templateUrl: './feed.component.html',
+    styleUrls  : [
+        './feed.component.css'
+    ]
 })
 
 export class FeedComponent

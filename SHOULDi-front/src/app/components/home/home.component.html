@@ -1,7 +1,8 @@
 <div>
     <banner></banner>
     <!-- screen here -->
-    <div>
+    <div [ngStyle]="{ 'margin-left' : (banner.visible) ? '110px'  : '0'}">
+        {{banner.visible}}
         <router-outlet></router-outlet>
     </div>
 </div>

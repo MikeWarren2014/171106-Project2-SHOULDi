@@ -12,7 +12,7 @@ export class CommentService
 
     }
 
-    // TODO: get the endpoints 
+    // TODO: change the endpoints 
     // NOTE: comments should only be visible to the poster!
     getAllForPost(post : Post)
     {
