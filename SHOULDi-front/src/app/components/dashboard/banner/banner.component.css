@@ -1,20 +1,40 @@
 nav
 {
 	overflow: hidden;
-    background-color: #999;
+    background-color: none;
 }
 
-a, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    /* padding: 14px 16px; */
-    text-decoration: none;
+#menuButton
+{
+    width: 110px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#menuButton:hover .bar{
+    background-color: white;
+}
+
+#menuText{
+    margin-right: 8px;
+    font-family: Georgia;
+    font-size: 20px;
+}
+
+#menuBars{
+    margin-top: 2px;
+    float: right;
 }
 
 .bar {
-    background-color: white;
-    height: 2px;
+    background-color: black;
+    height: 3px;
     width: 30px;
 }
 
@@ -22,37 +42,57 @@ a, .dropbtn {
     margin-top: 5px;
 }
 
-#menuButton
+#ribbon
 {
-    float: left;
-    margin-left: 20px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    width: 240px;
+}
+
+#logoutButton
+{
+    float: right;
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 110px;
+}
+
+#logoutButton:hover #logoutImage{
+    background-image: url("SHOULDi-fedora-inverted.png");
+}
+
+#logoutIcon{
+    display: flex;
+    flex-direction: row;
+}
+
+#logoutImage {
+    width: 25px;
+    height: 25px;
+    background-image: url("SHOULDi-fedora.png");
+    background-size: 25px;
+    background-repeat: no-repeat;
+}
+
+#logoutText{
+    margin-left: 6px;
+    font-family: Georgia;
+    font-size: 20px;
+}
+
+.longBar{
+    margin-top: 10px;
+    background-color: black;
+    height: 3px;
+    width: 100%;
 }
 
 menu
 {
     width: 110px;
     text-align: left;
-    background-color: #999;
+    background-color: rgb(0, 0, 0);
     padding: 0 !important;
     margin-top: 0;
     z-index: 1; /* does this need to be on top? */
     height: 100%;
     position: fixed;
-}
-
-#ribbon
-{
-    width: 125px;
-}
-
-#logoutButton
-{
-    float: right;
-    margin-right: 20px;
-}
-
-#logoutButton img {
-    width: 25px;
 }
