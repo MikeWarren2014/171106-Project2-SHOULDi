@@ -8,7 +8,17 @@ li {
     padding: 20px 10px;
 }
 
-a {
+.menuButton:hover{
+    color: black !important;
+    background-color: white !important;
+}
+
+.menuButton {
+    font-family: Georgia;
     color: white;
+    background-color: black;
+    border-color: white;
+    height: 30px;
+    width: 110px;
     text-decoration: none;
 }
