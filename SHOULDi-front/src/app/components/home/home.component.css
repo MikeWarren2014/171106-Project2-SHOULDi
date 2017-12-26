@@ -1,0 +1,5 @@
+#homeContent{
+    background-color: white;
+    transition: margin-left 1s;
+    -webkit-transition: margin-left 1s;
+}

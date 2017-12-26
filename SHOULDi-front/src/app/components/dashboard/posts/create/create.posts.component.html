@@ -1,24 +1,6 @@
 <div>
     <div class="textCenter">Create Post</div>
     <form (ngSubmit)="createPost()" class="table" >
-        <span class="tableRow">
-            <label for="postImage" class="tableCell">Your Image</label>
-            <input type="file" id="postImage" name="postImage" class="tableCell" [(ngModel)]="model.postImage" required>
-        </span>
-        <span class="tableRow">
-            <label for="lastName" class="tableCell">last name</label>
-            <input type="text" id="lastName" name="lastName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.lastName" required>
-        </span>
-        <span class="tableRow">
-            <label for="userName" class="tableCell">user name</label>
-            <input type="text" id="userName" name="userName" class="tableCell" pattern="\w+" [(ngModel)]="model.userName" required>
-        </span>
-        <span class="tableRow buttonRow">
-            <label class="tableCell">
-                <input type="reset" value="Reset">
-            </label>
-            <button [disabled]="loading" class="tableCell">Register</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        </span>
+        
     </form>
 </div>

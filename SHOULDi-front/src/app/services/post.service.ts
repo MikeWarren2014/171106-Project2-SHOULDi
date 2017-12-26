@@ -35,7 +35,7 @@ export class PostService extends HttpService
             .map((res: Response) => res.json());
     }    
     getAllFlaggedPosts() { 
-        return this.http.get(this.BASE_URL + '/posts/type=flagged').map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/flagged').map((res : Response) => res.json());
     }
     getTopPosts() { 
         return this.http.get(this.BASE_URL + '/posts/ratings=top').map((res : Response) => res.json());
@@ -48,5 +48,10 @@ export class PostService extends HttpService
     }
     delete(post : Post){
         return this.http.delete(this.BASE_URL + '/posts/' + post._id);
+    }
+    flag(post : Post) {
+        return this.http.put(this.BASE_URL + '/api/posts/flag', {
+            postID : post._id
+        });
     }
 }
