@@ -15,6 +15,11 @@ export class CommentService extends HttpService
     {
         return this.http.get(this.BASE_URL + '/post/' + post._id + '/comments').map((res : Response) => res.json());
     }
+    getAllFlaggedComments()
+    {
+        return this.http.get(this.BASE_URL + '/api/comments/flagged').map((res : Response) => res.json());
+    }
+
     createComment(post : Post, comment : Comment)
     {
         return this.http.post(this.BASE_URL + '/post/' + post._id + '/comments/create', {

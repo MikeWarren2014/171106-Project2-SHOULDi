@@ -8,7 +8,7 @@ import { HttpService } from './http.service';
 export class AuthenticationService extends HttpService{
 
     login(username : String, password: String) {
-        return this.http.post(this.BASE_URL + '/users/authenticate', { username: username, password: password})
+        return this.http.post(this.BASE_URL + '/api/users/login', { username: username, password: password})
             .map((response: Response) => {
                 let user = response.json();
                 if(user && user.token) {
