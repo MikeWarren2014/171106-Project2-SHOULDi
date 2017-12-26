@@ -1,20 +1,28 @@
 /* style feed.component.html here */
-/* let's make sure every container element is vertically separate from each other */
-div > div:not(#imageContainer) {
-    white-space: pre-line;
+/* let's make sure every container element is horizontally separate from each other */
+.feedContainer {
+    display: flex;
+    flex-direction: row;
 }
 
 
 #imageContainer
 {
-    position: relative;
+    position : relative;
+    overflow : hidden; /* for now, any overflow is chopped off */
+    max-height: 560px;
+    min-width: 550px;
+    flex-grow: 2;
+}
+
+#imageActions {
+    width      : 300px;
 }
 
 .imageControl
 {
     /* Any .imageControl is to sit ON TOP of the image */
     z-index: 1;
-    /* TODO: vertically center this */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -30,4 +38,14 @@ div > div:not(#imageContainer) {
 #nextImage
 {
     right: 10px;
+}
+
+#upvote 
+{
+    background-color: limegreen;
+}
+
+#downvote 
+{
+    background-color: lightpink;
 }

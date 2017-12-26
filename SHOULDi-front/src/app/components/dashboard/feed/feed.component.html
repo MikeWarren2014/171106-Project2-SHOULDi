@@ -1,20 +1,29 @@
-<div>
-    Feed here...
+<div class="feedContainer">
     <div id="imageContainer">
         <a id="prevImage" class="imageControl"><</a>
         <img
             id="currentImage"
+            class="center"
             src="../../../assets/images/SHOULDi-suit.png">
             <!-- hardcoded value for right now -->
         <a id="nextImage" class="imageControl">></a>
 
         
     </div>
-    <span id="ratingsContainer" class="right">
-        ratings here...
-    </span>
-    <div id="commentsContainer">
-        comments here...
+    <div id="imageActions">
+        <div id="ratingsContainer">
+            <label>SHOULD I?</label>
+            <button id="upvote" value="Yes">Yes, you should!</button>
+            <button id="downvote" value="No">No, you shouldn't!</button>
+            <!-- TODO: put some content in this -->
+        </div>
+        <div id="commentsContainer">
+            <h3>Comments</h3>
+            <form id="addComment">
+                <textarea cols="40" id="newComment"></textarea>
+                <input type="submit" value="Post Comment">
+            </form>
+            <!-- TODO: put some content in this -->
+        </div>
     </div>
-    <!-- TODO: put some content in this -->
 </div>
