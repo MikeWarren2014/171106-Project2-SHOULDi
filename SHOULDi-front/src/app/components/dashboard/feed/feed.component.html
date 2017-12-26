@@ -24,9 +24,13 @@
                 <input type="submit" value="Post Comment">
             </form>
             <!-- if this post was made by the current user -->
-            <div *ngIf="currentPost.poster._id == currentUser._id">
-                <!-- TODO: put some content in this -->
-                
+            <div *ngIf="currentPost.poster._id == currentUser._id" >
+                <div *ngFor="let comment of currentPost.comments">
+                    <!-- TODO: put some content in this -->
+                    <p>
+                        {{comment.content}}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
