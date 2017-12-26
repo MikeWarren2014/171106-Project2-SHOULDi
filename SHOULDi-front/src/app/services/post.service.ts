@@ -41,6 +41,7 @@ export class PostService extends HttpService
         return this.http.get(this.BASE_URL + '/posts/ratings=top').map((res : Response) => res.json());
     }    
     create(post: Post){
+        console.log("Something");
         return this.http.post(this.BASE_URL + '/posts/create', post);
     }
     update(post: Post){
