@@ -3,27 +3,24 @@ import { Http, Response } from "@angular/http";
 
 // import { User, Post } from '../models'; // TypeScript imports don't work like Java ones!
 import { User } from "../models/user";
+import { HttpService } from "./http.service";
 
 
 @Injectable()
-export class MessageService 
+export class MessageService extends HttpService
 {
     // TODO: get the endpoints
-    constructor (private http : Http)
-    {
-        
-    }
     getBySender(sender : User)
     {
-        return this.http.get('/messages/senderId=' + sender._id).map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/messages/senderId=' + sender._id).map((res : Response) => res.json());
     }
     getByRecipient(recipient : User)
     {
-        return this.http.get('/messages/recipientId=' + recipient._id).map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/messages/recipientId=' + recipient._id).map((res : Response) => res.json());
     }
     createBySender(sender : User)
     {
-        return this.http.post('/messages/send', JSON.stringify(sender)).map((res : Response) => res.json());
+        return this.http.post(this.BASE_URL + '/messages/send', sender).map((res : Response) => res.json());
     }
     // TODO: write the rest of the CRUD operations
 }

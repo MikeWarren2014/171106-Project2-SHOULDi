@@ -33,6 +33,7 @@ export class RegisterComponent
         "male",
         "other"
     ];
+    isSponsor = false;
 
     constructor(
         private router : Router,
@@ -41,10 +42,13 @@ export class RegisterComponent
     )
     {}
 
+    
+
     // NOTE: may have to scrap this for a POST request to a Java servlet that handles all the logic for us
     register() {
         this.loading = true;
         // if there's any data in any of the sponsor field, the new user is a sponsor.
+        this.model.role = (this.isSponsor) ? UserRoles.SPONSOR : UserRoles.BASE_USER;
         this.userService.create(this.model)
             .subscribe(
                 data => {
