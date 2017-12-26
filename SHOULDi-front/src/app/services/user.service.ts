@@ -14,22 +14,22 @@ export class UserService
 
     getAll()
     {
-        return this.http.get('/users').map((res : Response) => res.json());
+        return this.http.get('/api/users').map((res : Response) => res.json());
     }
     
     getById(_id: string) {
-        return this.http.get('/users/' + _id).map((res: Response) => res.json());
+        return this.http.get('/api/users/' + _id).map((res: Response) => res.json());
     }
  
     create(user: User) {
-        return this.http.post('/users/register', user);
+        return this.http.post('/api/users/register', user);
     }
  
     update(user: User) {
-        return this.http.put('/users/' + user._id, user);
+        return this.http.put('/api/users/' + user._id, user);
     }
  
     delete(_id: string) {
-        return this.http.delete('/users/' + _id);
+        return this.http.delete('/api/users/' + _id);
     }
 }

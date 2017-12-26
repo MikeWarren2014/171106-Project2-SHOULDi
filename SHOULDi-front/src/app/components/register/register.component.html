@@ -29,15 +29,11 @@
             </datalist>
         </span>
         <span class="tableRow">
-            <label class="tableCell" for="email">E-mail</label> 
+            <label class="tableCell" for="email">e-mail</label> 
             <input type="email" class="tableCell" id="email" name="email" [(ngModel)]="model.email" required>
         </span>
         <span class="tableRow">
             <label class="tableCell">Register as sponsor: </label>
-            <!-- <input type="radio" name="sponsorYesorNo" id="isSponsor" [(ngModel)]="model.isSponsor" ng-value="true">
-            <label for="isSponsor">Yes</label>
-            <input type="radio" name="sponsorYesorNo" id="isNotSponsor" [(ngModel)]="model.isSponsor" ng-value="false">
-            <label for="isNotSponsor">No</label> -->
             <input type="checkbox" 
                 name="isSponsor" 
                 id="isSponsor" 
@@ -48,8 +44,12 @@
         <div *ngIf="model.isSponsor" class="tableRowGroup">
             <h3 class="textCenter tableRow">Sponsor Info </h3>
             <span class="tableRow">
-                <label class="tableCell" for="company">Company name</label>
+                <label class="tableCell" for="company">company name</label>
                 <input type="text" class="tableCell" id="company" name="company" [(ngModel)]="model.company" required>
+            </span>
+            <span class="tableRow" title="The amount of money you wish to use for sponsoring">
+                <label class="tableCell" for="balance">balance</label>
+                $<input type="text" class="tableCell" id="balance" name="balance" [(ngModel)]="model.balance" required>
             </span>
         </div>
         <span class="tableRow buttonRow">
