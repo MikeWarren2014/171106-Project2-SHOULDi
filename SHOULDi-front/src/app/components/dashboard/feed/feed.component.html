@@ -15,7 +15,6 @@
             <label>SHOULD I?</label>
             <button id="upvote" value="Yes">Yes, you should!</button>
             <button id="downvote" value="No">No, you shouldn't!</button>
-            <!-- TODO: put some content in this -->
         </div>
         <div id="commentsContainer">
             <h3>Comments</h3>
@@ -25,8 +24,10 @@
             </form>
             <!-- if this post was made by the current user -->
             <div *ngIf="currentPost.poster._id == currentUser._id" >
+                <!-- show this comments section -->
                 <div *ngFor="let comment of currentPost.comments">
-                    <!-- TODO: put some content in this -->
+                    <!-- TODO:  style this -->
+                    <h4>{{comment.commenter}}</h4> 
                     <p>
                         {{comment.content}}
                     </p>
