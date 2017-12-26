@@ -7,7 +7,7 @@ import { Http } from "@angular/http";
 export class HttpService
 {
     // the base url (including the port)
-    ADDRESS = 'localhost';
+    ADDRESS = 'http://localhost';
     PORT    = 8084; // the port the REST API is on
     BASE_URL= this.ADDRESS + ':' + this.PORT;
 
