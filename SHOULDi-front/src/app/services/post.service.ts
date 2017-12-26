@@ -10,10 +10,14 @@ import { TokenService } from './token.service';
 @Injectable()
 export class PostService extends HttpService
 {
-
-    // TODO: get the endpoints
+    // TODO: clean this up
     getSomeFeed(){
-        return this.http.get(this.BASE_URL + '/api/posts/feed').map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/unseen/all/')
+            .map((res : Response) => res.json());
+    }
+
+    getSomeFeedByGender(){
+        return this.http.get(this.BASE_URL + '/api/posts/unseen/gender').map((res : Response) => res.json());
     }
     /**
      * get all posts from the logged in user
@@ -23,18 +27,6 @@ export class PostService extends HttpService
     {
         return this.http.get(this.BASE_URL + '/api/posts/poster=' + poster._id).map((res : Response) => res.json());
     }
-    /**
-     * Pulls only some posts posted by the end user, up to a max amount specified.
-     * 
-     * @param startIndex : the first post to pull
-     * 
-     * This function should, if there is k < amount posts, return only the k of them. 
-     */
-    getSomePosts(startIndex : number){
-        let amount = 5; // change this to mod the amount of posts to pull 
-        return this.http.get(this.BASE_URL + '/api/posts/start=' + startIndex + '&amount=' + amount)
-            .map((res: Response) => res.json());
-    }    
     getAllFlaggedPosts() { 
         return this.http.get(this.BASE_URL + '/api/posts/flagged').map((res : Response) => res.json());
     }

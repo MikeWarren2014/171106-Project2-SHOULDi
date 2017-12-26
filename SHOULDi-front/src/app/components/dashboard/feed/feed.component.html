@@ -23,7 +23,11 @@
                 <textarea cols="40" id="newComment"></textarea>
                 <input type="submit" value="Post Comment">
             </form>
-            <!-- TODO: put some content in this -->
+            <!-- if this post was made by the current user -->
+            <div *ngIf="currentPost.poster._id == currentUser._id">
+                <!-- TODO: put some content in this -->
+                
+            </div>
         </div>
     </div>
 </div>

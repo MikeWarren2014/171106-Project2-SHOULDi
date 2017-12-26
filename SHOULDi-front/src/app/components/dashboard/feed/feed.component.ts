@@ -17,6 +17,8 @@ export class FeedComponent
 {
     // a feed has a logged on user
     currentUser: User;
+    // since this component will only have one post at a time, it has currentPost, too
+    currentPost: Post;
     users: User[] = []; // does a feed have users?
     // a feed has posts
     // TODO: put in dummy data here...
@@ -34,8 +36,7 @@ export class FeedComponent
         this.postService.delete(post);
     }
     private loadPosts() {
-        // this.userService.getAll().subscribe( users => { this.users = users; });
-        // this will only get the posts from the end user...
-        this.postService.getPostsFromUser(this.currentUser).subscribe(posts => { this.posts = posts; });
+        this.postService.getSomeFeed().subscribe(posts => { this.posts = posts; });
     }
+
 }
