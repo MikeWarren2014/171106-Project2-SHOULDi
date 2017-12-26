@@ -32,7 +32,8 @@ export class RegisterComponent
         "female",
         "male",
         "other"
-    ]
+    ];
+    isSponsor = false;
 
     constructor(
         private router : Router,

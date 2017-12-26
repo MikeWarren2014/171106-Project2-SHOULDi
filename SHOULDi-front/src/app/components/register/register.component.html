@@ -38,10 +38,10 @@
                 name="isSponsor" 
                 id="isSponsor" 
                 title="Check this box if you are sponsor"
-                [(ngModel)]="model.isSponsor" 
+                [(ngModel)]="isSponsor" 
                 ng-value="true">
             </span>
-        <div *ngIf="model.isSponsor" class="tableRowGroup">
+        <div *ngIf="isSponsor" class="tableRowGroup">
             <h3 class="textCenter tableRow">Sponsor Info </h3>
             <span class="tableRow">
                 <label class="tableCell" for="company">company name</label>
