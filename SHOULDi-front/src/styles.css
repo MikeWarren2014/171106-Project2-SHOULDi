@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.right
+{
+    float: right;
+}
+
 .pageCenter
 {
     position: absolute;

@@ -1,1 +1,33 @@
 /* style feed.component.html here */
+/* let's make sure every container element is vertically separate from each other */
+div > div:not(#imageContainer) {
+    white-space: pre-line;
+}
+
+
+#imageContainer
+{
+    position: relative;
+}
+
+.imageControl
+{
+    /* Any .imageControl is to sit ON TOP of the image */
+    z-index: 1;
+    /* TODO: vertically center this */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+#prevImage
+{
+    left: 10px;
+}
+
+#nextImage
+{
+    right: 10px;
+}
