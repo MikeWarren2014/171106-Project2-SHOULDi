@@ -38,8 +38,10 @@
                 name="isSponsor" 
                 id="isSponsor" 
                 title="Check this box if you are sponsor"
-                [(ngModel)]="isSponsor" 
-                ng-value="true">
+                [(ngModel)]="model.role" 
+                ng-true-value="UserRoles.SPONSOR"
+                ng-false-value="UserRoles.BASE_USER"
+                >
             </span>
         <div *ngIf="isSponsor" class="tableRowGroup">
             <h3 class="textCenter tableRow">Sponsor Info </h3>

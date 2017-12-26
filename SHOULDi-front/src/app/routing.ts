@@ -8,10 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 
 import { FeedComponent } from './components/dashboard/feed/feed.component';
 import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderboard.component';
-import { FavoritesComponent } from './components/dashboard/favorites/favorites.component';
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
 import { EditPostsComponent } from './components/dashboard/posts/edit/edit.posts.component';
+import { ScoreComponent } from './components/dashboard/score/score.component';
 
 export const appRoutes : Routes = [
     {
@@ -38,8 +38,8 @@ export const appRoutes : Routes = [
                 component  : FeedComponent
             },
             {
-                path       : 'favorites',
-                component  : FavoritesComponent
+                path       : 'score',
+                component  : ScoreComponent
             },
             {
                 path       : 'my-posts',
