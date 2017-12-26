@@ -5,13 +5,19 @@ import { Post } from '../models/post';
 import 'rxjs/';
 import { User } from '../models/user';
 import { HttpService } from './http.service';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class PostService extends HttpService
 {
-    // TODO: get the endpoints
+    // TODO: clean this up
     getSomeFeed(){
-        return this.http.get(this.BASE_URL + '/posts/feed').map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/unseen/all/')
+            .map((res : Response) => res.json());
+    }
+
+    getSomeFeedByGender(){
+        return this.http.get(this.BASE_URL + '/api/posts/unseen/gender').map((res : Response) => res.json());
     }
     /**
      * get all posts from the logged in user
@@ -19,40 +25,32 @@ export class PostService extends HttpService
      */
     getPostsFromUser(poster : User)
     {
-        return this.http.get(this.BASE_URL + '/posts/poster=' + poster._id).map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/poster=' + poster._id).map((res : Response) => res.json());
     }
-    /**
-     * Pulls only some posts posted by the end user, up to a max amount specified.
-     * 
-     * @param poster     : the User who posted the posts
-     * @param startIndex : the first post to pull
-     * 
-     * This function should, if there is k < amount posts, return only the k of them. 
-     */
-    getSomePostsFromUser(poster : User, startIndex : number){
-        let amount = 5; // change this to mod the amount of posts to pull 
-        return this.http.get(this.BASE_URL + '/posts/start=' + startIndex + '&amount=' + amount)
-            .map((res: Response) => res.json());
-    }    
     getAllFlaggedPosts() { 
         return this.http.get(this.BASE_URL + '/api/posts/flagged').map((res : Response) => res.json());
     }
     getTopPosts() { 
-        return this.http.get(this.BASE_URL + '/posts/ratings=top').map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/ratings=top').map((res : Response) => res.json());
     }    
     create(post: Post){
-        console.log("Something");
-        return this.http.post(this.BASE_URL + '/posts/create', post);
+        return this.http.post(this.BASE_URL + '/api/posts/post', 
+        {
+            image    : post.image,
+            occasion : post.occasion,
+            token    : TokenService.getToken()
+        });
     }
     update(post: Post){
-        return this.http.put(this.BASE_URL + '/posts/' + post._id, post);
+        return this.http.put(this.BASE_URL + '/api/posts/' + post._id, post);
     }
     delete(post : Post){
-        return this.http.delete(this.BASE_URL + '/posts/' + post._id);
+        return this.http.delete(this.BASE_URL + '/api/posts/' + post._id);
     }
     flag(post : Post) {
         return this.http.put(this.BASE_URL + '/api/posts/flag', {
-            postID : post._id
+            postID : post._id,
+            token  : TokenService.getToken()
         });
     }
 }
