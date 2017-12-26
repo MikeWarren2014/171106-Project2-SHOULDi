@@ -49,4 +49,9 @@ export class PostService extends HttpService
     delete(post : Post){
         return this.http.delete(this.BASE_URL + '/posts/' + post._id);
     }
+    flag(post : Post) {
+        return this.http.put(this.BASE_URL + '/api/posts/flag', {
+            postID : post._id
+        });
+    }
 }
