@@ -14,7 +14,7 @@ import { MenuComponent } from './components/dashboard/menu/menu.component';
 
 import { FeedComponent } from './components/dashboard/feed/feed.component';
 import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderboard.component';
-import { FavoritesComponent } from './components/dashboard/favorites/favorites.component';
+import { ScoreComponent } from './components/dashboard/score/score.component';
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
 import { EditPostsComponent } from './components/dashboard/posts/edit/edit.posts.component';
@@ -42,7 +42,7 @@ import { HttpModule } from '@angular/http';
     MenuComponent,
     FeedComponent,
     LeaderboardComponent,
-    FavoritesComponent,
+    ScoreComponent,
     CreatePostsComponent,
     MyPostsComponent,
     EditPostsComponent

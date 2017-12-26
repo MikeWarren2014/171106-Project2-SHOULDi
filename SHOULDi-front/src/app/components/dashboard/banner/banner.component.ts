@@ -16,6 +16,4 @@ export class BannerComponent
     public toggleVisible() {
         this.visible = !this.visible;
     }
-
-    public foo(){}
 }
