@@ -20,23 +20,23 @@ export class CommentService
     }
     createComment(post : Post, comment : Comment)
     {
-        return this.http.post('/post/' + post._id + '/comments/create', {
+        return this.http.post('/post/' + post._id + '/comments/create',JSON.stringify({
             post    : post,
             comment : comment
-        });
+        })).map((res : Response) => res.json());
     }
     // TODO: ask Caleb,Xavier if this is enough data to send the back end
     updateComment(post : Post, comment : Comment)
     {
-        return this.http.put('/post/' + post._id + '/comments/update', {
+        return this.http.put('/post/' + post._id + '/comments/update', JSON.stringify({
             post    : post,
             comment : comment
-        })
+        })).map((res : Response) => res.json());
     }
     
     deleteComment(post : Post, comment : Comment)
     {
-        return this.http.delete('/post/' + post._id + '/comments/delete/' + comment._id);
+        return this.http.delete('/post/' + post._id + '/comments/delete/' + comment._id).map((res : Response) => res.json());;
     }
     
     

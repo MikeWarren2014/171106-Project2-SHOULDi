@@ -40,10 +40,10 @@ export class PostService{
         return this.http.get('/posts/ratings=top').map((res : Response) => res.json());
     }    
     create(post: Post){
-        return this.http.post('/posts/create', post);
+        return this.http.post('/posts/create', JSON.stringify(post));
     }
     update(post: Post){
-        return this.http.put('/posts/' + post._id, post);
+        return this.http.put('/posts/' + post._id, JSON.stringify(post));
     }
     delete(post : Post){
         return this.http.delete('/posts/' + post._id);

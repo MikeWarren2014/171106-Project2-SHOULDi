@@ -23,7 +23,7 @@ export class MessageService
     }
     createBySender(sender : User)
     {
-        return this.http.post('/messages/send', sender).map((res : Response) => res.json());
+        return this.http.post('/messages/send', JSON.stringify(sender)).map((res : Response) => res.json());
     }
     // TODO: write the rest of the CRUD operations
 }

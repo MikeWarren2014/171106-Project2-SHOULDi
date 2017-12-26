@@ -12,9 +12,9 @@ export class UserService
 
     constructor(private http : Http) {}
 
-    getAll()
+    getAllFlagged()
     {
-        return this.http.get('/api/users').map((res : Response) => res.json());
+        return this.http.get('/api/users/flagged').map((res : Response) => res.json());
     }
     
     getById(_id: string) {
@@ -22,14 +22,14 @@ export class UserService
     }
  
     create(user: User) {
-        return this.http.post('/api/users/register', user);
+        return this.http.post('/api/users/register', JSON.stringify(user)).map((res : Response) => res.json());
     }
  
     update(user: User) {
-        return this.http.put('/api/users/' + user._id, user);
+        return this.http.put('/api/users/' + user._id, JSON.stringify(user)).map((res : Response) => res.json());
     }
  
     delete(_id: string) {
-        return this.http.delete('/api/users/' + _id);
+        return this.http.delete('/api/users/' + _id).map((res : Response) => res.json());
     }
 }

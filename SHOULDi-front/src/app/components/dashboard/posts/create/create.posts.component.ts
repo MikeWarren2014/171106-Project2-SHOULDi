@@ -10,5 +10,9 @@ import { Component } from "@angular/core";
 })
 
 export class CreatePostsComponent {
-    
+    public postImage    : File;
+
+    public createPost(){
+        
+    }
 }

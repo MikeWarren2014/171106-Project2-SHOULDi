@@ -2,8 +2,8 @@
     <div class="textCenter">Create Post</div>
     <form (ngSubmit)="createPost()" class="table" >
         <span class="tableRow">
-            <label for="firstName" class="tableCell">first name</label>
-            <input type="text" id="firstName" name="firstName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.firstName" required>
+            <label for="postImage" class="tableCell">Your Image</label>
+            <input type="file" id="postImage" name="postImage" class="tableCell" [(ngModel)]="model.postImage" required>
         </span>
         <span class="tableRow">
             <label for="lastName" class="tableCell">last name</label>
@@ -13,45 +13,6 @@
             <label for="userName" class="tableCell">user name</label>
             <input type="text" id="userName" name="userName" class="tableCell" pattern="\w+" [(ngModel)]="model.userName" required>
         </span>
-        <span class="tableRow">
-            <label for="password" class="tableCell">password</label>
-            <input type="password" id="password" name="password" class="tableCell" [(ngModel)]="model.password" required>
-        </span>
-        <span class="tableRow">
-            <label for="confirmPassword" class="tableCell">confirm password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="tableCell" [(ngModel)]="model.confirmPassword" required>
-        </span>
-        <span class="tableRow">
-            <label for="gender"  class="tableCell">gender</label>
-            <input list="genders" class="tableCell" id="gender" name="gender" [(ngModel)]="model.gender">
-            <datalist id="genders">
-                <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
-            </datalist>
-        </span>
-        <span class="tableRow">
-            <label class="tableCell" for="email">e-mail</label> 
-            <input type="email" class="tableCell" id="email" name="email" [(ngModel)]="model.email" required>
-        </span>
-        <span class="tableRow">
-            <label class="tableCell">Register as sponsor: </label>
-            <input type="checkbox" 
-                name="isSponsor" 
-                id="isSponsor" 
-                title="Check this box if you are sponsor"
-                [(ngModel)]="model.isSponsor" 
-                ng-value="true">
-            </span>
-        <div *ngIf="model.isSponsor" class="tableRowGroup">
-            <h3 class="textCenter tableRow">Sponsor Info </h3>
-            <span class="tableRow">
-                <label class="tableCell" for="company">company name</label>
-                <input type="text" class="tableCell" id="company" name="company" [(ngModel)]="model.company" required>
-            </span>
-            <span class="tableRow" title="The amount of money you wish to use for sponsoring">
-                <label class="tableCell" for="balance">balance</label>
-                $<input type="text" class="tableCell" id="balance" name="balance" [(ngModel)]="model.balance" required>
-            </span>
-        </div>
         <span class="tableRow buttonRow">
             <label class="tableCell">
                 <input type="reset" value="Reset">
