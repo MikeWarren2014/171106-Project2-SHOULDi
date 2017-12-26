@@ -6,9 +6,10 @@ import { HttpService } from './http.service';
 
 @Injectable()
 export class AuthenticationService extends HttpService{
-
+    public something : any;
     login(username : String, password: String) {
-        return this.http.post(this.BASE_URL + '/api/users/login', { username: username, password: password})
+        this.something = {"email":username, "password":password}; 
+        return this.http.post(this.BASE_URL + '/api/users/login', this.something)
             .map((response: Response) => {
                 let user = response.json();
                 if(user && user.token) {
