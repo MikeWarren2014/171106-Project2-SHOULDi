@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { PostService } from "../../../../services/post.service";
 import { Post } from "../../../../models/post";
+import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 
 @Component({
     selector    : 'create-posts',
@@ -10,6 +11,7 @@ import { Post } from "../../../../models/post";
     ] 
 })
 
+@AutoUnsubscribe
 export class CreatePostsComponent {
     public post         : Post;
     public postImage    : File;
