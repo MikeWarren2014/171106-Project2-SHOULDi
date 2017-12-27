@@ -29,7 +29,7 @@ export class FeedComponent
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     ngOnInit() {
-
+        this.loadPosts();
     }
     deletePost(post : Post)
     {
