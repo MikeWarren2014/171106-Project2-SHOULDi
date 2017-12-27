@@ -12,6 +12,7 @@ import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderb
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
 import { ScoreComponent } from './components/dashboard/score/score.component';
+import { UsersFlaggedComponent } from './components/dashboard/users/flagged/users.flagged.component';
 
 export const appRoutes : Routes = [
     {
@@ -48,6 +49,10 @@ export const appRoutes : Routes = [
             {
                 path       : 'create-posts',
                 component  : CreatePostsComponent
+            },
+            {
+                path       : 'users-flagged',
+                redirectTo : UsersFlaggedComponent
             },
             // for everything else, we simply go to the default screen
             {
