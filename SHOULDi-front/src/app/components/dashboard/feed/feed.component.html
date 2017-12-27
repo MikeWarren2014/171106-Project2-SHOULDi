@@ -1,51 +1,57 @@
 <div class="feedContainer">
     <!-- 
         To be shown when there's no content
-    <h2>No content yet!</h2>
-    <p class="pageCenter">
-        Sorry, there's no feed content yet. Wanna <a routerLink="../posts/create">create some</a>?
-    </p>
- -->
-    <div id="feedContent">
-
-        <div id="imageContainer">
-            <a id="prevImage" class="imageControl"><</a>
-            <img
-            id="currentImage"
-            class="center"
-            src="../../../assets/images/SHOULDi-suit.png">
-            <!-- hardcoded value for right now -->
-            <a id="nextImage" class="imageControl">></a>
-            
-        </div>
-        <label class="right">
-            <!-- TODO: hook likes,dislikes up to post.likes,post.dislikes -->
-            <b id="likes">0</b> likes <b id="dislikes">0</b> dislikes
-        </label>
+    -->
+    <div *ngIf="!posts || !posts.length; else feed">
+        <h2>No content yet!</h2>
+        <p class="pageCenter">
+            Sorry, there's no feed content yet. Wanna <a routerLink="../create-posts">create some</a>?
+        </p>
+        
     </div>
-    <div id="imageActions">
-        <div id="ratingsContainer">
-            <label>SHOULD I?</label>
-            <button id="upvote" value="Yes">Yes, you should!</button>
-            <button id="downvote" value="No">No, you shouldn't!</button>
+    <ng-template #feed>
+        <div id="feedContent">
+            
+            <div id="imageContainer">
+                <a id="prevImage" class="imageControl"><</a>
+                <img
+                    id="currentImage"
+                    class="center"
+                    src="../../../assets/images/SHOULDi-suit.png">
+                    <!-- hardcoded value for right now -->
+                <a id="nextImage" class="imageControl">></a>
+                
+            </div>
+            <label class="right">
+                <!-- TODO: hook likes,dislikes up to post.likes,post.dislikes -->
+                <b id="likes">0</b> likes <b id="dislikes">0</b> dislikes
+            </label>
         </div>
-        <div id="commentsContainer">
-            <h3>Comments</h3>
-            <form id="addComment">
-                <textarea cols="40" id="newComment"></textarea>
-                <input type="submit" value="Post Comment">
-            </form>
-            <!-- if this post was made by the current user -->
-            <div *ngIf="currentPost && currentPost.poster  && currentUser && currentPost.poster._id == currentUser._id" >
-                <!-- show this comments section -->
-                <div *ngFor="let comment of currentPost.comments">
-                    <!-- TODO:  style this -->
-                    <h4>{{comment.commenter}}</h4> 
-                    <p>
-                        {{comment.content}}
-                    </p>
+        <div id="imageActions">
+            <div id="ratingsContainer">
+                <label>SHOULD I?</label>
+                <button id="upvote" value="Yes">Yes, you should!</button>
+                <button id="downvote" value="No">No, you shouldn't!</button>
+            </div>
+            <div id="commentsContainer">
+                <h3>Comments</h3>
+                <form id="addComment">
+                    <textarea cols="40" id="newComment"></textarea>
+                    <input type="submit" value="Post Comment">
+                </form>
+                <!-- if this post was made by the current user -->
+                <div *ngIf="currentPost && currentPost.poster  && currentUser && currentPost.poster._id == currentUser._id" >
+                    <!-- show this comments section -->
+                    <div *ngFor="let comment of currentPost.comments">
+                        <!-- TODO:  style this -->
+                        <h4>{{comment.commenter}}</h4> 
+                        <p>
+                            {{comment.content}}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        
+    </ng-template>
 </div>
