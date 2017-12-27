@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { AlertService } from '../../services/alert.service';
 import { HostListener } from '@angular/core/src/metadata/directives';
 import { UserRoles } from '../../models/userRoles';
+import { AutoUnsubscribe } from '../../autoUnsubscribe';
 
 @Component({
     selector    : 'register',
@@ -19,6 +20,7 @@ import { UserRoles } from '../../models/userRoles';
     ]
 })
 
+@AutoUnsubscribe
 export class RegisterComponent
 {
     model   : any = {

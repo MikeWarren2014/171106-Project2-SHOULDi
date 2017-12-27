@@ -52,7 +52,7 @@ export const appRoutes : Routes = [
             },
             {
                 path       : 'users-flagged',
-                redirectTo : UsersFlaggedComponent
+                component  : UsersFlaggedComponent
             },
             // for everything else, we simply go to the default screen
             {

@@ -4,6 +4,7 @@ import { User } from "../../../models/user"
 
 import { PostService } from "../../../services/post.service";
 import { UserService } from "../../../services/user.service"
+import { AutoUnsubscribe } from "../../../autoUnsubscribe";
 
 @Component({
     selector   : 'feed',
@@ -13,6 +14,7 @@ import { UserService } from "../../../services/user.service"
     ]
 })
 
+@AutoUnsubscribe
 export class FeedComponent
 {
     // a feed has a logged on user

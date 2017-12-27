@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Post } from "../../../../models/post";
 import { PostService } from "../../../../services/post.service";
+import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 
 @Component({
     selector    : 'my-posts',
@@ -10,6 +11,7 @@ import { PostService } from "../../../../services/post.service";
     ] 
 })
 
+@AutoUnsubscribe
 export class MyPostsComponent {
     posts : Post[];
     message : any;
