@@ -17,7 +17,7 @@ export class CreatePostsComponent {
     public image        : any;
     public reader       : FileReader;
     public isImageLoading: boolean;
-    public message      : any;
+    public data           : any;
     constructor(private postService : PostService){
         this.post = new Post();
     }
@@ -31,7 +31,7 @@ export class CreatePostsComponent {
             this.image = atob(this.post.image);
             this.post.postDate = new Date();
             console.log(this.image);
-            console.log(this.postService.create(this.post).subscribe(message => this.message = message));
+            console.log(this.postService.create(this.post).subscribe(data => this.data = data));
         };
         this.reader.readAsDataURL(this.blobImage);
     }

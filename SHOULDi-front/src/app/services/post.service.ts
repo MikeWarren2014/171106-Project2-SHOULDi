@@ -23,9 +23,9 @@ export class PostService extends HttpService
      * get all posts from the logged in user
      * @param poster : the user to pull posts from
      */
-    getPostsFromUser(poster : User)
+    getAllPostsByUser(user : User)
     {
-        return this.http.get(this.BASE_URL + '/api/posts/poster=' + poster._id).map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/poster=' + user._id).map((res : Response) => res.json());
     }
     getAllFlaggedPosts() { 
         return this.http.get(this.BASE_URL + '/api/posts/flagged').map((res : Response) => res.json());

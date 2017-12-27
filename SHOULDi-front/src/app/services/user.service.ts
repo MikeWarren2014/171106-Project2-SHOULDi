@@ -9,31 +9,30 @@ import { HttpService } from './http.service';
 export class UserService extends HttpService
 {
     // what happens next is the client-side version of what happens on the JDBC side
-    // TODO: get with Caleb for the endpoints to hit with this service. 
 
-    getAll()
+    getAllFlagged() // TODO: need to check endpoint
     {
         return this.http.get(this.BASE_URL + '/api/users').map((res : Response) => res.json());
     }
 
-    getHighScoreUsers()
+    getHighScoreUsers() // TODO: need to check endpoint
     {
         return this.http.get(this.BASE_URL + '/api/users/favorites').map((res : Response) => res.json());
     }
     
-    getById(_id: string) {
+    getById(_id: string) { // TODO: need to check endpoint
         return this.http.get(this.BASE_URL + '/api/users/' + _id).map((res: Response) => res.json());
     }
  
-    create(user: User) {
+    create(user: User) { // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/users/register', user);
     }
  
-    update(user: User) {
+    update(user: User) { // TODO: need to check endpoint
         return this.http.put(this.BASE_URL + '/api/users/' + user._id, user);
     }
  
-    delete(_id: string) {
+    delete(_id: string) { // TODO: need to check endpoint
         return this.http.delete(this.BASE_URL + '/api/users/' + _id);
     }
 }

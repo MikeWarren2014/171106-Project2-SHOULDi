@@ -1,0 +1,22 @@
+<ul id="flaggedUsers">
+    <li *ngFor="let user of users">
+        {{ user._id }} : {{ user.email }}
+        <button (click)="lockUser(user)">Lock User</button>
+        <button (click)="showPosts(user)">Flagged Posts</button>
+        <button (click)="showComments(user)">Flagged Comments</button>
+        <ul id="flaggedPosts">
+           <li *ngFor="let post of posts">
+                <img [src]="post.image">
+                <button (click)="deletePost(post)">Delete</button>
+                <button (click)="unflagPost(post)">Unflag</button>
+           </li>
+        </ul>
+        <ul id="flaggedComments">
+            <li *ngFor="let comment of comments">
+                {{ comment.content }}
+                <button (click)="deleteComment(comment)">Delete</button>
+                <button (click)="unflagComment(comment)">Unflag</button>
+            </li>
+        </ul>
+    </li>
+</ul>
