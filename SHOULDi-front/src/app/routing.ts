@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
+import { RegistrationGuard } from './guards/registration.guard';
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -60,8 +61,9 @@ export const appRoutes : Routes = [
         component: LoginComponent
     },
     {
-        path     : 'register',
-        component: RegisterComponent
+        path        : 'register',
+        canActivate : [ RegistrationGuard ],
+        component   : RegisterComponent
     },
     // for all other directories go back to home
     {
