@@ -25,12 +25,14 @@ export class CreatePostsComponent {
         this.postImage = (<HTMLInputElement>document.getElementById("postImage")).files[0];
         this.blobImage = this.postImage;
         this.reader = new FileReader();
-        this.reader.onload = () => { this.image = this.reader.result;};
+        this.reader.onload = () => {
+            this.image = this.reader.result;
+            this.post.image = btoa(this.image);
+            this.image = atob(this.post.image);
+            this.post.postDate = new Date();
+            console.log(this.image);
+            console.log(this.postService.create(this.post).subscribe(message => this.message = message));
+        };
         this.reader.readAsDataURL(this.blobImage);
-        this.post.image = btoa(this.image);
-        this.image = atob(this.post.image);
-        this.post.postDate = new Date();
-        
-        console.log(this.postService.create(this.post).subscribe(message => this.message = message));
     }
 }

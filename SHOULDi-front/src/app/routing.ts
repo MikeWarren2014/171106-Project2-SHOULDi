@@ -10,7 +10,6 @@ import { FeedComponent } from './components/dashboard/feed/feed.component';
 import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderboard.component';
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
-import { EditPostsComponent } from './components/dashboard/posts/edit/edit.posts.component';
 import { ScoreComponent } from './components/dashboard/score/score.component';
 
 export const appRoutes : Routes = [
@@ -48,10 +47,6 @@ export const appRoutes : Routes = [
             {
                 path       : 'create-posts',
                 component  : CreatePostsComponent
-            },
-            {
-                path       : 'edit-posts',
-                component  : EditPostsComponent
             },
             // for everything else, we simply go to the default screen
             {
