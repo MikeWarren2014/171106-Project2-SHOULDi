@@ -8,50 +8,18 @@ package com.zenith.request.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * XMlRootElement is used to mark this class
- * so Jersey can convert JSON data into
- * this object
+ * XMlRootElement is used to mark this class so Jersey can convert JSON data
+ * into this object
+ *
  * @author calebschumake
  */
 @XmlRootElement
 public class UserSignUpModel {
-    
-	private String firstName;
-	private String lastName;
-       	private String email;
-	private String password;
-	private int gender;
-	private String username;
-        
-    
 
-    /**
-     * @return the firstName
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * @param firstName the firstName to set
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * @return the lastName
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * @param lastName the lastName to set
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String email;
+    private String password;
+    private String gender;
+    private String role; 
 
     /**
      * @return the email
@@ -84,29 +52,29 @@ public class UserSignUpModel {
     /**
      * @return the gender
      */
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
     /**
      * @param gender the gender to set
      */
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
     /**
-     * @return the username
+     * @return the role
      */
-    public String getUsername() {
-        return username;
+    public String getRole() {
+        return role;
     }
 
     /**
-     * @param username the username to set
+     * @param role the role to set
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRole(String role) {
+        this.role = role;
     }
-    
+
 }

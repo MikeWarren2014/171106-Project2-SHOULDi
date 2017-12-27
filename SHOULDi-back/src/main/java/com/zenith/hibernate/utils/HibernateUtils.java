@@ -14,7 +14,7 @@ public class HibernateUtils {
     private static final SessionFactory sessionFactory;
 
     static {
-        
+
         Configuration conf = new Configuration();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();

@@ -15,12 +15,9 @@ import com.zenith.Beans.UserBean;
  * @author calebschumake
  */
 public interface DAO {
-    
+
     public void openConnection();
-    public void closeConnection(); 
-    public UserBean getUserByUsername(String username); 
-    public void saveUser(UserBean user); 
-    public List<UserBean> getFavoriteUsers();
-    public List<PostBean> getFlaggedPosts();
-    
+
+    public void closeConnection();
+
 }

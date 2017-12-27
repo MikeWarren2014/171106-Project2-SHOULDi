@@ -9,17 +9,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class ErrorMessage {
-    
-    private String errorMessage; 
-    private String errorMessageKey; 
-    
-    
-    public ErrorMessage(){} 
-    
-    public ErrorMessage(String errorMessage, String errorMessageKey){
+
+    private String errorMessage;
+    private String errorMessageKey;
+
+    public ErrorMessage() {
+    }
+
+    public ErrorMessage(String errorMessage, String errorMessageKey) {
         this.errorMessage = errorMessage;
         this.errorMessageKey = errorMessageKey;
-       
+
     }
 
     /**

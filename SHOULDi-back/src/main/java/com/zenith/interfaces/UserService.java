@@ -15,8 +15,9 @@ import com.zenith.request.model.UserSignUpModel;
  * @author calebschumake
  */
 public interface UserService {
-    
-    public UserBean createUser(UserSignUpModel requestObject); 
+
+    public UserBean createUser(UserSignUpModel requestObject);
+
     public List<UserBean> getFavoriteUsers();
-    
+
 }
