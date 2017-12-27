@@ -26,7 +26,8 @@ export class CreatePostsComponent {
         this.reader = new FileReader();
         this.reader.onload = () => { this.image = this.reader.result;};
         this.reader.readAsDataURL(this.blobImage);
-        this.post.image = this.image;
+        this.post.image = btoa(this.image);
+        this.image = atob(this.post.image);
         this.post.postDate = new Date();
         
         this.postService.create(this.post);
