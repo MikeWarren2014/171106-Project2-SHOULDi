@@ -13,4 +13,5 @@ export class User
     role            : string   = UserRoles.BASE_USER;
     isModerator     : boolean;
     isLocked        : boolean;
+    token           : string;
 }
