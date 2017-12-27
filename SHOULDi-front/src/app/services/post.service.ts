@@ -39,7 +39,7 @@ export class PostService extends HttpService
             image    : post.image,
             occasion : post.occasion,
             token    : TokenService.getToken()
-        });
+        }).map((res : Response) => res.json());
     }
     update(post: Post){
         return this.http.put(this.BASE_URL + '/api/posts/' + post._id, post);
