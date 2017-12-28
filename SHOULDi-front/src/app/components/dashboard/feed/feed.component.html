@@ -29,7 +29,6 @@
         <div id="imageActions">
             <div id="ratingsContainer">
                 <label>SHOULD I?</label>
-                <!-- TODO: provide functionality for these buttons -->
                 <button *ngIf="!hasUpvoted[postIndex]" id="upvote" value="Yes" (click)="upvote()">Yes, you should!</button>
                 <button *ngIf="!hasDownvoted[postIndex]" id="downvote" value="No" (click)="downvote()">No, you shouldn't!</button>
             </div>
