@@ -15,6 +15,7 @@ export class FlaggedUsersComponent{
 
     constructor(private userService : UserService)
     {
-
+        // userService.
+        // TODO: implement this    
     }
 }
