@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-
+import { PostService } from "../../../services/post.service";
 
 @Component({
     selector    : 'score',
@@ -10,5 +10,10 @@ import { Component } from "@angular/core";
 })
 
 export class ScoreComponent {
+    likes : any[];
+    dislikes : any[];
     // TODO : provide functionality to score.component.html here
+    constructor(private postService : PostService){
+        this.postService.g
+    }
 }

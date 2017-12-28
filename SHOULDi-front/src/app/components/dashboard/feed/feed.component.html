@@ -4,15 +4,17 @@
     -->
     <div *ngIf="!posts || !posts.length; else feed">
         <h2>No content yet!</h2>
+
         <p class="pageCenter">
             Sorry, there's no feed content yet. Wanna <a routerLink="../create-posts">create some</a>?
         </p>
-        
+
     </div>
     <ng-template #feed>
         <div id="feedContent">
             
             <div id="imageContainer">
+
                 <img
                     id="currentImage"
                     class="center"
