@@ -5,6 +5,7 @@ import { User } from "../../../models/user"
 import { PostService } from "../../../services/post.service";
 import { UserService } from "../../../services/user.service"
 import { AutoUnsubscribe } from "../../../autoUnsubscribe";
+import { Comment } from "../../../models/comment";
 
 @Component({
     selector   : 'feed',
@@ -27,6 +28,16 @@ export class FeedComponent
     postIndex = 0;
     hasUpvoted   : boolean[];
     hasDownvoted : boolean[];
+    // the comment the user is typing
+    newComment = {
+        _id: null,
+        commenter : <User>(JSON.parse(localStorage.getItem("currentUser"))),
+        content   : '',
+        isFlagged : false
+    };
+    // whether or not the user has commented
+    hasCommented = false;
+
     constructor(private userService: UserService,
         private postService : PostService)
     {
@@ -35,6 +46,7 @@ export class FeedComponent
     ngOnInit() {
         this.loadPosts();
     }
+
     // why is this here?
     deletePost(post : Post)
     {
@@ -61,6 +73,7 @@ export class FeedComponent
      */
     nextImage()
     {
+        this.newComment.content = '';
         if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
         this.postIndex = this.posts.length - 1;
         return (this.currentPost = this.posts[this.posts.length - 1]);
@@ -70,6 +83,7 @@ export class FeedComponent
      */
     prevImage()
     {
+        this.newComment.content = '';
         if (this.postIndex >= 1) return (this.currentPost = this.posts[--this.postIndex]);
         this.postIndex = 0;
         return (this.currentPost = this.posts[0]); 
@@ -79,7 +93,8 @@ export class FeedComponent
     {
         // client-side mock for right now
         this.hasUpvoted[this.postIndex] = true;
-        this.currentPost[this.postIndex].likes++;
+        this.posts[this.postIndex].likes++;
+        this.nextImage();
         // TODO: implement this
     }
 
@@ -87,12 +102,14 @@ export class FeedComponent
     {
         // client-side mock for right now
         this.hasDownvoted[this.postIndex] = true;
-        this.currentPost[this.postIndex].dislikes++;
+        this.posts[this.postIndex].dislikes++;
+        this.nextImage();
         // TODO: implement this
     }
 
     comment()
     {
-        // TODO: implement this
+        // client-side functionality
+        this.posts[this.postIndex].comments.push(this.newComment);
     }
 }
