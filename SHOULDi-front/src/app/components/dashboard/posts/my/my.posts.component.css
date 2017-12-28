@@ -1,1 +1,51 @@
-<!-- TODO: style my.posts.component.html here -->
+/* let's make sure every container element is horizontally separate from each other */
+.myPostsContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+#myPostsContent
+{
+    width: 100%;
+}
+
+#imageContainer
+{
+    position : relative;
+    overflow : hidden; /* for now, any overflow is chopped off */
+    max-height: 540px;
+    min-width: 550px;
+    flex-grow: 2;
+}
+
+#imageActions {
+    width      : 300px;
+}
+
+.imageControl
+{
+    /* Any .imageControl is to sit ON TOP of the image */
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3em;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.imageControl:hover
+{
+    background-color: black;
+    color : white;
+}
+
+#prevImage
+{
+    left: 10px;
+}
+
+#nextImage
+{
+    right: 10px;
+}
