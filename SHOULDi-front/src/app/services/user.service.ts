@@ -20,6 +20,16 @@ export class UserService extends HttpService
     {
         return this.http.get(this.BASE_URL + '/api/users/favorites').map((res : Response) => res.json());
     }
+
+    getFlaggedUsers()
+    {
+        return this.http.get(this.BASE_URL + '/api/users/flagged').map((res : Response) => res.json());
+    }
+
+    getLockedUsers()
+    {
+        return this.http.get(this.BASE_URL + '/api/users/locked').map((res : Response) => res.json());
+    }
     
     getById(_id: string) {
         return this.http.get(this.BASE_URL + '/api/users/' + _id).map((res: Response) => res.json());
