@@ -5,6 +5,7 @@ import { Comment } from "../../../../models/comment";
 import { UserService } from "../../../../services/user.service";
 import { PostService } from "../../../../services/post.service";
 import { CommentService } from "../../../../services/comment.service";
+import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 
 @Component({
     selector: "usersFlagged",
@@ -12,6 +13,7 @@ import { CommentService } from "../../../../services/comment.service";
     styleUrls: ["users.flagged.component.css"]
 })
 
+@AutoUnsubscribe
 export class UsersFlaggedComponent{
     data        : any;
     users       : User[];
@@ -32,19 +34,21 @@ export class UsersFlaggedComponent{
     }
 
     public lockUser(user : User){ // TODO: finish this
-
+        user.isLocked = true;
+        console.log(this.userService.update(user).subscribe(data => this.data = data));
     }
 
     public showPosts(user : User){ // TODO: finish this
-
+        console.log(this.postService.getAllPostsByUser(user).subscribe(data => this.data = data));
     }
 
     public deletePost(post : Post){ // TODO: finish this
-        
+        console.log(this.postService.delete(post).subscribe(data => this.data = data));
     }
 
     public unflagPost(post : Post){ // TODO: finish this
-
+        post.isFlagged = false;
+        console.log(this.postService.update(post).subscribe(data => this.data = data));
     }
     
     public showComments(user : User){ // TODO: finish this
