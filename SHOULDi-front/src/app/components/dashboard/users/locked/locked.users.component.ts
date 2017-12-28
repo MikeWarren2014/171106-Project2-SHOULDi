@@ -14,7 +14,9 @@ export class LockedUsersComponent{
     lockedUsers : User[];
     constructor(private userService : UserService)
     {
-        
-        // TODO: implement this    
+        // TODO: check this with the endpoint that Xavier,Caleb come up with     
+        userService.getLockedUsers().subscribe(users => {
+            this.lockedUsers = users;
+        }) 
     }
 }
