@@ -25,6 +25,8 @@ export class FeedComponent
     // a feed has posts
     posts: Post[] = []; 
     postIndex = 0;
+    hasUpvoted   : boolean[];
+    hasDownvoted : boolean[];
     constructor(private userService: UserService,
         private postService : PostService)
     {
@@ -44,7 +46,14 @@ export class FeedComponent
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
             this.posts = posts; 
-            if (posts) this.currentPost = posts[0];
+            if (posts) {
+                // instantiate currentPost
+                this.currentPost = posts[0];
+                // for right now, hasUpvoted,hasDownvoted assumed all false all across the board
+                this.hasUpvoted  = new Array(posts.length).fill(false);
+                this.hasDownvoted= new Array(posts.length).fill(false);
+            } 
+
         });
     }
     /**
@@ -68,11 +77,17 @@ export class FeedComponent
 
     upvote()
     {
+        // client-side mock for right now
+        this.hasUpvoted[this.postIndex] = true;
+        this.currentPost[this.postIndex].likes++;
         // TODO: implement this
     }
 
     downvote()
     {
+        // client-side mock for right now
+        this.hasDownvoted[this.postIndex] = true;
+        this.currentPost[this.postIndex].dislikes++;
         // TODO: implement this
     }
 
