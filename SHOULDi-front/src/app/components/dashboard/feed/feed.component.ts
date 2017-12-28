@@ -5,6 +5,7 @@ import { User } from "../../../models/user"
 import { PostService } from "../../../services/post.service";
 import { UserService } from "../../../services/user.service"
 import { AutoUnsubscribe } from "../../../autoUnsubscribe";
+import { Comment } from "../../../models/comment";
 
 @Component({
     selector   : 'feed',
@@ -25,8 +26,16 @@ export class FeedComponent
     // a feed has posts
     posts: Post[] = []; 
     postIndex = 0;
-    hasUpvoted   : boolean[];
-    hasDownvoted : boolean[];
+    // the comment the user is typing
+    newComment = {
+        _id: null,
+        commenter : <User>(JSON.parse(localStorage.getItem("currentUser"))),
+        content   : '',
+        isFlagged : false
+    };
+    // whether or not the user has commented
+    hasCommented = false;
+
     constructor(private userService: UserService,
         private postService : PostService)
     {
@@ -35,6 +44,7 @@ export class FeedComponent
     ngOnInit() {
         this.loadPosts();
     }
+
     // why is this here?
     deletePost(post : Post)
     {
@@ -49,27 +59,27 @@ export class FeedComponent
             if (posts) {
                 // instantiate currentPost
                 this.currentPost = posts[0];
-                // for right now, hasUpvoted,hasDownvoted assumed all false all across the board
-                this.hasUpvoted  = new Array(posts.length).fill(false);
-                this.hasDownvoted= new Array(posts.length).fill(false);
             } 
 
         });
     }
     /**
-     * Advances to, and returns, next image, if there is one, or last image. 
+     * Advances to, and returns, next image, if there is one, or null.
      */
     nextImage()
     {
+        this.newComment.content = '';
         if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
         this.postIndex = this.posts.length - 1;
-        return (this.currentPost = this.posts[this.posts.length - 1]);
+        this.currentPost = this.posts[this.posts.length - 1];
+        return null;
     }
     /**
      * Goes back to, and returns, previous image, if there is one, or first image.
      */
     prevImage()
     {
+        this.newComment.content = '';
         if (this.postIndex >= 1) return (this.currentPost = this.posts[--this.postIndex]);
         this.postIndex = 0;
         return (this.currentPost = this.posts[0]); 
@@ -77,22 +87,33 @@ export class FeedComponent
 
     upvote()
     {
-        // client-side mock for right now
-        this.hasUpvoted[this.postIndex] = true;
-        this.currentPost[this.postIndex].likes++;
-        // TODO: implement this
+        this.postService.like(this.currentPost);
+        // try to load next post
+        let nextPost = this.nextImage();
+        // if there was no next post to load, load in more posts (from the server)
+        if (!nextPost)
+        {
+            this.loadPosts();
+        }
     }
-
+    
     downvote()
     {
-        // client-side mock for right now
-        this.hasDownvoted[this.postIndex] = true;
-        this.currentPost[this.postIndex].dislikes++;
-        // TODO: implement this
+        
+        this.postService.dislike(this.currentPost);
+        // try to load next post
+        let nextPost = this.nextImage();
+        // if there was no next post to load, load in more posts (from the server)
+        if (!nextPost)
+        {
+            this.loadPosts();
+        }
     }
 
     comment()
     {
-        // TODO: implement this
+        // TODO: make call to server
+        // client-side functionality
+        this.hasCommented = true;
     }
 }

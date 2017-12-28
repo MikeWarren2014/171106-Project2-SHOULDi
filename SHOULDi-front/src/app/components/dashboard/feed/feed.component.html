@@ -13,43 +13,40 @@
         <div id="feedContent">
             
             <div id="imageContainer">
-                <a *ngIf="postIndex > 0" id="prevImage" class="imageControl" (click)="prevImage()"><</a>
                 <img
                     id="currentImage"
                     class="center"
                     src="{{currentPost.image}}"
                 >
-                <a *ngIf="postIndex < posts.length - 1" id="nextImage" class="imageControl" (click)="nextImage()">></a>
                 
             </div>
-            <label class="right">
-                <b id="likes">{{currentPost.likes}}</b> likes <b id="dislikes">{{currentPost.dislikes}}</b> dislikes
-            </label>
         </div>
         <div id="imageActions">
             <div id="ratingsContainer">
                 <label>SHOULD I?</label>
-                <button *ngIf="!hasUpvoted[postIndex]" id="upvote" value="Yes" (click)="upvote()">Yes, you should!</button>
-                <button *ngIf="!hasDownvoted[postIndex]" id="downvote" value="No" (click)="downvote()">No, you shouldn't!</button>
+                <!-- TODO: make buttons submit upon end of cache -->
+                <button 
+                    id="upvote"
+                    value="Yes"
+                    (click)="upvote()"
+                >Yes, you should!</button>
+                <button 
+                    id="downvote"
+                     value="No" 
+                     (click)="downvote()"
+                >No, you shouldn't!</button>
             </div>
             <div id="commentsContainer">
                 <h3>Comments</h3>
-                <!-- TODO: provide functionality for this form -->
-                <form id="addComment">
-                    <textarea cols="40" id="newComment"></textarea>
-                    <input type="submit" value="Post Comment">
+                <form *ngIf="!hasCommented; else showMyComment" id="addComment">
+                    <textarea cols="40" id="newComment" [(ngModel)]="newComment.content"></textarea>
+                    <input type="submit" value="Post Comment" (click)="comment()">
                 </form>
-                <!-- if this post was made by the current user -->
-                <div *ngIf="currentPost && currentPost.poster  && currentUser && currentPost.poster._id == currentUser._id" >
-                    <!-- show this comments section -->
-                    <div *ngFor="let comment of currentPost.comments">
-                        <!-- TODO:  style this -->
-                        <h4>{{comment.commenter}}</h4> 
-                        <p>
-                            {{comment.content}}
-                        </p>
+                <ng-template #showMyComment>
+                    <div id="myComment">
+                        {{newComment.content}}
                     </div>
-                </div>
+                </ng-template>
             </div>
         </div>
         

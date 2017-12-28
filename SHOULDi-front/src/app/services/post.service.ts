@@ -12,7 +12,8 @@ export class PostService extends HttpService
 {
     // TODO: clean this up
     getSomeFeed(){
-        return this.http.get(this.BASE_URL + '/api/posts/unseen/all/')
+        return this.http.get(this.BASE_URL + '/api/posts/unseen/all?token=' + TokenService.getToken())
+        
             .map((res : Response) => res.json());
     }
 
@@ -25,7 +26,7 @@ export class PostService extends HttpService
      */
     getPostsFromUser(poster : User)
     {
-        return this.http.get(this.BASE_URL + '/api/posts/poster=' + poster._id).map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/poster/' + poster._id).map((res : Response) => res.json());
     }
     getAllFlaggedPosts() { 
         return this.http.get(this.BASE_URL + '/api/posts/flagged').map((res : Response) => res.json());
@@ -52,5 +53,26 @@ export class PostService extends HttpService
             postID : post._id,
             token  : TokenService.getToken()
         });
+    }
+    unflag(post : Post) {
+        return this.http.put(this.BASE_URL + '/api/posts/unflag', {
+            postID : post._id,
+            token  : TokenService.getToken()
+        });
+    }
+    like(post : Post) {
+        return this.http.put(this.BASE_URL + '/api/posts/like', 
+        {
+            token  : TokenService.getToken(),
+            postID : post._id
+        })
+    }
+    dislike(post : Post) { 
+        return this.http.put(this.BASE_URL + '/api/posts/dislike', 
+        {
+            token  : TokenService.getToken(),
+            postID : post._id
+        })
+
     }
 }

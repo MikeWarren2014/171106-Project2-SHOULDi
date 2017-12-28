@@ -14,7 +14,13 @@ import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 @AutoUnsubscribe
 export class MyPostsComponent {
     posts : Post[];
+    currentPost : Post;
     message : any;
+
+    // a feed has posts
+    postIndex = 0;
+
+
     constructor(private postService : PostService){
     }
 
@@ -22,10 +28,33 @@ export class MyPostsComponent {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         this.postService.getPostsFromUser(JSON.parse(localStorage.getItem("currentUser")))
             // .subscribe(message => this.message = message);
-            .subscribe(posts => this.posts = posts);
-
+            .subscribe(posts => {
+                this.posts = posts
+                if (posts) {
+                    // instantiate currentPost
+                    this.currentPost = posts[0];
+                }
+            });
     }
 
+    /**
+     * Advances to, and returns, next image, if there is one, or last image. 
+     */
+    nextImage()
+    {
+        if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
+        this.postIndex = this.posts.length - 1;
+        return (this.currentPost = this.posts[this.posts.length - 1]);
+    }
+    /**
+     * Goes back to, and returns, previous image, if there is one, or first image.
+     */
+    prevImage()
+    {
+        if (this.postIndex >= 1) return (this.currentPost = this.posts[--this.postIndex]);
+        this.postIndex = 0;
+        return (this.currentPost = this.posts[0]); 
+    }
     ngOnDestroy() {
         //Called once, before the instance is destroyed.
         //Add 'implements OnDestroy' to the class.
