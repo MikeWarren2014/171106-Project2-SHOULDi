@@ -10,5 +10,5 @@ import { Component } from "@angular/core";
 })
 
 export class ScoreComponent {
-    
+    // TODO : provide functionality to score.component.html here
 }

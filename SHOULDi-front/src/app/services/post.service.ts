@@ -31,7 +31,7 @@ export class PostService extends HttpService
         return this.http.get(this.BASE_URL + '/api/posts/flagged').map((res : Response) => res.json());
     }
     getTopPosts() { 
-        return this.http.get(this.BASE_URL + '/api/posts/ratings=top').map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/posts/top').map((res : Response) => res.json());
     }    
     create(post: Post){
         return this.http.post(this.BASE_URL + '/api/posts/post', 
@@ -39,7 +39,7 @@ export class PostService extends HttpService
             image    : post.image,
             occasion : post.occasion,
             token    : TokenService.getToken()
-        });
+        }).map((res : Response) => res.json());
     }
     update(post: Post){
         return this.http.put(this.BASE_URL + '/api/posts/' + post._id, post);

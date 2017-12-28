@@ -5,7 +5,7 @@ export class Post {
     _id         : number;
     poster      : User; // may replace with _posterId : number
     postDate    : Date;
-    image       : Blob;
+    image       : string;
     occasion    : string;
     comments    : Comment[]; 
     likes       : number;

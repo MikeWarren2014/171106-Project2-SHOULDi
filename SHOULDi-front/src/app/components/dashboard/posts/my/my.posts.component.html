@@ -1,4 +1,10 @@
 <div>
     My Posts here...
     <!-- TODO: put some content in this -->
+    <ul>
+        <li *ngFor="let post of posts">
+            {{ post.occasion }}
+            <img [src]="atob(post.image)">
+        </li>
+    </ul>
 </div>

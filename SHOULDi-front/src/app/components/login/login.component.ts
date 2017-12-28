@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService } from '../../services/alert.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { AutoUnsubscribe } from '../../autoUnsubscribe';
 
 @Component({
     moduleId: module.id,
@@ -11,6 +12,7 @@ import { AuthenticationService } from '../../services/authentication.service';
     styleUrls: ['./login.component.css']
 })
 
+@AutoUnsubscribe
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
