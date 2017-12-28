@@ -1,24 +1,31 @@
 <div>
     <h2 class="textCenter">Locked Users</h2>
-    <!-- TODO: put content here -->
-    <table>
+    <table *ngIf="lockedUsers.length; else noLockedUsers">
         <thead>
             <tr>
                 <th>User ID</th>
                 <th>Username</th>
-                <th>User Email</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email address</th>
                 
                 <!-- to be expanded upon -->
             </tr>
         </thead>
         <tbody>
-            <!-- TODO: complete this template with angular directives -->
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let user of lockedUsers">
+                <td>{{user._id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
                 <!-- also to be expanded upon -->
             </tr>
         </tbody>
     </table>
+    <ng-template #noLockedUsers>
+        <p class="pageCenter">
+            No users have been locked yet
+        </p> 
+    </ng-template>
 </div>
