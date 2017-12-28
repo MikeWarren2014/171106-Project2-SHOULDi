@@ -44,19 +44,19 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
-    <property name="hibernate.connection.username">Zenith</property>
-    <property name="hibernate.connection.password">revature</property>
+    <property name="hibernate.connection.username">caleb</property>
+    <property name="hibernate.connection.password">caleb</property>
     <property name="show_sql">true</property>
-	<property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
     
     <mapping class="com.zenith.Beans.UserBean"/>
-    <mapping class="com.zenith.Beans.SponsorBean"/>
-    <mapping class="com.zenith.Beans.RatingBean"/>
+<!--    <mapping class="com.zenith.Beans.SponsorBean"/>-->
     <mapping class="com.zenith.Beans.PostBean"/>
     <mapping class="com.zenith.Beans.MessageBean"/>
-    <mapping class="com.zenith.Beans.ImageBean"/>
     <mapping class="com.zenith.Beans.CommentBean"/>
     <mapping class="com.zenith.Beans.AdvertisementBean"/>
     <mapping class="com.zenith.Beans.VPBean"/>
+    <mapping class="com.zenith.Beans.DislikeBean"/>
+    <mapping class="com.zenith.Beans.LikeBean"/>
   </session-factory>
 </hibernate-configuration>

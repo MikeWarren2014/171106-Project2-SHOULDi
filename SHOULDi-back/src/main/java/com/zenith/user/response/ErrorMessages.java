@@ -6,16 +6,15 @@
 package com.zenith.user.response;
 
 public enum ErrorMessages {
-    
-    RECORD_ALREADY_EXISTS("Record already exists"), 
-    INTERNAL_SERVER_ERROR("Internal server error"); 
-    
-    
-    private String errorMessage; 
-    
-    
+
+    RECORD_ALREADY_EXISTS("Record already exists"),
+    USER_DOES_NOT_EXIST("User does not exist"), 
+    INTERNAL_SERVER_ERROR("Internal server error");
+
+    private String errorMessage;
+
     ErrorMessages(String errorMessage) {
-        this.errorMessage = errorMessage; 
+        this.errorMessage = errorMessage;
     }
 
     /**

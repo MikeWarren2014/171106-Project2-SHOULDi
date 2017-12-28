@@ -16,72 +16,110 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name="Comments")
+@XmlRootElement
+@Table(name = "Comments")
 public class CommentBean implements Serializable {
-    
-	@Id //designates as primary key
-	@Column(name="COMMENT_ID")
-	@SequenceGenerator(sequenceName="COMMENT_SEQ", name="COMMENT_SEQ")
-	@GeneratedValue(generator="COMMENT_SEQ", strategy=GenerationType.SEQUENCE)
-	private int comment_id;
-	
-        
-        /* Maps to user comments */ 
-        @ManyToOne
-        @JoinColumn(name = "user_id")
-        private UserBean commentor; 
-	
 
-        @Column(name="is_flagged")
-        int isFlagged; 
-        
-        /* Link to Posts */ 
-        @ManyToOne
-        @JoinColumn(name="POST_ID")
-        PostBean postBean;
-	
-	@Column(name="COMMENT_TEXT")
-	private String comment_text;
+    /**
+     * @return the commentor
+     */
+    public UserBean getCommentor() {
+        return commentor;
+    }
 
-	public int getComment_id() {
-		return comment_id;
-	}
+    /**
+     * @param commentor the commentor to set
+     */
+    public void setCommentor(UserBean commentor) {
+        this.commentor = commentor;
+    }
 
-	public void setComment_id(int comment_id) {
-		this.comment_id = comment_id;
-	}
+    /**
+     * @return the isFlagged
+     */
+    public int getIsFlagged() {
+        return isFlagged;
+    }
 
+    /**
+     * @param isFlagged the isFlagged to set
+     */
+    public void setIsFlagged(int isFlagged) {
+        this.isFlagged = isFlagged;
+    }
 
+    /**
+     * @return the postBean
+     */
+    public PostBean getPostBean() {
+        return postBean;
+    }
 
-	public String getComment_text() {
-		return comment_text;
-	}
+    /**
+     * @param postBean the postBean to set
+     */
+    public void setPostBean(PostBean postBean) {
+        this.postBean = postBean;
+    }
 
-	public void setComment_text(String comment_text) {
-		this.comment_text = comment_text;
-	}
+    @Id //designates as primary key
+    @Column(name = "COMMENT_ID")
+    @SequenceGenerator(sequenceName = "COMMENT_SEQ", name = "COMMENT_SEQ")
+    @GeneratedValue(generator = "COMMENT_SEQ", strategy = GenerationType.SEQUENCE)
+    private int comment_id;
 
-	public CommentBean(int comment_id, PostBean postBean, UserBean commenter, String comment_text) {
-		super();
-		this.comment_id = comment_id;
-		this.postBean = postBean;
-		this.commentor = commenter;
-		this.comment_text = comment_text;
-	}
+    /* Maps to user comments */
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserBean commentor;
 
-	public CommentBean(PostBean postBean, UserBean commenter, String comment_text) {
-		super();
-		this.postBean = postBean;
-		this.commentor = commenter;
-		this.comment_text = comment_text;
-	}
+    @Column(name = "is_flagged")
+    private int isFlagged;
 
-	public CommentBean() {
-		super();
-	}
-	
-	
-	
+    /* Link to Posts */
+    @ManyToOne
+    @JoinColumn(name = "POST_ID")
+    private PostBean postBean;
+
+    @Column(name = "COMMENT_TEXT")
+    private String comment_text;
+
+    public int getComment_id() {
+        return comment_id;
+    }
+
+    public void setComment_id(int comment_id) {
+        this.comment_id = comment_id;
+    }
+
+    public String getComment_text() {
+        return comment_text;
+    }
+
+    public void setComment_text(String comment_text) {
+        this.comment_text = comment_text;
+    }
+
+    public CommentBean(int comment_id, PostBean postBean, UserBean commenter, String comment_text) {
+        super();
+        this.comment_id = comment_id;
+        this.postBean = postBean;
+        this.commentor = commenter;
+        this.comment_text = comment_text;
+    }
+
+    public CommentBean(PostBean postBean, UserBean commenter, String comment_text) {
+        super();
+        this.postBean = postBean;
+        this.commentor = commenter;
+        this.comment_text = comment_text;
+    }
+
+    public CommentBean() {
+        super();
+    }
+
 }
