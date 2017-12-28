@@ -64,14 +64,15 @@ export class FeedComponent
         });
     }
     /**
-     * Advances to, and returns, next image, if there is one, or last image. 
+     * Advances to, and returns, next image, if there is one, or null.
      */
     nextImage()
     {
         this.newComment.content = '';
         if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
         this.postIndex = this.posts.length - 1;
-        return (this.currentPost = this.posts[this.posts.length - 1]);
+        this.currentPost = this.posts[this.posts.length - 1];
+        return null;
     }
     /**
      * Goes back to, and returns, previous image, if there is one, or first image.
@@ -84,24 +85,35 @@ export class FeedComponent
         return (this.currentPost = this.posts[0]); 
     }
 
-    // TODO: refactor this to post data to server
     upvote()
     {
-        // client-side mock for right now
-        this.nextImage();
-        // TODO: implement this
+        this.postService.like(this.currentPost);
+        // try to load next post
+        let nextPost = this.nextImage();
+        // if there was no next post to load, load in more posts (from the server)
+        if (!nextPost)
+        {
+            this.loadPosts();
+        }
     }
-
+    
     downvote()
     {
-        // client-side mock for right now
-        this.nextImage();
-        // TODO: implement this
+        
+        this.postService.dislike(this.currentPost);
+        // try to load next post
+        let nextPost = this.nextImage();
+        // if there was no next post to load, load in more posts (from the server)
+        if (!nextPost)
+        {
+            this.loadPosts();
+        }
     }
 
     comment()
     {
-        // client-side functionality
         // TODO: make call to server
+        // client-side functionality
+        this.hasCommented = true;
     }
 }
