@@ -21,6 +21,7 @@ export class CommentService extends HttpService
         return this.http.get(this.BASE_URL + '/api/comments/flagged').map((res : Response) => res.json());
     }
 
+    // TODO: refactor this
     createComment(post : Post, comment : Comment)
     {
         return this.http.post(this.BASE_URL + '/api/post/' + post._id + '/comments/create', {

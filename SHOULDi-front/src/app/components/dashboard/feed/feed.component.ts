@@ -26,8 +26,6 @@ export class FeedComponent
     // a feed has posts
     posts: Post[] = []; 
     postIndex = 0;
-    hasUpvoted   : boolean[];
-    hasDownvoted : boolean[];
     // the comment the user is typing
     newComment = {
         _id: null,
@@ -61,9 +59,6 @@ export class FeedComponent
             if (posts) {
                 // instantiate currentPost
                 this.currentPost = posts[0];
-                // for right now, hasUpvoted,hasDownvoted assumed all false all across the board
-                this.hasUpvoted  = new Array(posts.length).fill(false);
-                this.hasDownvoted= new Array(posts.length).fill(false);
             } 
 
         });
@@ -89,11 +84,10 @@ export class FeedComponent
         return (this.currentPost = this.posts[0]); 
     }
 
+    // TODO: refactor this to post data to server
     upvote()
     {
         // client-side mock for right now
-        this.hasUpvoted[this.postIndex] = true;
-        this.posts[this.postIndex].likes++;
         this.nextImage();
         // TODO: implement this
     }
@@ -101,8 +95,6 @@ export class FeedComponent
     downvote()
     {
         // client-side mock for right now
-        this.hasDownvoted[this.postIndex] = true;
-        this.posts[this.postIndex].dislikes++;
         this.nextImage();
         // TODO: implement this
     }
@@ -110,6 +102,6 @@ export class FeedComponent
     comment()
     {
         // client-side functionality
-        this.posts[this.postIndex].comments.push(this.newComment);
+        // TODO: make call to server
     }
 }
