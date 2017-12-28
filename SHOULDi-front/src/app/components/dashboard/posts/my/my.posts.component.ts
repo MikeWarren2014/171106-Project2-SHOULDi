@@ -20,9 +20,9 @@ export class MyPostsComponent {
 
     ngOnInit() {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        console.log(this.postService.getPostsFromUser(JSON.parse(localStorage.getItem("currentUser"))).subscribe(message => this.message = message));
-
-        //TODO: need to store posts to display 
+        this.postService.getAllPostsByUser(JSON.parse(localStorage.getItem("currentUser")))
+            // .subscribe(message => this.message = message);
+            .subscribe(posts => this.posts = posts);
 
     }
 

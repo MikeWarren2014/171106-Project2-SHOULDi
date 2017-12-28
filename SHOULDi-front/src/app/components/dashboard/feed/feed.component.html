@@ -13,28 +13,28 @@
         <div id="feedContent">
             
             <div id="imageContainer">
-                <a id="prevImage" class="imageControl"><</a>
+                <a *ngIf="postIndex > 0" id="prevImage" class="imageControl" (click)="prevImage()"><</a>
                 <img
                     id="currentImage"
                     class="center"
-                    src="../../../assets/images/SHOULDi-suit.png">
-                    <!-- hardcoded value for right now -->
-                <a id="nextImage" class="imageControl">></a>
+                    src="{{currentPost.image}}"
+                >
+                <a *ngIf="postIndex < posts.length - 1" id="nextImage" class="imageControl" (click)="nextImage()">></a>
                 
             </div>
             <label class="right">
-                <!-- TODO: hook likes,dislikes up to post.likes,post.dislikes -->
-                <b id="likes">0</b> likes <b id="dislikes">0</b> dislikes
+                <b id="likes">{{currentPost.likes}}</b> likes <b id="dislikes">{{currentPost.dislikes}}</b> dislikes
             </label>
         </div>
         <div id="imageActions">
             <div id="ratingsContainer">
                 <label>SHOULD I?</label>
-                <button id="upvote" value="Yes">Yes, you should!</button>
-                <button id="downvote" value="No">No, you shouldn't!</button>
+                <button *ngIf="!hasUpvoted[postIndex]" id="upvote" value="Yes" (click)="upvote()">Yes, you should!</button>
+                <button *ngIf="!hasDownvoted[postIndex]" id="downvote" value="No" (click)="downvote()">No, you shouldn't!</button>
             </div>
             <div id="commentsContainer">
                 <h3>Comments</h3>
+                <!-- TODO: provide functionality for this form -->
                 <form id="addComment">
                     <textarea cols="40" id="newComment"></textarea>
                     <input type="submit" value="Post Comment">
