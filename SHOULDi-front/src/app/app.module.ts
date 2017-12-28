@@ -17,7 +17,7 @@ import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderb
 import { ScoreComponent } from './components/dashboard/score/score.component';
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
-import { UsersFlaggedComponent } from './components/dashboard/users/flagged/users.flagged.component';
+import { FlaggedUsersComponent } from './components/dashboard/users/flagged/flagged.users.component';
 
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -45,7 +45,7 @@ import { HttpModule } from '@angular/http';
     ScoreComponent,
     CreatePostsComponent,
     MyPostsComponent,
-    UsersFlaggedComponent
+    FlaggedUsersComponent
   ],
   imports: [
     BrowserModule,

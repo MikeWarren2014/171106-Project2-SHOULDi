@@ -10,9 +10,11 @@ import { HomeComponent } from './components/home/home.component';
 import { FeedComponent } from './components/dashboard/feed/feed.component';
 import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderboard.component';
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
+import { FlaggedPostsComponent } from './components/dashboard/posts/flagged/flagged.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
 import { ScoreComponent } from './components/dashboard/score/score.component';
-import { UsersFlaggedComponent } from './components/dashboard/users/flagged/users.flagged.component';
+import { FlaggedUsersComponent } from './components/dashboard/users/flagged/flagged.users.component';
+import { LockedUsersComponent } from './components/dashboard/users/locked/locked.users.component';
 
 export const appRoutes : Routes = [
     {
@@ -47,12 +49,20 @@ export const appRoutes : Routes = [
                 component  : MyPostsComponent
             },
             {
+                path       : 'flagged-posts',
+                component  : FlaggedPostsComponent
+            },
+            {
                 path       : 'create-posts',
                 component  : CreatePostsComponent
             },
             {
-                path       : 'users-flagged',
-                component  : UsersFlaggedComponent
+                path       : 'flagged-users',
+                component  : FlaggedUsersComponent
+            },
+            {
+                path       : 'locked-users',
+                component  : LockedUsersComponent
             },
             // for everything else, we simply go to the default screen
             {
