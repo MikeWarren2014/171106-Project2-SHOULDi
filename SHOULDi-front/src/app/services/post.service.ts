@@ -12,7 +12,8 @@ export class PostService extends HttpService
 {
     // TODO: clean this up
     getSomeFeed(){
-        return this.http.get(this.BASE_URL + '/api/posts/unseen/all/')
+        return this.http.get(this.BASE_URL + '/api/posts/unseen/all?token=' + TokenService.getToken())
+        
             .map((res : Response) => res.json());
     }
 

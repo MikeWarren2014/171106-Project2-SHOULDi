@@ -1,4 +1,6 @@
 import { User } from "./user";
+import { Comment } from "./comment";
+
 
 
 export class Post {
@@ -7,7 +9,7 @@ export class Post {
     postDate    : Date;
     image       : string;
     occasion    : string;
-    comments    : Comment[]; 
+    comments    : Comment[];
     likes       : number;
     dislikes    : number;
     isFlagged   : boolean;

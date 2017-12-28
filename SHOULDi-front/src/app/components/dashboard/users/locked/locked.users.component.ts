@@ -19,4 +19,10 @@ export class LockedUsersComponent{
             this.lockedUsers = users;
         }) 
     }
+
+    unlockUser(user : User)
+    {
+        // this.userService.
+        // TODO: hit "unlock" endpoint
+    }
 }
