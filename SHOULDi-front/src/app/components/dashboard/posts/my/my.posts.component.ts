@@ -69,7 +69,7 @@ export class MyPostsComponent {
             let message = res.json().message.toString().toUpperCase();
             if (message === "SUCCESS")
             {
-                // TODO: hide the comment that was flagged
+                comment.isFlagged = true;
             }
             else if (message === "FAILURE")
             {
