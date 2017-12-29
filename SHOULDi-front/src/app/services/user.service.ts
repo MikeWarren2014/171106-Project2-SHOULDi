@@ -11,6 +11,12 @@ export class UserService extends HttpService
 {
     // what happens next is the client-side version of what happens on the JDBC side
 
+    // User service methods for users
+
+    getScoreByUser(user : User){
+        return this.http.get(this.BASE_URL + '/api/users/score/' + user._id).map((res : Response) => res.json());
+    }
+
     // User service methods for moderators
 
     getFlaggedUsers() // TODO: need to check endpoint

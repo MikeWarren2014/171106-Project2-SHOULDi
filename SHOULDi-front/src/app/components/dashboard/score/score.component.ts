@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { PostService } from "../../../services/post.service";
+import { UserService } from "../../../services/user.service";
 
 @Component({
     selector    : 'score',
@@ -13,8 +13,11 @@ export class ScoreComponent {
     score : any;
     likes : any[];
     dislikes : any[];
+    data : any;
     // TODO : provide functionality to score.component.html here
-    constructor(private postService : PostService){
-        this.postService.
+    constructor(private userService : UserService){
+        this.userService.getScoreByUser(JSON.parse(localStorage.getItem("currentUser"))).subscribe(data => this.data = data);
     }
+
+    
 }

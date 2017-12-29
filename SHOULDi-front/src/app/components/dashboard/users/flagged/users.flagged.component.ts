@@ -9,8 +9,7 @@ import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 
 @Component({
     selector: "usersFlagged",
-    templateUrl: "users.flagged.component.html",
-    styleUrls: ["users.flagged.component.css"]
+    templateUrl: "users.flagged.component.html"
 })
 
 @AutoUnsubscribe
@@ -26,7 +25,7 @@ export class UsersFlaggedComponent{
     ngOnInit() { // TODO: finish this
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
-        console.log(this.userService.getAllFlagged().subscribe(data => this.data = data));
+        console.log(this.userService.getFlaggedUsers().subscribe(data => this.data = data));
         for(let user of this.users){
             this.posts[user._id] = new Array<Post>();
             this.comments[user._id] = new Array<Comment>();
@@ -48,7 +47,7 @@ export class UsersFlaggedComponent{
 
     public unflagPost(post : Post){ // TODO: finish this
         post.isFlagged = false;
-        console.log(this.postService.update(post).subscribe(data => this.data = data));
+        console.log(this.postService.unflag(post).subscribe(data => this.data = data));
     }
     
     public showComments(user : User){ // TODO: finish this
