@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { Post } from "../../../../models/post";
 import { PostService } from "../../../../services/post.service";
 import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
+import { Comment } from "../../../../models/comment";
+import { CommentService } from "../../../../services/comment.service";
+import { Response } from "@angular/http/src/static_response";
 
 @Component({
     selector    : 'my-posts',
@@ -21,7 +24,8 @@ export class MyPostsComponent {
     postIndex = 0;
 
 
-    constructor(private postService : PostService){
+    constructor(private postService : PostService, 
+        private commentService : CommentService){
     }
 
     ngOnInit() {
@@ -58,9 +62,19 @@ export class MyPostsComponent {
         this.postIndex = 0;
         return (this.currentPost = this.posts[0]); 
     }
-    ngOnDestroy() {
-        //Called once, before the instance is destroyed.
-        //Add 'implements OnDestroy' to the class.
-        
+    
+    flagComment(comment : Comment)
+    {
+        this.commentService.flagComment(comment).map((res : Response) => {
+            let message = res.json().message.toString().toUpperCase();
+            if (message === "SUCCESS")
+            {
+                // TODO: hide the comment that was flagged
+            }
+            else if (message === "FAILURE")
+            {
+                // TODO: error handling
+            }
+        })
     }
 }
