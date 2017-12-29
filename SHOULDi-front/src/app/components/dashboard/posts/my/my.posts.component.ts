@@ -13,7 +13,7 @@ import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 
 @AutoUnsubscribe
 export class MyPostsComponent {
-    posts : Post[];
+    posts : Post[] = [];
     currentPost : Post;
     message : any;
 
@@ -25,16 +25,19 @@ export class MyPostsComponent {
     }
 
     ngOnInit() {
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        this.postService.getPostsFromUser(JSON.parse(localStorage.getItem("currentUser")))
-            // .subscribe(message => this.message = message);
-            .subscribe(posts => {
-                this.posts = posts
-                if (posts) {
-                    // instantiate currentPost
-                    this.currentPost = posts[0];
-                }
-            });
+        if (localStorage.getItem("currentUser"))
+        {
+            this.postService.getPostsFromUser(JSON.parse(localStorage.getItem("currentUser")))
+                // .subscribe(message => this.message = message);
+                .subscribe(posts => {
+                    this.posts = posts
+                    if (posts) {
+                        // instantiate currentPost
+                        this.currentPost = posts[0];
+                    }
+                });
+
+        }
     }
 
     /**
