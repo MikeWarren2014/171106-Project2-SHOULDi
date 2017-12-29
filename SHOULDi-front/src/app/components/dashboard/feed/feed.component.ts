@@ -125,6 +125,7 @@ export class FeedComponent
             if (message === "SUCCESS")
             {
                 post.isFlagged = true;
+                //TODO : advance to next image
             }
             else if (message === "FAILURE")
             {

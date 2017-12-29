@@ -14,6 +14,7 @@ import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.compo
 import { ScoreComponent } from './components/dashboard/score/score.component';
 import { FlaggedUsersComponent } from './components/dashboard/users/flagged/flagged.users.component';
 import { LockedUsersComponent } from './components/dashboard/users/locked/locked.users.component';
+import { FlaggedCommentsComponent } from './components/dashboard/comments/flagged/flagged.comments.component';
 
 export const appRoutes : Routes = [
     {
@@ -58,6 +59,10 @@ export const appRoutes : Routes = [
             {
                 path       : 'locked-users',
                 component  : LockedUsersComponent
+            },
+            {
+                path : 'flagged-comments',
+                component : FlaggedCommentsComponent
             },
             // for everything else, we simply go to the default screen
             {
