@@ -43,7 +43,7 @@ export class CommentService extends HttpService
         return this.http.delete(this.BASE_URL + '/api/post/' + post._id + '/comments/delete/' + comment._id);
     }
 
-    flagComment(post : Post, comment : Comment)
+    flagComment(comment : Comment)
     {
         return this.http.put(this.BASE_URL + '/api/commments/flag', {
             token     : TokenService.getToken(),
