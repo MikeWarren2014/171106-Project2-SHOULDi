@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.zenith.Beans.CommentBean;
-import com.zenith.Beans.PostBean;
+import com.zenith.Beans.PostBean; 
 import com.zenith.Beans.UserBean;
 import com.zenith.ImageUtils.ImageConversionUtil;
 import com.zenith.hibernate.utils.HibernateUtil;
