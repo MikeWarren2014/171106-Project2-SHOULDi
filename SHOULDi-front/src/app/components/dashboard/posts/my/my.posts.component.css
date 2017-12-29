@@ -49,3 +49,8 @@
 {
     right: 10px;
 }
+
+.flagged
+{
+    opacity: 0.3;
+}

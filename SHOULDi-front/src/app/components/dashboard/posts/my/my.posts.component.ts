@@ -70,6 +70,7 @@ export class MyPostsComponent {
             if (message === "SUCCESS")
             {
                 // TODO: hide the comment that was flagged
+                comment.isFlagged = true;
             }
             else if (message === "FAILURE")
             {
