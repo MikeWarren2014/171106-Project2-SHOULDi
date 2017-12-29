@@ -6,6 +6,7 @@ import { PostService } from "../../../services/post.service";
 import { UserService } from "../../../services/user.service"
 import { AutoUnsubscribe } from "../../../autoUnsubscribe";
 import { Comment } from "../../../models/comment";
+import { Response } from "@angular/http/src/static_response";
 
 @Component({
     selector   : 'feed',
@@ -115,5 +116,20 @@ export class FeedComponent
         // TODO: make call to server
         // client-side functionality
         this.hasCommented = true;
+    }
+
+    flagPost(post)
+    {
+        this.postService.flag(post).map((res : Response) => {
+            let message = res.json().message.toString().toUpperCase();
+            if (message === "SUCCESS")
+            {
+                post.isFlagged = true;
+            }
+            else if (message === "FAILURE")
+            {
+                // TODO: error handling
+            }
+        })
     }
 }

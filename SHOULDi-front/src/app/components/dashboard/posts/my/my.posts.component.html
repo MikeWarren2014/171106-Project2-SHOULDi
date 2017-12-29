@@ -32,7 +32,10 @@
                 <!-- if this post was made by the current user -->
                 <div *ngIf="currentPost && currentPost.poster  && currentUser && currentPost.poster._id == currentUser._id" >
                     <!-- show this comments section -->
-                    <div *ngFor="let comment of currentPost.comments">
+                    <div 
+                        *ngFor="let comment of currentPost.comments"
+                        [ngClass]="{ flagged : comment.isFlagged }"
+                    >
                         <!-- TODO:  style this -->
                         <h4>{{comment.commenter}}</h4> 
                         <p>

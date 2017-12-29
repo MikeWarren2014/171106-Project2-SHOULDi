@@ -60,3 +60,8 @@
 {
     background-color: lightpink;
 }
+
+.flagged
+{
+    opacity: 0.3;
+}

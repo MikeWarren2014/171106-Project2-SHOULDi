@@ -13,8 +13,7 @@
     <ng-template #feed>
         <div id="feedContent">
             
-            <div id="imageContainer">
-
+            <div id="imageContainer" [ngClass]="{ flagged : currentPost.isFlagged }">
                 <img
                     id="currentImage"
                     class="center"
@@ -22,6 +21,7 @@
                 >
                 
             </div>
+            <button (click)="flagPost(currentPost)"></button>
         </div>
         <div id="imageActions">
             <div id="ratingsContainer">
