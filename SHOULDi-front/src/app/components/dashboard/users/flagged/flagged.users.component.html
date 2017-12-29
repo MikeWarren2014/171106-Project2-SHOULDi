@@ -21,9 +21,13 @@
                 <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <!-- also to be expanded upon -->
+                <button (click)="lockUser()">Lock User</button>
+                <button (click)="viewFlaggedPosts()">Flagged Posts</button>
+                <button (click)="viewFlaggedComments(flaggedUser)">Flagged Comments</button>
             </tr>
         </tbody>
     </table>
+    <flagged-comments *ngIf="flaggedUser" [user]="flaggedUser"></flagged-comments>
     <ng-template #noFlaggedUsers>
         <p class="pageCenter">
             There are currently no flagged users!

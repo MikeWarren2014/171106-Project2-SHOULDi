@@ -34,6 +34,8 @@ import { appRoutes } from './routing';
 import { HttpModule } from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
+import { FlaggedCommentsComponent } from './components/dashboard/comments/flagged/flagged.comments.component';
+import { RegistrationGuard } from './guards/registration.guard';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { TokenInterceptor } from './services/token.interceptor';
     MyPostsComponent,
     FlaggedPostsComponent,
     FlaggedUsersComponent,
-    LockedUsersComponent
+    LockedUsersComponent,
+    FlaggedCommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { TokenInterceptor } from './services/token.interceptor';
     PostService,
     MessageService,
     CommentService,
+    RegistrationGuard,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
