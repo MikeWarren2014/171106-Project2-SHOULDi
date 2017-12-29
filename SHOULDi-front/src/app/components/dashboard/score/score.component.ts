@@ -10,10 +10,11 @@ import { PostService } from "../../../services/post.service";
 })
 
 export class ScoreComponent {
+    score : any;
     likes : any[];
     dislikes : any[];
     // TODO : provide functionality to score.component.html here
     constructor(private postService : PostService){
-        this.postService.g
+        this.postService.
     }
 }

@@ -16,9 +16,10 @@ import { FeedComponent } from './components/dashboard/feed/feed.component';
 import { LeaderboardComponent } from './components/dashboard/leaderboard/leaderboard.component';
 import { ScoreComponent } from './components/dashboard/score/score.component';
 import { CreatePostsComponent } from './components/dashboard/posts/create/create.posts.component';
+import { FlaggedPostsComponent } from './components/dashboard/posts/flagged/flagged.posts.component';
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
 import { FlaggedUsersComponent } from './components/dashboard/users/flagged/flagged.users.component';
-import { LockedUsersComponent} from './components/dashboard/users/locked/locked.users.component';
+import { LockedUsersComponent } from './components/dashboard/users/locked/locked.users.component';
 
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -46,6 +47,7 @@ import { HttpModule } from '@angular/http';
     ScoreComponent,
     CreatePostsComponent,
     MyPostsComponent,
+    FlaggedPostsComponent,
     FlaggedUsersComponent,
     LockedUsersComponent
   ],

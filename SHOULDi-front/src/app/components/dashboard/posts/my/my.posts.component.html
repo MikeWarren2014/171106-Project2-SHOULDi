@@ -1,10 +1,48 @@
-<div>
-    My Posts here...
-    <!-- TODO: put some content in this -->
-    <ul>
-        <li *ngFor="let post of posts">
-            {{ post.occasion }}
-            <img [src]="atob(post.image)">
-        </li>
-    </ul>
+<div class="myPostsContainer">
+    <!-- 
+        To be shown when there's no content
+    -->
+    <div *ngIf="!posts || !posts.length; else myPosts">
+        <h2>No content yet!</h2>
+        <p class="pageCenter">
+            Sorry, you have no content content yet. Wanna <a routerLink="../create-posts">create some</a>?
+        </p>
+        
+    </div>
+    <ng-template #myPosts>
+        <div id="myPostsContent">
+            
+            <div id="imageContainer">
+                <a *ngIf="postIndex > 0" id="prevImage" class="imageControl" (click)="prevImage()"><</a>
+                <img
+                    id="currentImage"
+                    class="center"
+                    src="{{currentPost.image}}"
+                >
+                <a *ngIf="postIndex < posts.length - 1" id="nextImage" class="imageControl" (click)="nextImage()">></a>
+                
+            </div>
+            <label class="right">
+                <b id="likes">{{currentPost.likes}}</b> likes <b id="dislikes">{{currentPost.dislikes}}</b> dislikes
+            </label>
+        </div>
+        <div id="imageActions">
+            <div id="commentsContainer">
+                <h3>Comments</h3>
+                <!-- if this post was made by the current user -->
+                <div *ngIf="currentPost && currentPost.poster  && currentUser && currentPost.poster._id == currentUser._id" >
+                    <!-- show this comments section -->
+                    <div *ngFor="let comment of currentPost.comments">
+                        <!-- TODO:  style this -->
+                        <h4>{{comment.commenter}}</h4> 
+                        <p>
+                            {{comment.content}}
+                        </p>
+                        <button (click)="flagComment(comment)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </ng-template>
 </div>

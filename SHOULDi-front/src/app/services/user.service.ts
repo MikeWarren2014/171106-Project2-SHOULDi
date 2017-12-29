@@ -4,36 +4,52 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User } from '../models/user';
 import 'rxjs/'
 import { HttpService } from './http.service';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class UserService extends HttpService
 {
     // what happens next is the client-side version of what happens on the JDBC side
 
-    getAllFlagged() // TODO: need to check endpoint
+    // User service methods for moderators
+
+    getFlaggedUsers() // TODO: need to check endpoint
     {
-        return this.http.get(this.BASE_URL + '/api/users').map((res : Response) => res.json());
+        return this.http.get(this.BASE_URL + '/api/users/flagged').map((res : Response) => res.json());
     }
+
+    getLockedUsers() // TODO: need to check endpoint
+    {
+        return this.http.get(this.BASE_URL + '/api/users/locked').map((res : Response) => res.json());
+    }
+
+    lockUser(user : User){ // TODO: need to check endpoint
+        return this.http.put(this.BASE_URL + '/api/users/lock', {
+            token : TokenService.getToken(),
+            userID : user._id
+        }).map((res : Response) => res.json());
+    }
+
+    unlockUser(user : User){ // TODO: need to check endpoint
+        return this.http.put(this.BASE_URL + '/api/users/unlock', {
+            token : TokenService.getToken(),
+            userID : user._id
+        }).map((res : Response) => res.json());
+    }
+
+    // User service methods for sponsors
 
     getHighScoreUsers() // TODO: need to check endpoint
     {
         return this.http.get(this.BASE_URL + '/api/users/favorites').map((res : Response) => res.json());
     }
+ 
+    // User service methods for generic use
 
-    getFlaggedUsers()
-    {
-        return this.http.get(this.BASE_URL + '/api/users/flagged').map((res : Response) => res.json());
-    }
-
-    getLockedUsers()
-    {
-        return this.http.get(this.BASE_URL + '/api/users/locked').map((res : Response) => res.json());
-    }
-    
     getById(_id: string) { // TODO: need to check endpoint
         return this.http.get(this.BASE_URL + '/api/users/' + _id).map((res: Response) => res.json());
     }
- 
+
     create(user: User) { // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/users/register', user);
     }
