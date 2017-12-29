@@ -16,6 +16,6 @@ export class FlaggedPostsComponent {
     @Input() user : User;
     constructor(private postService : PostService)
     {
-
+        
     }
 }

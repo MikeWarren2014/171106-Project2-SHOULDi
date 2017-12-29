@@ -42,12 +42,12 @@ export class UsersFlaggedComponent{
     }
 
     public deletePost(post : Post){ // TODO: finish this
-        console.log(this.postService.delete(post).subscribe(data => this.data = data));
+        console.log(this.postService.deletePost(post).subscribe(data => this.data = data));
     }
 
     public unflagPost(post : Post){ // TODO: finish this
         post.isFlagged = false;
-        console.log(this.postService.unflag(post).subscribe(data => this.data = data));
+        console.log(this.postService.unflagPost(post).subscribe(data => this.data = data));
     }
     
     public showComments(user : User){ // TODO: finish this
@@ -60,6 +60,6 @@ export class UsersFlaggedComponent{
 
     public unflagComment(comment : Comment){ // TODO: finish this
         comment.isFlagged = false;
-        console.log(this.commentService.updateComment(comment).subscribe(data => this.data = data));
+        console.log(this.commentService.unflagComment(comment).subscribe(data => this.data = data));
     }
 }

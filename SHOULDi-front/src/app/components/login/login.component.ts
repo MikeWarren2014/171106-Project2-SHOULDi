@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { TokenService } from '../../services/token.service';
 import { AlertService } from '../../services/alert.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AutoUnsubscribe } from '../../autoUnsubscribe';
@@ -22,10 +22,14 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService
-    ){}
+    ){
+
+        if(TokenService.getToken()){
+            this.authenticationService.loginToken()
+        }
+    }
 
     ngOnInit() {
-        this.authenticationService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 

@@ -48,7 +48,7 @@ export class FeedComponent
     // why is this here?
     deletePost(post : Post)
     {
-        this.postService.delete(post);
+        this.postService.deletePost(post);
     }
     /**
      * Loads posts and instantiates currentPost

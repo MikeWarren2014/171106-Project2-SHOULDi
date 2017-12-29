@@ -3,21 +3,34 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { HttpService } from './http.service';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthenticationService extends HttpService{
-    public something : any;
-    login(username : String, password: String) {
-        this.something = {"email":username, "password":password}; 
-        return this.http.post(this.BASE_URL + '/api/users/login', this.something)
-            .map((response: Response) => {
-                let user = response.json();
-                if(user && user.token) {
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
 
-                return user;
-            })
+    login(email : String, password: String) {
+        return this.http.post(this.BASE_URL + '/api/users/login', {
+          email : email,
+          password : password  
+        }).map((response: Response) => {
+            let user = response.json();
+            if(user && user.token) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+            }
+
+            return user;
+        });
+    }
+
+    loginToken(){
+        return this.http.post(this.BASE_URL + '/api/users/login/token', {
+            token : TokenService.getToken()
+        }).map((res : Response) => {
+            let user = res.json();
+            if(user && user.token){
+                localStorage.setItem('currentUser', JSON.stringify(user));
+            }
+        });
     }
 
     logout() {
