@@ -32,6 +32,8 @@ import { CommentService } from './services/comment.service';
 
 import { appRoutes } from './routing';
 import { HttpModule } from '@angular/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 @NgModule({
@@ -64,7 +66,12 @@ import { HttpModule } from '@angular/http';
     UserService,
     PostService,
     MessageService,
-    CommentService
+    CommentService,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi   : true
+    }
   ],
   bootstrap: [AppComponent]
 })

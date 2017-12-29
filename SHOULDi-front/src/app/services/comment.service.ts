@@ -13,43 +13,61 @@ export class CommentService extends HttpService
 
     // TODO: change the endpoints 
     // NOTE: comments should only be visible to the poster!
-    getAllForPost(post : Post) // TODO: change the endpoints 
+    
+    getAllByPost(post : Post) // TODO: change the endpoints 
     {
-        return this.http.get(this.BASE_URL + '/api/post/' + post._id + '/comments').map((res : Response) => res.json());
-    }
-    getAllFlaggedComments() // TODO: change the endpoints 
-    {
-        return this.http.get(this.BASE_URL + '/api/comments/flagged').map((res : Response) => res.json());
+        return this.http.post(this.BASE_URL + '/api/comments', {
+            token : TokenService.getToken(),
+            postID : post._id
+        }).map((res : Response) => res.json());
     }
 
-    // TODO: refactor this
     createComment(post : Post, comment : Comment)
     {
-        return this.http.post(this.BASE_URL + '/api/post/' + post._id + '/comments/create', {
-            post    : post,
-            comment : comment
-        }).map((res : Response) => res.json());
-    }
-    // TODO: ask Caleb,Xavier if this is enough data to send the back end
-    updateComment(comment : Comment) // TODO: change the endpoints 
-    {
-        return this.http.put(this.BASE_URL + '/api/post/comments/update/' + comment._id, {
+        return this.http.post(this.BASE_URL + '/api/comments/create', {
+            token : TokenService.getToken(),
+            postID    : post._id,
             comment : comment
         }).map((res : Response) => res.json());
     }
     
-    deleteComment(comment : Comment) // TODO: change the endpoints 
-    {
-        return this.http.delete(this.BASE_URL + '/api/post/comments/delete/' + comment._id);
-    }
-
     flagComment(comment : Comment) // TODO: change the endpoints 
     {
-        return this.http.put(this.BASE_URL + '/api/commments/flag', {
+        return this.http.post(this.BASE_URL + '/api/commments/flag', {
             token     : TokenService.getToken(),
             commentID : comment._id 
-        })
+        }).map((res : Response) => res.json());
     }
     
+    // Comment service methods for moderator
+
+    getAllFlaggedComments() // TODO: change the endpoints 
+    {
+        return this.http.post(this.BASE_URL + '/api/comments/flagged', {
+            token : TokenService.getToken()
+        }).map((res : Response) => res.json());
+    }
+
+    getFlaggedCommentsByUser(user : User){
+        return this.http.post(this.BASE_URL + '/api/comments/flagged', {
+            token : TokenService.getToken(),
+            userID : user._id
+        }).map((res : Response) => res.json());
+    }
+    // TODO: refactor this
     
+    unflagComment(comment : Comment){
+        return this.http.post(this.BASE_URL + '/api/comments/unflag', {
+            token : TokenService.getToken(),
+            commentID : comment._id            
+        }).map((res : Response) => res.json());
+    }
+
+    deleteComment(comment : Comment) // TODO: change the endpoints 
+    {
+        return this.http.post(this.BASE_URL + '/api/comments/delete', {
+            token : TokenService.getToken(),
+            commentID : comment._id
+        }).map((res : Response) => res.json());
+    }    
 }

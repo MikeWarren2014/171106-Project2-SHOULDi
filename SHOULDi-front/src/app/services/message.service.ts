@@ -12,20 +12,32 @@ export class MessageService extends HttpService
 {
     // TODO: get the endpoints
 
-    getBySender(sender : User) // TODO: get the endpoint
+    getBySender(user : User) // TODO: get the endpoint
     {
-        return this.http.get(this.BASE_URL + '/api/messages/' + sender._id).map((res : Response) => res.json());
+        return this.http.post(this.BASE_URL + '/api/messages', {
+            token : TokenService.getToken(),
+            userID : user._id
+        }).map((res : Response) => res.json());
     }
-    getByRecipient(recipient : User) // TODO: get the endpoint
+    getByRecipient(user : User) // TODO: get the endpoint
     {
-        return this.http.get(this.BASE_URL + '/api/messages/' + TokenService.getToken()).map((res : Response) => res.json());
+        return this.http.post(this.BASE_URL + '/api/messages', {
+            token : TokenService.getToken(),
+            userID : user._id
+        }).map((res : Response) => res.json());
     }
-    createBySender(sender : User) // TODO: get the endpoint
+    createBySender(user : User) // TODO: get the endpoint
     {
-        return this.http.post(this.BASE_URL + '/api/messages/send', sender).map((res : Response) => res.json());
+        return this.http.post(this.BASE_URL + '/api/messages/send', {
+            token : TokenService.getToken(),
+            user : user
+        }).map((res : Response) => res.json());
     }
     deleteMessage(message : Message){
-        return this.http.delete(this.BASE_URL + '/api/messages/delete/' + message._id);
+        return this.http.post(this.BASE_URL + '/api/messages/delete', {
+            token : TokenService.getToken(),
+            messageID : message._id
+        }).map((res : Response) => res.json());
     }
     // TODO: write the rest of the CRUD operations
 }
