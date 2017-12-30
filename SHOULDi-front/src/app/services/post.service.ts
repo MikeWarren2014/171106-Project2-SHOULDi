@@ -61,7 +61,7 @@ export class PostService extends HttpService
 
     getAllPostsByUser(user : User) // TODO: need to check endpoint
     {
-        return this.http.post(this.BASE_URL + '/api/posts/poster', {
+        return this.http.post(this.BASE_URL + '/api/posts/my/posts', {
             token   : TokenService.getToken(),
             userID  : user._id
         }).map((res : Response) => res.json());
