@@ -1,13 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.zenith.request.model;
 
-import com.zenith.Beans.PostBean;
-import com.zenith.Beans.UserBean;
-
-public class RatingModel {
+/**
+ *
+ * @author wayne
+ */
+public class ViewedAdModel {
     
     private String token;
-    private int post_id; 
-    private String comment; 
+    private int post_id;
+    private int clicked; 
 
     /**
      * @return the token
@@ -38,20 +44,18 @@ public class RatingModel {
     }
 
     /**
-     * @return the comment
+     * @return the clicked
      */
-    public String getComment() {
-        return comment;
+    public int getClicked() {
+        return clicked;
     }
 
     /**
-     * @param comment the comment to set
+     * @param clicked the clicked to set
      */
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setClicked(int clicked) {
+        this.clicked = clicked;
     }
-    
-    
     
     
 }
