@@ -1,13 +1,13 @@
 import { Component,OnInit } from "@angular/core";
 import { Post } from "../../../models/post";
 import { User } from "../../../models/user"
+import { TestData } from "../../../test/test.data";
 
 import { PostService } from "../../../services/post.service";
 import { UserService } from "../../../services/user.service"
 import { AutoUnsubscribe } from "../../../autoUnsubscribe";
 import { Comment } from "../../../models/comment";
 import { Response } from "@angular/http/src/static_response";
-import { TestData } from "../../../test/test.data";
 
 @Component({
     selector   : 'feed',
@@ -78,7 +78,6 @@ export class FeedComponent
                 // instantiate currentPost
                 this.currentPost = posts[0];
             } 
-
         });
     }
     /**
