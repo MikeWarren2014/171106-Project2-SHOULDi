@@ -7,6 +7,7 @@ import { UserService } from "../../../services/user.service"
 import { AutoUnsubscribe } from "../../../autoUnsubscribe";
 import { Comment } from "../../../models/comment";
 import { Response } from "@angular/http/src/static_response";
+import { TestData } from "../../../test/test.data";
 
 @Component({
     selector   : 'feed',
@@ -19,11 +20,11 @@ import { Response } from "@angular/http/src/static_response";
 @AutoUnsubscribe
 export class FeedComponent
 {
+    private USE_MOCK_DATA : boolean = false;
     // a feed has a logged on user
     currentUser: User;
     // since this component will only have one post at a time, it has currentPost, too
     currentPost: Post;
-    users: User[] = []; // does a feed have users?
     // a feed has posts
     posts: Post[] = []; 
     postIndex = 0;
@@ -38,12 +39,28 @@ export class FeedComponent
     hasCommented = false;
 
     constructor(private userService: UserService,
-        private postService : PostService)
+        private postService : PostService
+    )
     {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!this.USE_MOCK_DATA)
+        {
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        }
+        else
+        {
+            this.currentUser = new User("mwarren", "Mike", "warren", "mwarren@ayhoo.com", 50);
+        }
     }
     ngOnInit() {
-        this.loadPosts();
+        if (!this.USE_MOCK_DATA)
+        {
+            this.loadPosts();
+        }
+        else 
+        {
+            this.posts = TestData.posts;
+            this.currentPost = this.posts[0];
+        }
     }
 
     // why is this here?
@@ -125,7 +142,12 @@ export class FeedComponent
             if (message === "SUCCESS")
             {
                 post.isFlagged = true;
-                //TODO : advance to next image
+                // advance to next image
+                let nextPost = this.nextImage();
+                if (!nextPost)
+                {
+                    this.loadPosts();
+                }
             }
             else if (message === "FAILURE")
             {

@@ -37,7 +37,6 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { FlaggedCommentsComponent } from './components/dashboard/comments/flagged/flagged.comments.component';
 import { RegistrationGuard } from './guards/registration.guard';
 
-
 @NgModule({
   declarations: [
     AppComponent,
