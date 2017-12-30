@@ -21,12 +21,11 @@
                 >
                 
             </div>
-            <button (click)="flagPost(currentPost)"></button>
+            <button (click)="flagPost(currentPost)">Flag post</button>
         </div>
         <div id="imageActions">
             <div id="ratingsContainer">
                 <label>SHOULD I?</label>
-                <!-- TODO: make buttons submit upon end of cache -->
                 <button 
                     id="upvote"
                     value="Yes"
@@ -41,7 +40,7 @@
             <div id="commentsContainer">
                 <h3>Comments</h3>
                 <form *ngIf="!hasCommented; else showMyComment" id="addComment">
-                    <textarea cols="40" id="newComment" [(ngModel)]="newComment.content"></textarea>
+                    <textarea cols="40" id="newComment" name="newComment" [(ngModel)]="newComment.content"></textarea>
                     <input type="submit" value="Post Comment" (click)="comment()">
                 </form>
                 <ng-template #showMyComment>
