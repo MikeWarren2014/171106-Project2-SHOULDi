@@ -20,6 +20,7 @@ import { FlaggedPostsComponent } from './components/dashboard/posts/flagged/flag
 import { MyPostsComponent } from './components/dashboard/posts/my/my.posts.component';
 import { FlaggedUsersComponent } from './components/dashboard/users/flagged/flagged.users.component';
 import { LockedUsersComponent } from './components/dashboard/users/locked/locked.users.component';
+import { BalanceComponent } from "./components/dashboard/balance/balance.component";
 
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -36,6 +37,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
 import { FlaggedCommentsComponent } from './components/dashboard/comments/flagged/flagged.comments.component';
 import { RegistrationGuard } from './guards/registration.guard';
+import { MyMessagesComponent } from './components/dashboard/messages/my/my.messages.component';
+import { CreateMessagesComponent } from './components/dashboard/messages/create/create.messages.component';
+import { PopularUsersComponent } from './components/dashboard/users/popular/popular.users.component';
+import { MyAdvertisementsComponent } from './components/dashboard/advertisements/my/my.advertisements.component';
+import { CreateAdvertisementsComponent } from './components/dashboard/advertisements/create/create.advertisements.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,13 @@ import { RegistrationGuard } from './guards/registration.guard';
     FlaggedPostsComponent,
     FlaggedUsersComponent,
     LockedUsersComponent,
-    FlaggedCommentsComponent
+    FlaggedCommentsComponent,
+    BalanceComponent,
+    PopularUsersComponent,
+    MyAdvertisementsComponent,
+    CreateAdvertisementsComponent,
+    CreateMessagesComponent,
+    MyMessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +82,8 @@ import { RegistrationGuard } from './guards/registration.guard';
     MessageService,
     CommentService,
     RegistrationGuard,
+    MyMessagesComponent,
+    CreateMessagesComponent,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

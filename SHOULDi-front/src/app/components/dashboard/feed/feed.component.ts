@@ -1,13 +1,13 @@
 import { Component,OnInit } from "@angular/core";
 import { Post } from "../../../models/post";
 import { User } from "../../../models/user"
+import { TestData } from "../../../test/test.data";
 
 import { PostService } from "../../../services/post.service";
 import { UserService } from "../../../services/user.service"
 import { AutoUnsubscribe } from "../../../autoUnsubscribe";
 import { Comment } from "../../../models/comment";
 import { Response } from "@angular/http/src/static_response";
-import { TestData } from "../../../test/test.data";
 
 @Component({
     selector   : 'feed',
@@ -51,6 +51,7 @@ export class FeedComponent
             this.currentUser = new User("mwarren", "Mike", "warren", "mwarren@ayhoo.com", 50);
         }
     }
+
     ngOnInit() {
         if (!this.USE_MOCK_DATA)
         {
@@ -63,24 +64,21 @@ export class FeedComponent
         }
     }
 
-    // why is this here?
-    deletePost(post : Post)
-    {
-        this.postService.deletePost(post);
-    }
     /**
      * Loads posts and instantiates currentPost
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
+            console.log("posts == %s", JSON.stringify(posts, null, '\t'))
             this.posts = posts; 
+            console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'))
             if (posts) {
                 // instantiate currentPost
                 this.currentPost = posts[0];
             } 
-
         });
     }
+
     /**
      * Advances to, and returns, next image, if there is one, or null.
      */
@@ -92,6 +90,7 @@ export class FeedComponent
         this.currentPost = this.posts[this.posts.length - 1];
         return null;
     }
+    
     /**
      * Goes back to, and returns, previous image, if there is one, or first image.
      */

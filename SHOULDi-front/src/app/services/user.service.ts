@@ -68,9 +68,16 @@ export class UserService extends HttpService
 
     getHighScoreUsers() // TODO: need to check endpoint
     {
-        return this.http.post(this.BASE_URL + '/api/users/favorites', {
+        return this.http.post(this.BASE_URL + '/api/users/top', {
             token : TokenService.getToken()
         }).map((res : Response) => res.json());
+    }
+
+    getBalance(user : User, balance : number){
+        return this.http.post(this.BASE_URL + '/api/users/balance', {
+            token : TokenService.getToken(),
+            balance : balance
+        })
     }
  
     // User service methods for generic use
