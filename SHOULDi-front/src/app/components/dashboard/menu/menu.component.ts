@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { User } from "../../../models/user";
+import { UserRoles } from "../../../models/userRoles";
 
 @Component({
     selector    : 'menu',
@@ -10,5 +12,6 @@ import { Component } from "@angular/core";
 
 export class MenuComponent
 {
-
+    currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
+    IS_TEST : boolean = true;
 }

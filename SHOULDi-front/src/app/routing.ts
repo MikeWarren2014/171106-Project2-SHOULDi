@@ -15,6 +15,13 @@ import { ScoreComponent } from './components/dashboard/score/score.component';
 import { FlaggedUsersComponent } from './components/dashboard/users/flagged/flagged.users.component';
 import { LockedUsersComponent } from './components/dashboard/users/locked/locked.users.component';
 import { FlaggedCommentsComponent } from './components/dashboard/comments/flagged/flagged.comments.component';
+import { BalanceComponent } from './components/dashboard/balance/balance.component';
+import { FlaggedPostsComponent } from './components/dashboard/posts/flagged/flagged.posts.component';
+import { CreateMessagesComponent } from './components/dashboard/messages/create/create.messages.component';
+import { MyMessagesComponent } from './components/dashboard/messages/my/my.messages.component';
+import { PopularUsersComponent } from './components/dashboard/users/popular/popular.users.component';
+import { MyAdvertisementsComponent } from './components/dashboard/advertisements/my/my.advertisements.component';
+import { CreateAdvertisementsComponent } from './components/dashboard/advertisements/create/create.advertisements.component';
 
 export const appRoutes : Routes = [
     {
@@ -63,6 +70,34 @@ export const appRoutes : Routes = [
             {
                 path : 'flagged-comments',
                 component : FlaggedCommentsComponent
+            },
+            {
+                path : 'balance',
+                component : BalanceComponent
+            },
+            {
+                path : 'flagged-posts',
+                component : FlaggedPostsComponent
+            },
+            {
+                path: 'create-messages',
+                component: CreateMessagesComponent
+            },
+            {
+                path: 'my-messages',
+                component: MyMessagesComponent
+            },
+            {
+                path: 'popular-users',
+                component: PopularUsersComponent
+            },
+            {
+                path: 'my-advertisements',
+                component: MyAdvertisementsComponent
+            },
+            {
+                path: 'create-advertisements',
+                component: CreateAdvertisementsComponent
             },
             // for everything else, we simply go to the default screen
             {

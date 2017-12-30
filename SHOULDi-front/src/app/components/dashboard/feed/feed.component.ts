@@ -51,6 +51,7 @@ export class FeedComponent
             this.currentUser = new User("mwarren", "Mike", "warren", "mwarren@ayhoo.com", 50);
         }
     }
+
     ngOnInit() {
         if (!this.USE_MOCK_DATA)
         {
@@ -63,11 +64,6 @@ export class FeedComponent
         }
     }
 
-    // why is this here?
-    deletePost(post : Post)
-    {
-        this.postService.deletePost(post);
-    }
     /**
      * Loads posts and instantiates currentPost
      */
@@ -82,6 +78,7 @@ export class FeedComponent
             } 
         });
     }
+
     /**
      * Advances to, and returns, next image, if there is one, or null.
      */
@@ -93,6 +90,7 @@ export class FeedComponent
         this.currentPost = this.posts[this.posts.length - 1];
         return null;
     }
+    
     /**
      * Goes back to, and returns, previous image, if there is one, or first image.
      */
