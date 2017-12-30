@@ -120,11 +120,12 @@ export class FeedComponent
 
     flagPost(post)
     {
-        this.postService.flag(post).map((res : Response) => {
+        this.postService.flagPost(post).map((res : Response) => {
             let message = res.json().message.toString().toUpperCase();
             if (message === "SUCCESS")
             {
                 post.isFlagged = true;
+                //TODO : advance to next image
             }
             else if (message === "FAILURE")
             {
