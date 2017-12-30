@@ -73,7 +73,9 @@ export class FeedComponent
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
+            console.log("posts == %s", JSON.stringify(posts, null, '\t'))
             this.posts = posts; 
+            console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'))
             if (posts) {
                 // instantiate currentPost
                 this.currentPost = posts[0];
