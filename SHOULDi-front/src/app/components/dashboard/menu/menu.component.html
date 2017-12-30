@@ -1,6 +1,6 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <ul *ngIf="(currentUser.role == UserRoles.BASE_USER) || IS_TEST" class="nav navbar-nav">
+        <ul *ngIf="(currentUser && (currentUser.role == UserRoles.BASE_USER)) || (IS_TEST)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="leaderboard">Leaderboard</button></li>
             <li><button class="menuButton" routerLink="feed">Feed</button></li>
@@ -8,6 +8,7 @@
             <li><button class="menuButton" routerLink="my-posts">My Posts</button></li>
             <li><button class="menuButton" routerLink="create-posts">Create Posts</button></li>
             <li><button class="menuButton" routerLink="edit-posts">Edit Posts</button></li>
+            <li><button class="menuButton" routerLink="my-messages">My Messages</button></li>
         </ul>
         <ul *ngIf="currentUser.role == UserRoles.MODERATOR" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
