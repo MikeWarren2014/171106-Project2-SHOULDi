@@ -17,6 +17,11 @@ import com.zenith.templates.AdPostTemplate;
 import org.hibernate.HibernateException;
 import com.zenith.templates.PostTemplate;
 
+/**
+ * Service layer of posts functions that connects dao to entrypoints
+ * @author Caleb Schumake and Xavier Garibay
+ *
+ */
 public class PostsService {
 
     PostDAO database;

@@ -9,8 +9,8 @@ import com.zenith.Beans.UserBean;
 import com.zenith.DAO.UserDAO;
 
 /**
- *
- * @author wayne
+ *Get user by token
+ * @author Caleb Scumake
  */
 public class VerifyTokenCredentials {
     

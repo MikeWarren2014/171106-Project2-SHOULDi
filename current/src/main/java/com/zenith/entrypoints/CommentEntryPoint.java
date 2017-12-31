@@ -14,7 +14,10 @@ import com.zenith.service.VerifyTokenCredentials;
 import com.zenith.user.response.GenericSuccessOrFailureMessage;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
-
+/**
+ * Entry points of comment functions to connect front end to backend. Calls service layer. 
+ * @author Xavier Garibay and Caleb Schumake
+ */
 @Path("/comments")
 public class CommentEntryPoint {
 

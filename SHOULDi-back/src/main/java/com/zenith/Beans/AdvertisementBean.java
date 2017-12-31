@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zenith.Beans;
 
 import java.io.Serializable;
@@ -18,7 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+/**
+ * Bean for advertisement. Differs from Posts in that they contain a url to click through along with the statistics on how
+ * often shown and clicked on.
+ * @author Caleb Schumake
+ */
 @Entity
 @Table(name = "AdTable")
 public class AdvertisementBean implements Serializable {
@@ -45,26 +44,44 @@ public class AdvertisementBean implements Serializable {
     @Column(name = "NUM_SHOWN")
     private String num_shown;
 
+    /**
+     * @return - id of advertisment
+     */
     public int getAd_id() {
         return ad_id;
     }
 
+    /**
+     * @param ad_id - id of advertisement to set
+     */
     public void setAd_id(int ad_id) {
         this.ad_id = ad_id;
     }
 
+    /**
+     * @return - sponsor of the advertisement
+     */
     public UserBean getSponsor() {
         return Sponsor;
     }
 
+    /**
+     * @param Sponsor - sponsor of the advertisement to set
+     */
     public void setSponsor(UserBean Sponsor) {
         this.Sponsor = Sponsor;
     }
 
+    /**
+     * @return - url of advertisement
+     */
     public String getAd_link() {
         return ad_link;
     }
 
+    /**
+     * @param ad_link - url of the advertisement to set
+     */
     public void setAd_link(String ad_link) {
         this.ad_link = ad_link;
     }

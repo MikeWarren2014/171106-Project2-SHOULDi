@@ -26,7 +26,11 @@ import com.zenith.templates.PostTemplate;
 import com.zenith.templates.UserTemplate;
 
 
-
+/**
+ *DAO layer to access database in regards to users.
+ * @author Xavier Garibay and Caleb Schumake
+ */
+publi
 public class UserDAO {
 
     Session session = null;
@@ -42,6 +46,11 @@ public class UserDAO {
         }
     }
     
+    /**
+     * Get score of current user
+     * @param requestModel - token to identify user
+     * @return - score of user
+     */
     public int getUserScore(GenericGetModel requestModel){
         this.openConnection();
         UserBean user = this.getUserByToken(requestModel.getToken()); 
@@ -49,6 +58,11 @@ public class UserDAO {
         return user.getScore(); 
     }
 
+    /**
+     * Get  user by its email
+     * @param email - email to identify user
+     * @return - user
+     */
     public UserBean getUserByEmail(String email) {
 
         UserBean user = null;
@@ -70,6 +84,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Get  user by its id
+     * @param username - id to identify user
+     * @return - user
+     */
 	public UserBean getUserById(int username) {
 
 		/* make sure value is not null */
@@ -92,6 +111,11 @@ public class UserDAO {
 		return userBean;
 	}
 	
+    /**
+     * Get  user by its token
+     * @param token - token to identify user
+     * @return - user
+     */
     public UserBean getUserByToken(String token) {
 
         UserBean user = null;
@@ -114,6 +138,10 @@ public class UserDAO {
 
     }
     
+    /**
+     * Get all flagged users
+     * @return - list of flagged users
+     */
     public List<UserTemplate> getFlaggedUsers()
     {
         session.beginTransaction();
@@ -128,6 +156,10 @@ public class UserDAO {
         return templates;
     }
 
+    /**
+     * Save changes to user
+     * @param user - user to save
+     */
     public void saveUser(UserBean user) {
 
         session.beginTransaction();
@@ -136,6 +168,10 @@ public class UserDAO {
 
     }
 
+    /**
+     * Save changes to user
+     * @param user - user to save
+     */
     public void updateUser(UserBean user) {
 
         session.beginTransaction();
@@ -144,6 +180,10 @@ public class UserDAO {
 
     }
 
+    /**
+     * Get all users with a score of over 2000
+     * @return - list of favorite users
+     */
     public List<UserTemplate> getFavoriteUsers() {
 
         session.beginTransaction();
@@ -160,7 +200,11 @@ public class UserDAO {
         return templates;
 
     }
-    
+    //change form getmodel will lock itself
+    /**
+     * Lock a user
+     * @param - token of user
+     */
 	public void lockUser(GenericGetModel user) {
 		UserBean lockUser = null;
 		UserBean u=getUserByToken(user.getToken());

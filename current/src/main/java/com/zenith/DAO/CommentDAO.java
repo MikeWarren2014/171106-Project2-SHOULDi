@@ -19,8 +19,8 @@ import com.zenith.hibernate.utils.HibernateUtils;
 import com.zenith.request.model.CommentModel;
 
 /**
- *
- * @author wayne
+ *DAO layer to access database in regards to comments
+ * @author Xavier Garibay and Caleb Schumake
  */
 public class CommentDAO implements DAO {
 
@@ -36,7 +36,9 @@ public class CommentDAO implements DAO {
             session.close();
         }
     }
-
+    /**
+     * Get all comments flagged for moderator to review
+     */
     public List<CommentBean> getFlaggedComments() {
         session.beginTransaction();
         Criteria criteria;
@@ -47,9 +49,10 @@ public class CommentDAO implements DAO {
 		return flagged;
     }
 
-    public boolean flagComment(CommentModel comment) {
-
-       
+    /**
+     * Flag a comment and the commentor to be reviewed by moderator
+     */
+    public boolean flagComment(CommentModel comment) { 
         int comment_id = comment.getCommentID(); 
 
         /* Get comment based on ID */
@@ -63,7 +66,10 @@ public class CommentDAO implements DAO {
             session.beginTransaction(); 
             CommentBean commentToFlag = (CommentBean)comments.get(0); 
             commentToFlag.setIsFlagged(1);
-            session.update(commentToFlag);
+            UserBean user=commentToFlag.getCommentor();
+            user.setFlag(1);
+            session.update(user);
+            session.update(commentToFlag);         
             return true; 
         }
 

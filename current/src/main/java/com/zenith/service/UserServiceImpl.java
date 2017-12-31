@@ -19,8 +19,9 @@ import com.zenith.templates.UserTemplate;
 import com.zenith.user.response.ErrorMessages;
 
 /**
+ * Service layer of user functions that connects dao to entrypoints
+ * @author Caleb Schumake and Xavier Garibay
  *
- * @author calebschumake
  */
 public class UserServiceImpl implements UserService {
 

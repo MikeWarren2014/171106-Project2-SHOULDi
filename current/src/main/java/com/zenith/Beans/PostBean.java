@@ -26,10 +26,17 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.CreationTimestamp;
 
+/**
+ * Bean to hold Posts. UserBean of poster is held along with a list of those who have viewed, liked or disliked the post.
+ * Also holds comments, occasion the post is linked with, the date created and an image.
+ * Holds a flag variable to mark to be shown to moderators 
+ * @author Xavier Garibay and Caleb Schumake
+ *
+ */
 @Entity
 @XmlRootElement
 @Table(name = "Posts")
-public class PostBean implements Serializable, Comparable<PostBean> {
+public class PostBean implements Serializable{
 
     @Id //designates as primary key
     @Column(name = "POST_ID")
@@ -81,34 +88,58 @@ public class PostBean implements Serializable, Comparable<PostBean> {
     @Column(name = "image")
     private Blob image;
 
+    /**
+     * @return - id of the post
+     */
     public int getPost_id() {
         return post_id;
     }
 
+    /**
+     * @param post_id - id of the post to set
+     */
     public void setPost_id(int post_id) {
         this.post_id = post_id;
     }
 
+    /**
+     * @return - creator of post
+     */
     public UserBean getPoster() {
         return poster;
     }
 
+    /**
+     * @param poster - user who created the post
+     */
     public void setPoster(UserBean poster) {
         this.poster = poster;
     }
 
+    /**
+     * @return - comments on post
+     */
     public List<CommentBean> getPost_comments() {
         return post_comments;
     }
 
+    /**
+     * @param post_comments - comments to set
+     */
     public void setPost_comments(ArrayList<CommentBean> post_comments) {
         this.setPost_comments(post_comments);
     }
 
+    /**
+     * @return - if flagged
+     */
     public int isFlag() {
         return getFlag();
     }
 
+    /**
+     * @param flag - whether to flag or unflag
+     */
     public void setFlag(int flag) {
         this.flag = flag;
     }
@@ -249,10 +280,4 @@ public class PostBean implements Serializable, Comparable<PostBean> {
     public void setImage(Blob image) {
         this.image = image;
     }
-
-	public int compareTo(PostBean post) {
-//		if(String.sort(this.occasion.toLowerCase(),post.getOccasion().toLowerCase()))
-		return 0;
-	}
-
 }

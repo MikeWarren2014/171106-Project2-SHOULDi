@@ -8,7 +8,11 @@ package com.zenith.hibernate.utils;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+/**
+ * Used in making connections to database
+ * @author Caleb Schumake
+ *
+ */
 public class HibernateUtils {
 
     private static final SessionFactory sessionFactory;

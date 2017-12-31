@@ -35,9 +35,8 @@ import javax.ws.rs.core.Response;
 
 
 /**
- * This will be our resource class, it will accept an HTTP request and return an
- * HTTP response
- *
+ * Entry points of user functions to connect front end to backend. Calls service layer.
+ * @author Xavier Garibay and Caleb Schumake
  */
 @Path("/users") // you need a path annotation to make a class a resource class
 public class UserEntryPoint {

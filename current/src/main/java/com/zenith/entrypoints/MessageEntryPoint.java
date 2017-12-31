@@ -20,7 +20,10 @@ import java.util.List;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
-
+/**
+ * Entry points of message functions to connect front end to backend. Calls service layer. 
+ * @author Xavier Garibay and Caleb Schumake
+ */
 @Path("/messages")
 public class MessageEntryPoint {
 

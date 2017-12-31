@@ -33,7 +33,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import com.zenith.templates.PostTemplate;
 import com.zenith.user.response.GenericSuccessOrFailureMessage;
-
+/**
+ * Entry points of post functions to connect front end to backend. Calls service layer.
+ * @author Xavier Garibay and Caleb Schumake
+ */
 @Path("/posts")
 public class PostEntryPoint {
 

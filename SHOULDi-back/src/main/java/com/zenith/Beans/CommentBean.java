@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zenith.Beans;
 
 import java.io.Serializable;
@@ -17,7 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ *Bean for Comments on Posts. Holds commentor and post that is being commented on.
+ *@author Caleb Schumake
+ */
 @Entity
 @XmlRootElement
 @Table(name = "Comments")
@@ -87,18 +85,30 @@ public class CommentBean implements Serializable {
     @Column(name = "COMMENT_TEXT")
     private String comment_text;
 
+    /**
+     * @return - id of the comment
+     */
     public int getComment_id() {
         return comment_id;
     }
 
+    /**
+     * @param comment_id - id of the comment
+     */
     public void setComment_id(int comment_id) {
         this.comment_id = comment_id;
     }
 
+    /**
+     * @return - text of the comment
+     */
     public String getComment_text() {
         return comment_text;
     }
 
+    /**
+     * @param comment_text - text of the comment to set
+     */
     public void setComment_text(String comment_text) {
         this.comment_text = comment_text;
     }

@@ -10,8 +10,8 @@ import javax.ws.rs.core.GenericEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
+ *Template to return a post or advertisement
+ * @author Xavier Garibay and Caleb Schumake
  */
 @XmlRootElement
 public class PostTemplate {
@@ -21,9 +21,6 @@ public class PostTemplate {
     private int likes;
     private int dislikes; 
     private List<String> comments; 
-    /* Xavier, this field is needed so we can group ads and user posts together, we have to use same object since collections 
-       must hold same type 
-    */
     private String url; 
     private int num_clicked;
     private int num_shown; 

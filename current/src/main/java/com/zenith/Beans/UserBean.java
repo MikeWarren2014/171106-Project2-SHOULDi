@@ -6,8 +6,10 @@
 package com.zenith.Beans;
 
 /**
- *
- * @author calebschumake
+ *Bean for Users. Holds a lists of posts created, viewed, liked or dislikes along with lists of messages recieved and comments made
+ *Can be flagged or locked for moderator review. Holds username, password and login for login and session handling.
+ *Holds balance and ads for if the user is a sponsor. Holds gender, role and score for further information
+ * @author Caleb Schumake and Xavier Garibay
  */
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -79,10 +81,16 @@ public class UserBean implements Serializable {
     private List<VPBean> viewed_posts;
 
     @OneToMany(
-            mappedBy = "userBean",
+            mappedBy = "to",
             orphanRemoval = true
     )
-    private List<MessageBean> messages;
+    private List<MessageBean> to;
+    
+    @OneToMany(
+            mappedBy = "from",
+            orphanRemoval = true
+    )
+    private List<MessageBean> from;
 
     @OneToMany(
             mappedBy = "commentor",
@@ -105,125 +113,231 @@ public class UserBean implements Serializable {
     @Column(name = "score")
     private int score;
 
+    /**
+     * @return - id of the user
+     */
     public int getUser_id() {
         return user_id;
     }
 
+    /**
+     * @param user_id - id of the user to set
+     */
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
+    /**
+     * @return - username of the user
+     */
     public String getUsername() {
         return getEmail();
     }
 
+    /**
+     * @param username - username of the user to set
+     */
     public void setUsername(String username) {
         this.setEmail(username);
     }
 
+    /**
+     * @return - password of the user
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * @param password - password of the user to set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * @return - gender of the user
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     * @param gender - gender of the user to set
+     */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
 
+    /**
+     * @return - whether or not user is locked
+     */
     public int isLock() {
         return getLock();
     }
 
+    /**
+     * @param lock - set whether the user is locked or not
+     */
     public void setLock(int lock) {
         this.lock = lock;
     }
 
+    /**
+     * @return - posts the user has created
+     */
     public List<PostBean> getUser_posts() {
         return user_posts;
     }
 
+    /**
+     * @param user_posts - posts of the user to set
+     */
     public void setUser_posts(ArrayList<PostBean> user_posts) {
         this.setUser_posts(user_posts);
     }
 
+    /**
+     * @return - posts the user has rated
+     */
     public List<VPBean> getViewed_posts() {
         return viewed_posts;
     }
 
+    /**
+     * @param viewed_posts - posts the user has rated to set
+     */
     public void setViewed_posts(ArrayList<VPBean> viewed_posts) {
         this.setViewed_posts(viewed_posts);
     }
 
-    public List<MessageBean> getMessages() {
-        return messages;
+    /**
+     * @return - messages to user
+     */
+    public List<MessageBean> getTo() {
+        return to;
+    }
+    
+    /**
+     * @return - messages from user
+     */
+    public List<MessageBean> getFrom() {
+        return from;
+    }
+    /**
+     * @param messages - messages to user to set
+     */
+    public void setTo(ArrayList<MessageBean> messages) {
+        this.setTo(messages);
+    }
+    
+    /**
+     * @param messages - messages from user to set
+     */
+    public void setFrom(ArrayList<MessageBean> messages) {
+        this.setFrom(messages);
     }
 
-    public void setMessages(ArrayList<MessageBean> messages) {
-        this.setMessages(messages);
-    }
-
+    /**
+     * @return - comments the user has made
+     */
     public List<CommentBean> getUser_comments() {
         return user_comments;
     }
 
+    /**
+     * @param user_comments - comments the user has made to set
+     */
     public void setUser_comments(ArrayList<CommentBean> user_comments) {
         this.setUser_comments(user_comments);
     }
 
+    /**
+     * @return - score of the user
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * @param score - of the user to set
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     * @return - likes user has made
+     */
     public List<LikeBean> getLikes() {
         return likes;
     }
 
+    /**
+     * @param likes - likes user has made to set
+     */
     public void setLikes(List<LikeBean> likes) {
         this.likes = likes;
     }
 
+    /**
+     * @return - dislikes user has made
+     */
     public List<DislikeBean> getDislikes() {
         return dislikes;
     }
 
+    /**
+     * @param dislikes - dislikes user has made to set
+     */
     public void setDislikes(List<DislikeBean> dislikes) {
         this.dislikes = dislikes;
     }
 
+    /**
+     * @return - whether or not user is locked
+     */
     public int getLock() {
         return lock;
     }
 
+    /**
+     * @param user_posts - posts created by the user
+     */
     public void setUser_posts(List<PostBean> user_posts) {
         this.user_posts = user_posts;
     }
 
+    /**
+     * @param viewed_posts - posts the user has viewed to set
+     */
     public void setViewed_posts(List<VPBean> viewed_posts) {
         this.viewed_posts = viewed_posts;
     }
 
-    public void setMessages(List<MessageBean> messages) {
-        this.messages = messages;
+    /**
+     * @param messages - messages to the user 
+     */
+    public void setTo(List<MessageBean> messages) {
+        this.to = messages;
+    }
+    /**
+     * @param messages - messages to the user 
+     */
+    public void setFrom(List<MessageBean> messages) {
+        this.from = messages;
     }
 
+    /**
+     * @param user_comments - comments that the user has made to set
+     */
     public void setUser_comments(List<CommentBean> user_comments) {
         this.user_comments = user_comments;
     }
 
     public UserBean(int user_id, String username, String password, String gender, String role, int lock,
-            ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> messages,
+            ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> to, ArrayList<MessageBean> from,
             ArrayList<CommentBean> user_comments, ArrayList<LikeBean> likes, ArrayList<DislikeBean> dislikes, int score) {
         super();
         this.user_id = user_id;
@@ -235,7 +349,8 @@ public class UserBean implements Serializable {
         this.flag=0;
         this.user_posts = user_posts;
         this.viewed_posts = viewed_posts;
-        this.messages = messages;
+        this.to = to;
+        this.from = from;
         this.likes = likes;
         this.dislikes = dislikes;
         this.user_comments = user_comments;
@@ -247,7 +362,7 @@ public class UserBean implements Serializable {
     }
 
     public UserBean(String username, String password, String gender, String role, int lock,
-            ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> messages,
+            ArrayList<PostBean> user_posts, ArrayList<VPBean> viewed_posts, ArrayList<MessageBean> to, ArrayList<MessageBean> from,
             ArrayList<CommentBean> user_comments, ArrayList<LikeBean> likes, ArrayList<DislikeBean> dislikes, int score) {
         super();
         this.email = username;
@@ -258,7 +373,8 @@ public class UserBean implements Serializable {
         this.flag=0;
         this.user_posts = user_posts;
         this.viewed_posts = viewed_posts;
-        this.messages = messages;
+        this.to = to;
+        this.from = from;
         this.user_comments = user_comments;
         this.likes = likes;
         this.dislikes = dislikes;
@@ -335,10 +451,16 @@ public class UserBean implements Serializable {
         this.email = email;
     }
 
+    /**
+     * @return - whether flagged or not
+     */
 	public int getFlag() {
 		return flag;
 	}
 
+	/**
+	 * @param - set whether flagged or not
+	 */
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}

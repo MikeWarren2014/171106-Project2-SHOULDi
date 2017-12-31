@@ -10,7 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ * Bean to hold dislikes. Holds user who is disliking and post that is disliked
+ * @author Caleb Schumake and Xavier Garibay
+ *
+ */
 @Entity
 @XmlRootElement
 @Table(name = "Dislikes")
