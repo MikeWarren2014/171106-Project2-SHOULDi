@@ -69,6 +69,7 @@ public class PostDAO {
                 = session.createQuery(hql).setParameter("_id", rating.getPost_id())
                         .list();
         PostBean postBean = (PostBean)posts.get(0); 
+        postBean.setCompleted(1);
         List<LikeBean> likes = postBean.getLikes();
         List<DislikeBean> dislikes = postBean.getDislikes();
         List<Integer> ids = new ArrayList<Integer>();
@@ -101,6 +102,7 @@ public class PostDAO {
                     }
                 }
             }
+            session.update(postBean);
 
             session.getTransaction().commit();
         }
@@ -261,19 +263,23 @@ public class PostDAO {
         UserDAO dao= new UserDAO();
         List<PostBean> choosable = session.createCriteria(PostBean.class).list();
         choosable = session.createCriteria(PostBean.class).add(Restrictions.eq("completed", 0)).list();
+        
         dao.openConnection();
         UserBean viewer= dao.getUserByToken(user.getToken());
         List<VPBean> seen = viewer.getViewed_posts();
         List<PostBean> left = new ArrayList<PostBean>();
         for (VPBean vp : seen) {
             choosable.remove(vp.getViewed());
+            
         }
         List<PostTemplate> posts= new ArrayList<PostTemplate>();
         for(int i=0; i<choosable.size();i++)
         {
         	if(i<9)
         	{
-        		posts.add(new PostTemplate(choosable.get(i).getPost_id(), ImageConversionUtil.convertToB64(choosable.get(i).getImage())));
+        		posts.add(new PostTemplate(choosable.get(i).getPost_id(), 
+                                ImageConversionUtil.convertToB64(choosable.get(i).getImage()), 
+                                choosable.get(i).getPoster().getUser_id()));
         	}
         }
         dao.closeConnection();
@@ -282,6 +288,15 @@ public class PostDAO {
         PostTemplate model = this.getRandomAd(); 
         if (model != null){
             posts.add(model); 
+        }
+        
+        /* Users cannot view their own posts */ 
+        int viewer_id = viewer.getUser_id(); 
+        int i = 0; 
+        for (PostTemplate post : posts) {
+            if ( viewer_id == post.getPoster_id()) 
+                posts.remove(0); 
+            i++; 
         }
         
         PostBean random = choosable.get(new Random().nextInt(choosable.size()));
@@ -315,7 +330,7 @@ public class PostDAO {
         {
         	if(i<9)
         	{
-        		posts.add(new PostTemplate(choosable.get(i).getPost_id(),  ImageConversionUtil.convertToB64( choosable.get(i).getImage())));
+        	//	posts.add(new PostTemplate(choosable.get(i).getPost_id(),  ImageConversionUtil.convertToB64( choosable.get(i).getImage())));
         	}
         }
         PostBean random = choosable.get(new Random().nextInt(choosable.size()));
@@ -374,6 +389,30 @@ public class PostDAO {
         session.getTransaction().commit();
         return true;
     }
+    
+    public boolean createAd(AdPostModel adPostModel) {
+
+        /* Creates new post */
+        UserDAO userdao = new UserDAO();
+        userdao.openConnection();
+
+        /* Remove money from the sponsors balance based on amount to pay for ad */
+        UserBean sponsor = userdao.getUserByToken(adPostModel.getToken());
+        String s =adPostModel.getImage();
+        s = s.substring(s.lastIndexOf(',') + 1);
+        /* create ad and save both the ad and the sponsor */
+        Blob image = ImageConversionUtil.convertToBlob(s);
+        AdvertisementBean adBean = new AdvertisementBean(image, adPostModel.getUrl(), sponsor);
+
+        session.beginTransaction();
+        session.save(adBean);
+        session.getTransaction().commit();
+        userdao.closeConnection();
+
+        this.saveNewBalance(adPostModel);
+
+        return true;
+    }
 
     public void removePost(PostBean post) {
         PostBean delPost = null;
@@ -419,7 +458,7 @@ public class PostDAO {
             if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace();
+            e.printStackTrace();  
         } finally {
             session.close();
         }
@@ -479,28 +518,7 @@ public class PostDAO {
 
     }
 
-    public boolean createAd(AdPostModel adPostModel) {
 
-        /* Creates new post */
-        UserDAO userdao = new UserDAO();
-        userdao.openConnection();
-
-        /* Remove money from the sponsors balance based on amount to pay for ad */
-        UserBean sponsor = userdao.getUserByToken(adPostModel.getToken());
-
-        /* create ad and save both the ad and the sponsor */
-        Blob image = ImageConversionUtil.convertToBlob(adPostModel.getImage());
-        AdvertisementBean adBean = new AdvertisementBean(image, adPostModel.getUrl(), sponsor);
-
-        session.beginTransaction();
-        session.save(adBean);
-        session.getTransaction().commit();
-        userdao.closeConnection();
-
-        this.saveNewBalance(adPostModel);
-
-        return true;
-    }
 
     /* Should make a check so user cannot go into negative balance */
     private void saveNewBalance(AdPostModel adPostModel) {
