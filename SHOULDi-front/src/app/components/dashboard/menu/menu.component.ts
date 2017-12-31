@@ -12,6 +12,10 @@ import { UserRoles } from "../../../models/userRoles";
 
 export class MenuComponent
 {
+    constructor(public UserRoles : UserRoles)
+    {
+
+    }
     currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
     IS_TEST : boolean = true;
 }
