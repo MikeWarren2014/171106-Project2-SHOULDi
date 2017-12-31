@@ -104,27 +104,31 @@ export class FeedComponent
 
     upvote()
     {
-        this.postService.like(this.currentPost);
-        // try to load next post
-        let nextPost = this.nextImage();
-        // if there was no next post to load, load in more posts (from the server)
-        if (!nextPost)
-        {
-            this.loadPosts();
-        }
+        this.postService.like(this.currentPost).subscribe((res : Response) => {
+            // try to load next post
+            let nextPost = this.nextImage();
+            // if there was no next post to load, load in more posts (from the server)
+            if (!nextPost)
+            {
+                this.loadPosts();
+            }
+            
+        })
     }
     
     downvote()
     {
         
-        this.postService.dislike(this.currentPost);
-        // try to load next post
-        let nextPost = this.nextImage();
-        // if there was no next post to load, load in more posts (from the server)
-        if (!nextPost)
-        {
-            this.loadPosts();
-        }
+        this.postService.dislike(this.currentPost).subscribe((res : Response) => {
+            // try to load next post
+            let nextPost = this.nextImage();
+            // if there was no next post to load, load in more posts (from the server)
+            if (!nextPost)
+            {
+                this.loadPosts();
+            }
+            
+        })
     }
 
     comment()

@@ -16,6 +16,8 @@ export class MenuComponent
     currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
     TEST : number = 0;
 
+    
+
     // constructor(public UserRoles : UserRoles)
     // {
 
