@@ -30,7 +30,7 @@ import com.zenith.templates.UserTemplate;
  *DAO layer to access database in regards to users.
  * @author Xavier Garibay and Caleb Schumake
  */
-publi
+
 public class UserDAO {
 
     Session session = null;

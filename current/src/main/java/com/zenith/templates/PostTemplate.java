@@ -19,7 +19,8 @@ public class PostTemplate {
     private int post_id;
     private String image; 
     private int likes;
-    private int dislikes; 
+    private int dislikes;
+    private String occasion;
     private List<String> comments; 
     private String url; 
     private int num_clicked;
@@ -50,6 +51,11 @@ public class PostTemplate {
     public PostTemplate(int post_id, String image) {
         this.post_id = post_id;
         this.image = "data:image/png;base64," + image;
+	}
+	public PostTemplate(int post_id2, String convertToB64, String occasion) {
+		post_id=post_id2;
+		image= convertToB64;
+		this.occasion=occasion;
 	}
 	/**
      * @return the post_id

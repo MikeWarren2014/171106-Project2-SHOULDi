@@ -76,7 +76,7 @@ public class MessageDao {
         UserDAO userDAO = new UserDAO();
         userDAO.openConnection();
         UserBean userBean = userDAO.getUserByToken(getModel.getToken()); 
-        List<MessageBean> messages = userBean.getMessages(); 
+        List<MessageBean> messages = userBean.getTo(); 
         
         List<String> userMessages = new ArrayList<String>(); 
         for (MessageBean message : messages) {

@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import com.zenith.Beans.CommentBean;
+
 import com.zenith.request.model.CommentModel;
 import com.zenith.service.CommentService;
 import com.zenith.service.VerifyTokenCredentials;
+import com.zenith.templates.CommentTemplate;
 import com.zenith.user.response.GenericSuccessOrFailureMessage;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 /**
  * Entry points of comment functions to connect front end to backend. Calls service layer. 
  * @author Xavier Garibay and Caleb Schumake
@@ -25,7 +25,7 @@ public class CommentEntryPoint {
     @Path("/flagged")
     @Consumes(MediaType.APPLICATION_JSON) // our method consumes or takes in json data
     @Produces({MediaType.APPLICATION_JSON})
-    public List<CommentBean> getFlaggedComments() {
+    public List<CommentTemplate> getFlaggedComments() {
         CommentService service = new CommentService();
         return service.getFlaggedComments();
     }
