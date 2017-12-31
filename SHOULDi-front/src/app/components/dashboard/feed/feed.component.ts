@@ -69,10 +69,8 @@ export class FeedComponent
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
-            console.log("Loading new posts:");
             //console.log("posts == %s", JSON.stringify(posts, null, '\t'));
-            console.log(posts);
-            this.posts = JSON.parse(posts); 
+            this.posts = posts;
             //console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'));
             if (this.posts) {
                 // instantiate currentPost
@@ -89,7 +87,6 @@ export class FeedComponent
      */
     nextImage()
     {
-        console.log("Getting next image:");
         this.newComment.content = '';
         if (this.postIndex < this.posts.length - 1){
             this.posts[this.postIndex] = null;

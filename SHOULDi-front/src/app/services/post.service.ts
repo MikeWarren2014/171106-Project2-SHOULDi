@@ -35,22 +35,26 @@ export class PostService extends HttpService
         }).map((res : Response) => res.json());
     }
 
-    like(post : Post, comment : Comment) { // TODO: need to check endpoint - finished
+    like(post : any, comment : any) { // TODO: need to check endpoint - finished
         console.log("Sending Like");
+        console.log(post.post_id);
+        console.log(comment.content);
         return this.http.post(this.BASE_URL + '/api/posts/like', 
         {
             token  : TokenService.getToken(),
-            post_id : post._id,
+            post_id : post.post_id,
             comment : comment.content
         }).map((res : Response) => res.json());
     }
 
-    dislike(post : Post, comment : Comment) {  // TODO: need to check endpoint - finished
+    dislike(post : any, comment : any) {  // TODO: need to check endpoint - finished
         console.log("Sending Dislike");
+        console.log(post.post_id);
+        console.log(comment.content);
         return this.http.post(this.BASE_URL + '/api/posts/dislike', 
         {
             token  : TokenService.getToken(),
-            post_id : post._id,
+            post_id : post.post_id,
             comment : comment.content
         }).map((res : Response) => res.json());
     }
