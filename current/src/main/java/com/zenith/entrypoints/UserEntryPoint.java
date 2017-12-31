@@ -142,7 +142,7 @@ public class UserEntryPoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/balance")
-	public int lockUser(GenericGetModel user)
+	public int getBalance(GenericGetModel user)
 	{
 		UserServiceImpl service= new UserServiceImpl();
 		return service.getBalance(user);
