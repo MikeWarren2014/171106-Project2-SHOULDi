@@ -111,7 +111,7 @@ export class FeedComponent
     upvote()
     {
         this.postService.like(this.currentPost, this.newComment).subscribe(data => {
-            this.data
+            this.data 
             // try to load next post
             let nextPost = this.nextImage();
             // if there was no next post to load, load in more posts (from the server)
@@ -119,6 +119,7 @@ export class FeedComponent
             {
                 if(!this.loadPosts()){
                     this.posts = [];
+                    this.currentPost = null;
                 }
             } else {
                 this.currentPost = nextPost;
@@ -138,6 +139,7 @@ export class FeedComponent
             {
                 if(!this.loadPosts()){
                     this.posts = [];
+                    this.currentPost = null;
                 }
             } else {
                 this.currentPost = nextPost;
@@ -167,7 +169,12 @@ export class FeedComponent
                 let nextPost = this.nextImage();
                 if (!nextPost)
                 {
-                    this.loadPosts();
+                    if(!this.loadPosts()){
+                        this.posts = [];
+                        this.currentPost = null;
+                    }
+                } else {
+                    this.currentPost = nextPost;
                 }
             }
             else if (message === "FAILURE")
