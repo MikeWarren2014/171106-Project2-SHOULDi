@@ -71,6 +71,7 @@ export class FeedComponent
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
+            console.log(posts);
             if (posts) {
                 // instantiate currentPost
                 console.log("loadPosts updating currentPost");
