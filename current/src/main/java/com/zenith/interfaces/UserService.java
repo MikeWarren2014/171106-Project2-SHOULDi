@@ -7,17 +7,18 @@ package com.zenith.interfaces;
 
 import java.util.List;
 
-import com.zenith.Beans.PostBean;
 import com.zenith.Beans.UserBean;
+import com.zenith.request.model.UserSignUpModel;
+import com.zenith.templates.UserTemplate;
 
 /**
- * 
+ *
  * @author calebschumake
  */
-public interface DAO {
+public interface UserService {
 
-    public void openConnection();
+    public UserBean createUser(UserSignUpModel requestObject);
 
-    public void closeConnection();
+    public List<UserTemplate> getFavoriteUsers();
 
 }

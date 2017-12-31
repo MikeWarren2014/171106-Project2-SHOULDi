@@ -3,11 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zenith.session;
+package com.zenith.request.model;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.Random;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -15,16 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author wayne
  */
 @XmlRootElement
-public class Token {
-
-    private String token;
-    private String role;
-
-    public Token() {
-        Random random = new SecureRandom();
-        token = new BigInteger(130, random).toString(32);
-
-    }
+public class FlagPostModel {
+    
+    private String token; 
+    private int postID; 
 
     /**
      * @return the token
@@ -41,19 +32,19 @@ public class Token {
     }
 
     /**
-     * @return the role
+     * @return the postID
      */
-    public String getRole() {
-        return role;
+    public int getPostID() {
+        return postID;
     }
 
     /**
-     * @param role the role to set
+     * @param postID the postID to set
      */
-    public void setRole(String role) {
-        this.role = role;
+    public void setPostID(int postID) {
+        this.postID = postID;
     }
     
     
-
+    
 }

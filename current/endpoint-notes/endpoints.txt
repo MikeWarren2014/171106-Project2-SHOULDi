@@ -1,0 +1,161 @@
+========== Endpoints ==========
+
+***TESTED***
+1. To register 
+	HTTP request type: POST
+	Path: api/users/register 
+	Front-end request: {"email":, "password":, "gender":, "role":}
+	Back-end happy path response: {"message":"Success"} 
+	Back-end bad path response: {"errorMessage": "RECORD_ALREADY_EXISTS","errorMessageKey": "RECORD_ALREADY_EXISTS"}
+
+***TESTED***
+2.Login 
+	HTTP request type: POST
+	Path: api/users/login
+	Front-end request: {"email":, "password":}
+	Back-end happy path response: {"token":"unique string that indetifies a user for each session"} 
+	Back-end bad path response: {"errorMessage":"USER_DOES_NOT_EXIST", "errorMessageKey":"USER_DOES_NOT_EXIST"}
+
+***TESTED***
+3. Get users for sponsor whose score > 2000 // back-end note: use GenericGetModel for token authentication
+	HTTP request type: GET
+	Path: api/users/favorites
+	Front-end request: {"token":"unique string that indetifies a user for each session"} // provided at login, store locally on front end
+	Back-end happy path response: {
+"userEmail": [
+"joa@gmail.com"
+]
+} or empty json // this was a bear to accomplish, I will see if I can return their score as well
+	Back-end bad path response: PENDING DEVELOPMENT
+
+4. Get all flagged comments // back-end note: use GenericGetModel for token authentication
+	HTTP request type: GET
+	Path: api/comments/flagged
+	Front-end request: {"token":"unique string that indetifies a user for each session"} or empty json // provided at login, store locally on front end
+	Back-end happy path response: PENDING DEVELOPMENT
+	Back-end bad path response: PENDING DEVELOPMENT
+
+5. Get all flagged posts // back-end note: use GenericGetModel for token authentication
+	HTTP request type: GET
+	Path: api/posts/flagged
+	Front-end request: {"token":"unique string that indeteifies a user for each session"} or empty json // provided at login, store locally on front end
+	Back-end happy path response: PENDING DEVELOPMENT
+	Back-end bad path response: PENDING DEVELOPMENT
+
+6. Flag comment
+	HTTP request type: PUT
+	Path: api/comments/flag
+	Front-end request: {"token":"unique string that indetifies a user for each session", "commentID":"comment id"} 
+	Back-end happy path response: {"message":"success"} 
+	Back-end bad path response: {"message":"failure"} 
+
+*** TESTED ***
+7. Create post
+	HTTP request type: POST
+	Path: api/posts/post
+	Front-end request: {"image":"image data expected to be in b64 format", "occasion":"wedding/date/etc", "token":"unique string"}
+	Back-end happy path response: {"message":"success"}  
+	Back-end bad path response: {"message":"failure"}
+
+*** TESTED ***
+8. Flag post
+	HTTP request type: PUT
+	Path: api/posts/flag
+	Front-end request: {"postID":"ID of the post", "token":"unique string"}
+	Back-end happy path response: {"message":"success"}  
+	Back-end bad path response: {"message":"failure"}
+
+*** TESTED ***
+9. Post ad
+	HTTP request type: POST
+	Path: api/posts/ad/post
+	Front-end request: {"url":"link associated with post", "token":"unique string", "image":"image in b64", "amountToPay":"int"}
+	Back-end happy path response: {"message":"success"}  
+	Back-end bad path response: {"message":"failure"}
+
+***TESTED***
+10. Get all user posts
+	HTTP request type: POST
+	Path: api/posts/my/posts
+	Front-end request: {"token":""}
+	Back-end happy path response: [{"comments":[], "dislikes":0, "images":"b64 data", "likes":0, "post_id":"id"}]  
+	Back-end bad path response: {""} // empty json
+
+***TESTED***
+11. Get all messages
+	HTTP request type: POST
+	Path: api/messages/my/messages
+	Front-end request: {"token":""}
+	Back-end happy path response: {"messages":[list of messages]} 
+	Back-end bad path response: {} // empty json
+
+***TESTED***
+12. Get advertisements
+	HTTP request type: POST
+	Path: api/posts/ad/my/posts
+	Front-end request: {"token":""}
+	Back-end happy path response: [{"image":, "numberOfClicks":, "timesViewed":}, {"image":, "numberOfClicks":, "timesViewed":}, {"image":, "numberOfClicks":, "timesViewed":}] 
+	Back-end bad path response: {} // empty json
+
+***TESTED***
+13. Get users score
+	HTTP request type: POST
+	Path: api/users/score
+	Front-end request: {"token":""}
+	Back-end happy path response: {"score":0} 
+	Back-end bad path response: {} // empty json
+
+14. Flag a post
+	HTTP request type: POST
+	Path: api/comments/flag
+	Front-end request: {"token":"", "commentID":"id of comment"}
+	
+15. Send Message
+	HTTP request type: POST
+	Path: api/messages/send
+	Front-end request: {"to_id":"id of reciever", "from_id":"id of sender", "content":"content of message"}
+
+16. Get user messages
+	HTTP request type: POST
+	Path: api/messages/user
+	Front-end request: {"token":""}
+***TESTED***
+17. get unseen posts
+	HTTP request type: POST
+	Path: api/posts/unseen/all
+	Front-end request: {"token":""}
+	Back-end happy path response: [{"post_id":"", "image":""}]
+
+18. get unseen posts based on gender 
+	HTTP request type: POST
+	Path: api/posts/unseen/gender
+	Front-end request: {"token":"", "gender":""}
+	Back-end happy path response: [{"post_id":"", "image":""}]	
+
+***TESTED***
+19. Like a post
+	HTTP request type: POST
+	Path: api/posts/like
+	Front-end request: {"token":"", "post_id":"", "comment":""}
+***TESTED***
+20. Dislike a post
+	HTTP request type: POST
+	Path: api/posts/dislike
+	Front-end request: {"token":"", "post_id":""}
+
+21. Score posts
+	HTTP request type: POST
+	Path: api/posts/check/score
+	Front-end request: {}
+
+22. Lock a user
+	HTTP request type: POST
+	Path: api/users/lock
+	Front-end request: {"token":"logged in user", "user_id":"user to lock"}
+
+***TESTED***
+23. Update an ad after is been viewed 
+	HTTP request type: POST
+	Path: api/posts/ad/update
+	Front-end request: {"token":"", "post_id":"", "clicked":0}
+
