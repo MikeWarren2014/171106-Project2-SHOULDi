@@ -62,6 +62,7 @@ export class FeedComponent
         {
             this.posts = TestData.posts;
             this.currentPost = this.posts[0];
+            console.log("In ngOnInit");
         }
     }
 
@@ -72,10 +73,12 @@ export class FeedComponent
         this.postService.getSomeFeed().subscribe(posts => { 
             if (posts) {
                 // instantiate currentPost
+                console.log("loadPosts updating currentPost");
                 this.posts = posts;
                 this.currentPost = this.posts[0];
                 return true;
             } else {
+                console.log("loadPosts clearing currentPost");
                 this.posts = null;
                 this.currentPost = null;
                 return false;
@@ -98,33 +101,24 @@ export class FeedComponent
         this.currentPost = null;
         return null;
     }
-    
-    /**
-     * Goes back to, and returns, previous image, if there is one, or first image.
-     */
-    prevImage()
-    {
-        this.newComment.content = '';
-        if (this.postIndex >= 1) return this.posts[--this.postIndex];
-        this.postIndex = 0;
-        return (this.currentPost = this.posts[0]); 
-    }
 
     upvote()
     {
-        console.log(this.currentPost)
         this.postService.like(this.currentPost, this.newComment).subscribe(data => {
             this.data = data;
             // try to load next post
             let nextPost = this.nextImage();
             // if there was no next post to load, load in more posts (from the server)
+            
             if (!nextPost)
             {
                 if(!this.loadPosts()){
+                    console.log("Making everything null");
                     this.posts = null
                     this.currentPost = null;
                 }
             } else {
+                console.log("Updating current post");
                 this.currentPost = nextPost;
             }
             this.hasCommented = false;
@@ -141,10 +135,12 @@ export class FeedComponent
             if (!nextPost)
             {
                 if(!this.loadPosts()){
+                    console.log("Making everything null");
                     this.posts = null;
                     this.currentPost = null;
                 }
             } else {
+                console.log("Updating current post");
                 this.currentPost = nextPost;
             }
             this.hasCommented = false;

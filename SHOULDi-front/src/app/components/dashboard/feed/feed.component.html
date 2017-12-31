@@ -2,7 +2,7 @@
     <!-- 
         To be shown when there's no content
     -->
-    <div *ngIf="!posts">
+    <div *ngIf="!currentPost">
         <h2>No content yet!</h2>
 
         <p class="pageCenter">
@@ -10,7 +10,7 @@
         </p>
 
     </div>
-    <div *ngIf="posts">
+    <div *ngIf="currentPost && currentPost.image">
         <div id="feedContent">
             
             <div *ngIf="currentPost && currentPost.image" id="imageContainer">
