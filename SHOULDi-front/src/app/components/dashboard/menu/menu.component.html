@@ -1,6 +1,6 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <ul *ngIf="(currentUser && (currentUser.role == UserRoles.BASE_USER)) || (IS_TEST)" class="nav navbar-nav">
+        <ul *ngIf="(currentUser && (currentUser.role == UserRoles.BASE_USER)) || (TEST == 1)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="leaderboard">Leaderboard</button></li>
             <li><button class="menuButton" routerLink="feed">Feed</button></li>
@@ -10,20 +10,20 @@
             <li><button class="menuButton" routerLink="edit-posts">Edit Posts</button></li>
             <li><button class="menuButton" routerLink="my-messages">My Messages</button></li>
         </ul>
-        <ul *ngIf="currentUser.role == UserRoles.MODERATOR" class="nav navbar-nav">
+        <ul *ngIf="(currentUser && (currentUser.role == UserRoles.MODERATOR)) || (TEST == 2)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="flagged-users">Flagged Users</button></li>
             <li><button class="menuButton" routerLink="flagged-posts">Flagged Posts</button></li>
-            <li><button class="menuButton" routerLink="flagged-comments">Flagged Comments</button></li>
+            <li><button class="menuButton" routerLink="flagged-comments">Flagged Comms</button></li>
             <li><button class="menuButton" routerLink="my-messages">My Messages</button></li>
             <li><button class="menuButton" routerLink="create-messages">Create Messages</button></li>
         </ul>
-        <ul *ngIf="currentUser.role == UserRoles.SPONSOR" class="nav navbar-nav">
+        <ul *ngIf="(currentUser && (currentUser.role == UserRoles.SPONSOR)) || (TEST == 3)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="balance">Balance</button></li>
             <li><button class="menuButton" routerLink="popular-users">Popular Users</button></li>
-            <li><button class="menuButton" routerLink="my-advertisements">My Advertisements</button></li>
-            <li><button class="menuButton" routerLink="create-advertisements">Create Advertisements</button></li>
+            <li><button class="menuButton" routerLink="my-advertisements">My Ads</button></li>
+            <li><button class="menuButton" routerLink="create-advertisements">Create Ads</button></li>
         </ul>
     </div>
 </nav>

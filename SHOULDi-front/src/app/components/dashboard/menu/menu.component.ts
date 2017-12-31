@@ -13,5 +13,5 @@ import { UserRoles } from "../../../models/userRoles";
 export class MenuComponent
 {
     currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
-    IS_TEST : boolean = true;
+    TEST : number = 0;
 }

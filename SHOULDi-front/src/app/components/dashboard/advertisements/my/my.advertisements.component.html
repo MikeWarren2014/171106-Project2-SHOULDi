@@ -1,0 +1,27 @@
+<div class="myPostsContainer">
+    <!-- 
+        To be shown when there's no content
+    -->
+    <div *ngIf="!advertisements || !advertisements.length; else myAdvertisements">
+        <h2>No content yet!</h2>
+        <p class="pageCenter">
+            Sorry, you have no advertisements yet. Wanna <a routerLink="../create-advertisements">create some</a>?
+        </p>
+        
+    </div>
+    <ng-template #myAdvertisements>
+        <div id="myAdvertisementsContent">
+            
+            <div id="imageContainer">
+                <a *ngIf="postIndex > 0" id="prevImage" class="imageControl" (click)="prevImage()"><</a>
+                <img
+                    id="currentImage"
+                    class="center"
+                    src="{{currentAdvertisement.image}}"
+                >
+                <a *ngIf="postIndex < posts.length - 1" id="nextImage" class="imageControl" (click)="nextImage()">></a>
+                
+            </div>
+        </div>        
+    </ng-template>
+</div>
