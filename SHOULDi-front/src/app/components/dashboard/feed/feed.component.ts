@@ -111,7 +111,7 @@ export class FeedComponent
     upvote()
     {
         this.postService.like(this.currentPost, this.newComment).subscribe(data => {
-            this.data 
+            this.data = data;
             // try to load next post
             let nextPost = this.nextImage();
             // if there was no next post to load, load in more posts (from the server)
