@@ -1,6 +1,6 @@
 <div>
     <h2 class="Popular Users">Popular Users</h2>
-    <table *ngIf="popularUsers.length; else noPopularUsers">
+    <table *ngIf="popularUsers; else noPopularUsers">
         <thead>
             <tr>
                 <th>User ID</th>

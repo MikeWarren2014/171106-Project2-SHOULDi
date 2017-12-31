@@ -71,11 +71,12 @@ export class FeedComponent
         this.postService.getSomeFeed().subscribe(posts => { 
             console.log("Loading new posts:");
             //console.log("posts == %s", JSON.stringify(posts, null, '\t'));
-            this.posts = posts; 
+            console.log(posts);
+            this.posts = JSON.parse(posts); 
             //console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'));
-            if (posts) {
+            if (this.posts) {
                 // instantiate currentPost
-                this.currentPost = posts[0];
+                this.currentPost = this.posts[0];
                 return true;
             } else {
                 return false;

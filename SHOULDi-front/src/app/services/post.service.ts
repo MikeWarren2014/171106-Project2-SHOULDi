@@ -36,6 +36,7 @@ export class PostService extends HttpService
     }
 
     like(post : Post, comment : Comment) { // TODO: need to check endpoint - finished
+        console.log("Sending Like");
         return this.http.post(this.BASE_URL + '/api/posts/like', 
         {
             token  : TokenService.getToken(),
@@ -45,6 +46,7 @@ export class PostService extends HttpService
     }
 
     dislike(post : Post, comment : Comment) {  // TODO: need to check endpoint - finished
+        console.log("Sending Dislike");
         return this.http.post(this.BASE_URL + '/api/posts/dislike', 
         {
             token  : TokenService.getToken(),
