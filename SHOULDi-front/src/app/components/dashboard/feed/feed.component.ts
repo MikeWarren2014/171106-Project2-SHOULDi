@@ -167,7 +167,12 @@ export class FeedComponent
                 let nextPost = this.nextImage();
                 if (!nextPost)
                 {
-                    this.loadPosts();
+                    if(!this.loadPosts()){
+                        this.posts = [];
+                        this.currentPost = null;
+                    }
+                } else {
+                    this.currentPost = nextPost;
                 }
             }
             else if (message === "FAILURE")
