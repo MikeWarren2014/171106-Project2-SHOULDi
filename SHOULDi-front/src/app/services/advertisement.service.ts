@@ -11,18 +11,18 @@ export class AdvertisementService extends HttpService{
 
     getAllAdvertisementsByUser(user : User) // TODO: need to check endpoint
     {
-        return this.http.post(this.BASE_URL + '/api/advertisements/sponsor', {
-            token   : TokenService.getToken(),
-            userID  : user._id
+        return this.http.post(this.BASE_URL + '/api/posts/ad/my/posts', {
+            token   : TokenService.getToken()
         }).map((res : Response) => res.json());
     }
 
     create(advertisement: Advertisement){ // TODO: need to check endpoint
-        return this.http.post(this.BASE_URL + '/api/advertisements/advertisement', 
+        return this.http.post(this.BASE_URL + '/api/ad/post', 
         {
             token    : TokenService.getToken(),
             image    : advertisement.image,
-            occasion : advertisement.occasion
+            url : advertisement.url,
+            amountToPay : advertisement.amount
         }).map((res : Response) => res.json());
     }
 

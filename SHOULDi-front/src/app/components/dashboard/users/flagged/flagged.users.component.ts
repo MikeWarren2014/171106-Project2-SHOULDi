@@ -13,14 +13,18 @@ import { FlaggedCommentsComponent } from "../../comments/flagged/flagged.comment
 
 @AutoUnsubscribe
 export class FlaggedUsersComponent{
-    flaggedUsers : User[];
-    flaggedUser : User;
+    flaggedUsers : any[];
+    flaggedUser : any;
 
     constructor(){
         
     }
 
-    viewFlaggedComments(user : User)
+    viewFlaggedPosts(user : any){
+        
+    }
+
+    viewFlaggedComments(user : any)
     {
         this.flaggedUser = user;
     }

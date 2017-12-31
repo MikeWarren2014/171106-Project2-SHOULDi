@@ -4,6 +4,8 @@
         <input type="file" id="advertisementImage" name="advertisementImage" accept=".jpg, .jpeg, .png">
         url
         <input type="text" id="advertisementURL" name="advertisementURL" [(ngModel)]="advertisement.url">
+        amount
+        <input type="number" id="advertisementAmount" name="advertisementAmount" [(ngModel)]="advertisement.amount" min="0.01" step="0.01">
         <input type="submit">
     </form>
 </div>

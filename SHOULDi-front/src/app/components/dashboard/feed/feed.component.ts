@@ -76,7 +76,10 @@ export class FeedComponent
             if (posts) {
                 // instantiate currentPost
                 this.currentPost = posts[0];
-            } 
+                return true;
+            } else {
+                return false;
+            }
         });
     }
 
@@ -87,9 +90,11 @@ export class FeedComponent
     {
         console.log("Getting next image:");
         this.newComment.content = '';
-        if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
+        if (this.postIndex < this.posts.length - 1){
+            this.posts[this.postIndex] = null;
+            return this.posts[++this.postIndex];
+        } 
         this.postIndex = this.posts.length - 1;
-        this.currentPost = this.posts[this.posts.length - 1];
         return null;
     }
     
@@ -99,43 +104,43 @@ export class FeedComponent
     prevImage()
     {
         this.newComment.content = '';
-        if (this.postIndex >= 1) return (this.currentPost = this.posts[--this.postIndex]);
+        if (this.postIndex >= 1) return this.posts[--this.postIndex];
         this.postIndex = 0;
         return (this.currentPost = this.posts[0]); 
     }
 
     upvote()
     {
-        console.log("Inside upvote button:")
-        console.log("Pre-Request post info:");
-        console.log(this.currentPost);
-        console.log("Pre-Request comment info:");
-        console.log(this.newComment);
         this.postService.like(this.currentPost, this.newComment);
         // try to load next post
         let nextPost = this.nextImage();
         // if there was no next post to load, load in more posts (from the server)
         if (!nextPost)
         {
-            this.loadPosts();
+            if(!this.loadPosts()){
+                this.posts = [];
+            }
+        } else {
+            this.currentPost = nextPost;
         }
+        this.hasCommented = false;
     }
     
     downvote()
     {
-        console.log("Inside downvote button:")
-        console.log("Pre-Request post info:");
-        console.log(this.currentPost);
-        console.log("Pre-Request comment info:");
-        console.log(this.newComment);
         this.postService.dislike(this.currentPost, this.newComment);
         // try to load next post
         let nextPost = this.nextImage();
         // if there was no next post to load, load in more posts (from the server)
         if (!nextPost)
         {
-            this.loadPosts();
+            if(!this.loadPosts()){
+                this.posts = [];
+            }
+        } else {
+            this.currentPost = nextPost;
         }
+        this.hasCommented = false;
     }
 
     comment()
@@ -147,8 +152,10 @@ export class FeedComponent
 
     flagPost(post)
     {
+        console.log("Flagging Post");
         this.postService.flagPost(post).map((res : Response) => {
             let message = res.json().message.toString().toUpperCase();
+            console.log(message);
             if (message === "SUCCESS")
             {
                 post.isFlagged = true;

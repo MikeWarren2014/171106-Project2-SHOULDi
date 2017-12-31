@@ -15,7 +15,7 @@ export class PostService extends HttpService
 
     // Post service methods for users
 
-    getSomeFeed(){ // TODO: need to check endpoint
+    getSomeFeed(){ // TODO: need to check endpoint - finished
         return this.http.post(this.BASE_URL + '/api/posts/unseen/all', {
             token : TokenService.getToken()
         }).map((res : Response) => res.json());
@@ -35,10 +35,7 @@ export class PostService extends HttpService
         }).map((res : Response) => res.json());
     }
 
-    like(post : Post, comment : Comment) { // TODO: need to check endpoint
-        console.log("Inside like:");
-        console.log("post_id:" + post._id);
-        console.log("comment:" + comment.content);
+    like(post : Post, comment : Comment) { // TODO: need to check endpoint - finished
         return this.http.post(this.BASE_URL + '/api/posts/like', 
         {
             token  : TokenService.getToken(),
@@ -47,10 +44,7 @@ export class PostService extends HttpService
         }).map((res : Response) => res.json());
     }
 
-    dislike(post : Post, comment : Comment) {  // TODO: need to check endpoint
-        console.log("Inside dislike:");
-        console.log("post_id:" + post._id);
-        console.log("comment:" + comment.content);
+    dislike(post : Post, comment : Comment) {  // TODO: need to check endpoint - finished
         return this.http.post(this.BASE_URL + '/api/posts/dislike', 
         {
             token  : TokenService.getToken(),
@@ -59,7 +53,7 @@ export class PostService extends HttpService
         }).map((res : Response) => res.json());
     }
 
-    create(post: Post){ // TODO: need to check endpoint
+    create(post: Post){ // TODO: need to check endpoint - finished
         return this.http.post(this.BASE_URL + '/api/posts/post', 
         {
             token    : TokenService.getToken(),

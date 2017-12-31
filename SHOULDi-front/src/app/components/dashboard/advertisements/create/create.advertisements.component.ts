@@ -9,7 +9,7 @@ import { AdvertisementService } from '../../../../services/advertisement.service
 })
 
 export class CreateAdvertisementsComponent{
-    public post         : Advertisement;
+    public advertisement  : Advertisement;
     public postImage    : File;
     public blobImage    : Blob;
     public image        : any;
@@ -17,19 +17,19 @@ export class CreateAdvertisementsComponent{
     public isImageLoading: boolean;
     public data           : any;
     constructor(private postService : AdvertisementService){
-        this.post = new Advertisement();
+        this.advertisement = new Advertisement();
     }
-    public createPost(){
-        this.postImage = (<HTMLInputElement>document.getElementById("postImage")).files[0];
+    public createAdvertisement(){
+        this.postImage = (<HTMLInputElement>document.getElementById("advertisementImage")).files[0];
         this.blobImage = this.postImage;
         this.reader = new FileReader();
         this.reader.onload = () => {
             this.image = this.reader.result;
-            this.post.image =this.reader.result; 
-
-            this.post.postDate = new Date();
+            this.advertisement.image =this.reader.result; 
+            
+            this.advertisement.postDate = new Date();
             console.log(this.image);
-            console.log(this.postService.create(this.post).subscribe(data => this.data = data));
+            console.log(this.postService.create(this.advertisement).subscribe(data => this.data = data));
         };
         this.reader.readAsDataURL(this.blobImage);
     }
