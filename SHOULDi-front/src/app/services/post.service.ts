@@ -6,6 +6,7 @@ import 'rxjs/';
 import { User } from '../models/user';
 import { HttpService } from './http.service';
 import { TokenService } from './token.service';
+import { Comment } from '../models/comment';
 
 @Injectable()
 export class PostService extends HttpService
@@ -30,23 +31,25 @@ export class PostService extends HttpService
     flagPost(post : Post) { // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/posts/flag', {
             token  : TokenService.getToken(),
-            postID : post._id
+            post_id : post._id
         }).map((res : Response) => res.json());
     }
 
-    like(post : Post) { // TODO: need to check endpoint
+    like(post : Post, comment : Comment) { // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/posts/like', 
         {
             token  : TokenService.getToken(),
-            postID : post._id
+            post_id : post._id,
+            comment : comment.content
         }).map((res : Response) => res.json());
     }
 
-    dislike(post : Post) {  // TODO: need to check endpoint
+    dislike(post : Post, comment : Comment) {  // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/posts/dislike', 
         {
             token  : TokenService.getToken(),
-            postID : post._id
+            post_id : post._id,
+            comment : comment.content
         }).map((res : Response) => res.json());
     }
 
@@ -63,21 +66,21 @@ export class PostService extends HttpService
     {
         return this.http.post(this.BASE_URL + '/api/posts/my/posts', {
             token   : TokenService.getToken(),
-            userID  : user._id
+            user_id  : user._id
         }).map((res : Response) => res.json());
     }
 
     getLikesByPost(post : Post){ // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + 'api/posts/get/likes', {
             token   : TokenService.getToken(),
-            postID  : post._id
+            post_id  : post._id
         }).map((res : Response) => res.json());
     }
 
     getDislikesByPost(post : Post){ // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + 'api/posts/get/dislikes', {
             token   : TokenService.getToken(),
-            postID  : post._id
+            post_id  : post._id
         }).map((res : Response) => res.json());
     }
 
@@ -97,8 +100,8 @@ export class PostService extends HttpService
     
     unflagPost(post : Post) { // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/posts/unflag', {
-            postID : post._id,
-            token  : TokenService.getToken()
+            token  : TokenService.getToken(),
+            post_id : post._id
         }).map((res : Response) => res.json());
     }
 
@@ -107,7 +110,7 @@ export class PostService extends HttpService
     deletePost(post : Post){ // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/posts/delete', {
             token   : TokenService.getToken(),
-            postID  : post._id
+            post_id  : post._id
         }).map((res : Response) => res.json());
     }
 }

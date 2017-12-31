@@ -13,10 +13,9 @@ export class UserService extends HttpService
 
     // User service methods for users
 
-    getScoreByUser(user : User){
+    getScoreByUser(){
         return this.http.post(this.BASE_URL + '/api/users/score', {
-            token : TokenService.getToken(),
-            userID : user._id
+            token : TokenService.getToken()
         }).map((res : Response) => res.json());
     }
 

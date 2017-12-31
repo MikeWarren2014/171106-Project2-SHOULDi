@@ -16,7 +16,7 @@ export class MenuComponent
     public MODERATOR : string;
     public SPONSOR : string;
     currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
-    TEST : number = 0;
+    TEST : number = 1;
 
     constructor()
     {
