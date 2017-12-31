@@ -36,6 +36,9 @@ export class PostService extends HttpService
     }
 
     like(post : Post, comment : Comment) { // TODO: need to check endpoint
+        console.log("Inside like:");
+        console.log("post_id:" + post._id);
+        console.log("comment:" + comment.content);
         return this.http.post(this.BASE_URL + '/api/posts/like', 
         {
             token  : TokenService.getToken(),
@@ -45,6 +48,9 @@ export class PostService extends HttpService
     }
 
     dislike(post : Post, comment : Comment) {  // TODO: need to check endpoint
+        console.log("Inside dislike:");
+        console.log("post_id:" + post._id);
+        console.log("comment:" + comment.content);
         return this.http.post(this.BASE_URL + '/api/posts/dislike', 
         {
             token  : TokenService.getToken(),

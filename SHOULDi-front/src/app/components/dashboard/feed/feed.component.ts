@@ -69,6 +69,7 @@ export class FeedComponent
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
+            console.log("Loading new posts:");
             console.log("posts == %s", JSON.stringify(posts, null, '\t'))
             this.posts = posts; 
             console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'))
@@ -84,6 +85,7 @@ export class FeedComponent
      */
     nextImage()
     {
+        console.log("Getting next image:");
         this.newComment.content = '';
         if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
         this.postIndex = this.posts.length - 1;
@@ -104,6 +106,11 @@ export class FeedComponent
 
     upvote()
     {
+        console.log("Inside upvote button:")
+        console.log("Pre-Request post info:");
+        console.log(this.currentPost);
+        console.log("Pre-Request comment info:");
+        console.log(this.newComment);
         this.postService.like(this.currentPost, this.newComment);
         // try to load next post
         let nextPost = this.nextImage();
@@ -116,7 +123,11 @@ export class FeedComponent
     
     downvote()
     {
-        
+        console.log("Inside downvote button:")
+        console.log("Pre-Request post info:");
+        console.log(this.currentPost);
+        console.log("Pre-Request comment info:");
+        console.log(this.newComment);
         this.postService.dislike(this.currentPost, this.newComment);
         // try to load next post
         let nextPost = this.nextImage();

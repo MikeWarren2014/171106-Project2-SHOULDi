@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Message } from '../../../../models/message';
 
 @Component({
     selector: "my-messages",
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
 })
 
 export class MyMessagesComponent{
-    
+    messages : Message[];
+    currentMessage : Message;
 }
