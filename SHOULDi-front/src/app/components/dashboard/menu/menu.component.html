@@ -1,6 +1,6 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <ul *ngIf="(this.currentUser && (this.currentUser.role == UserRoles.BASE_USER)) || (TEST == 1)" class="nav navbar-nav">
+        <ul *ngIf="(this.currentUser && (this.currentUser.role == this.BASE_USER)) || (TEST == 1)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="leaderboard">Leaderboard</button></li>
             <li><button class="menuButton" routerLink="feed">Feed</button></li>
@@ -10,7 +10,7 @@
             <li><button class="menuButton" routerLink="edit-posts">Edit Posts</button></li>
             <li><button class="menuButton" routerLink="my-messages">My Messages</button></li>
         </ul>
-        <ul *ngIf="(this.currentUser && (this.currentUser.role == UserRoles.MODERATOR)) || (TEST == 2)" class="nav navbar-nav">
+        <ul *ngIf="(this.currentUser && (this.currentUser.role == this.MODERATOR)) || (TEST == 2)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="flagged-users">Flagged Users</button></li>
             <li><button class="menuButton" routerLink="flagged-posts">Flagged Posts</button></li>
@@ -18,7 +18,7 @@
             <li><button class="menuButton" routerLink="my-messages">My Messages</button></li>
             <li><button class="menuButton" routerLink="create-messages">Create Messages</button></li>
         </ul>
-        <ul *ngIf="(this.currentUser && (this.currentUser.role == UserRoles.SPONSOR)) || (TEST == 3)" class="nav navbar-nav">
+        <ul *ngIf="(this.currentUser && (this.currentUser.role == this.SPONSOR)) || (TEST == 3)" class="nav navbar-nav">
             <!-- NOTE: whatever routerLinks you create here need to be added and handled properly in routing.ts -->
             <li><button class="menuButton" routerLink="balance">Balance</button></li>
             <li><button class="menuButton" routerLink="popular-users">Popular Users</button></li>

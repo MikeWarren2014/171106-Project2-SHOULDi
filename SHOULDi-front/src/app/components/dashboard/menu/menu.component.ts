@@ -12,12 +12,16 @@ import { UserRoles } from "../../../models/userRoles";
 
 export class MenuComponent
 {
-    public UserRoles : UserRoles;
+    public BASE_USER : string;
+    public MODERATOR : string;
+    public SPONSOR : string;
     currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
     TEST : number = 0;
 
-    // constructor(public UserRoles : UserRoles)
-    // {
-
-    // }
+    constructor()
+    {
+        this.BASE_USER = UserRoles.BASE_USER;
+        this.MODERATOR = UserRoles.MODERATOR;
+        this.SPONSOR = UserRoles.SPONSOR;
+    }
 }
