@@ -1,7 +1,7 @@
 /* let's make sure every container element is horizontally separate from each other */
 .myPostsContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 #myPostsContent
@@ -11,10 +11,8 @@
 
 #imageContainer
 {
-    position : relative;
-    overflow : hidden; /* for now, any overflow is chopped off */
     max-height: 540px;
-    min-width: 550px;
+    max-width: 550px;
     flex-grow: 2;
 }
 
@@ -53,4 +51,20 @@
 .flagged
 {
     opacity: 0.3;
+}
+
+#noPostsContent{
+    min-height: 500px;
+    width: 100%;
+}
+
+#noImageContainer{
+    max-height: 250px;
+    max-width: 250px;
+}
+
+#noContentImage{
+    position: relative !important;
+    max-height: 250px;
+    max-width: 250px;
 }

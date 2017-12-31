@@ -8,11 +8,10 @@ import { User } from "../../../models/user";
 })
 
 export class BalanceComponent{
-    user : User;
     balance : number;
     data : any;
 
     constructor(){
-
+        
     }
 }

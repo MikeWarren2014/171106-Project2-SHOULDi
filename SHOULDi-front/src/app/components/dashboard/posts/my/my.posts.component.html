@@ -2,12 +2,16 @@
     <!-- 
         To be shown when there's no content
     -->
-    <div *ngIf="!posts || !posts.length; else myPosts">
-        <h2>No content yet!</h2>
-        <p class="pageCenter">
-            Sorry, you have no content content yet. Wanna <a routerLink="../create-posts">create some</a>?
-        </p>
-        
+    <div id="noPostsContent">
+        <div *ngIf="!posts || !posts.length; else myPosts">
+            <h2>No content yet!</h2>
+            <div class="pageCenter">
+                <div id="noImageContainer">
+                    <img id="noContentImage" src="../../../../../assets/images/SHOULDi-suit.png">
+                </div>
+                Sorry, you have no content content yet. Wanna <a routerLink="../create-posts">create some</a>?
+            </div>
+        </div>
     </div>
     <ng-template #myPosts>
         <div id="myPostsContent">
