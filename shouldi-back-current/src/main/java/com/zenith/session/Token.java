@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Token {
 
     private String token;
+    private String role;
 
     public Token() {
         Random random = new SecureRandom();
@@ -38,5 +39,21 @@ public class Token {
     public void setToken(String token) {
         this.token = token;
     }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    
 
 }
