@@ -21,6 +21,7 @@ import { Response } from "@angular/http/src/static_response";
 export class FeedComponent
 {
     private USE_MOCK_DATA : boolean = false;
+    data : any;
     // a feed has a logged on user
     currentUser: User;
     // since this component will only have one post at a time, it has currentPost, too
@@ -109,36 +110,41 @@ export class FeedComponent
 
     upvote()
     {
-        this.postService.like(this.currentPost, this.newComment);
-        // try to load next post
-        let nextPost = this.nextImage();
-        // if there was no next post to load, load in more posts (from the server)
-        if (!nextPost)
-        {
-            if(!this.loadPosts()){
-                this.posts = [];
+        this.postService.like(this.currentPost, this.newComment).subscribe(data => {
+            this.data
+            // try to load next post
+            let nextPost = this.nextImage();
+            // if there was no next post to load, load in more posts (from the server)
+            if (!nextPost)
+            {
+                if(!this.loadPosts()){
+                    this.posts = [];
+                }
+            } else {
+                this.currentPost = nextPost;
             }
-        } else {
-            this.currentPost = nextPost;
-        }
-        this.hasCommented = false;
+            this.hasCommented = false;
+        });
     }
     
     downvote()
     {
-        this.postService.dislike(this.currentPost, this.newComment);
-        // try to load next post
-        let nextPost = this.nextImage();
-        // if there was no next post to load, load in more posts (from the server)
-        if (!nextPost)
-        {
-            if(!this.loadPosts()){
-                this.posts = [];
+        this.postService.dislike(this.currentPost, this.newComment).subscribe(data => {
+            this.data = data;
+            // try to load next post
+            let nextPost = this.nextImage();
+            // if there was no next post to load, load in more posts (from the server)
+            if (!nextPost)
+            {
+                if(!this.loadPosts()){
+                    this.posts = [];
+                }
+            } else {
+                this.currentPost = nextPost;
             }
-        } else {
-            this.currentPost = nextPost;
-        }
-        this.hasCommented = false;
+            this.hasCommented = false;
+        });
+
     }
 
     comment()
