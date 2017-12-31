@@ -22,9 +22,9 @@ import com.zenith.request.model.GenderedGetModel;
 import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.PostModel;
 import com.zenith.request.model.RatingModel;
-import com.zenith.request.model.ViewedAdModel;
+import com.zenith.request.model.ViewedAdModel; 
 import com.zenith.service.PostsService;
-import com.zenith.service.UserServiceImpl;
+import com.zenith.service.UserServiceImpl; 
 import com.zenith.service.VerifyTokenCredentials;
 
 import com.zenith.templates.AdPostTemplate;

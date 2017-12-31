@@ -389,6 +389,30 @@ public class PostDAO {
         session.getTransaction().commit();
         return true;
     }
+    
+    public boolean createAd(AdPostModel adPostModel) {
+
+        /* Creates new post */
+        UserDAO userdao = new UserDAO();
+        userdao.openConnection();
+
+        /* Remove money from the sponsors balance based on amount to pay for ad */
+        UserBean sponsor = userdao.getUserByToken(adPostModel.getToken());
+        String s =adPostModel.getImage();
+        s = s.substring(s.lastIndexOf(',') + 1);
+        /* create ad and save both the ad and the sponsor */
+        Blob image = ImageConversionUtil.convertToBlob(s);
+        AdvertisementBean adBean = new AdvertisementBean(image, adPostModel.getUrl(), sponsor);
+
+        session.beginTransaction();
+        session.save(adBean);
+        session.getTransaction().commit();
+        userdao.closeConnection();
+
+        this.saveNewBalance(adPostModel);
+
+        return true;
+    }
 
     public void removePost(PostBean post) {
         PostBean delPost = null;
@@ -494,28 +518,7 @@ public class PostDAO {
 
     }
 
-    public boolean createAd(AdPostModel adPostModel) {
 
-        /* Creates new post */
-        UserDAO userdao = new UserDAO();
-        userdao.openConnection();
-
-        /* Remove money from the sponsors balance based on amount to pay for ad */
-        UserBean sponsor = userdao.getUserByToken(adPostModel.getToken());
-
-        /* create ad and save both the ad and the sponsor */
-        Blob image = ImageConversionUtil.convertToBlob(adPostModel.getImage());
-        AdvertisementBean adBean = new AdvertisementBean(image, adPostModel.getUrl(), sponsor);
-
-        session.beginTransaction();
-        session.save(adBean);
-        session.getTransaction().commit();
-        userdao.closeConnection();
-
-        this.saveNewBalance(adPostModel);
-
-        return true;
-    }
 
     /* Should make a check so user cannot go into negative balance */
     private void saveNewBalance(AdPostModel adPostModel) {
