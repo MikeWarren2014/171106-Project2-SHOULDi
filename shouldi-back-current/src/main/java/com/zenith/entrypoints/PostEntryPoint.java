@@ -38,7 +38,7 @@ import com.zenith.user.response.GenericSuccessOrFailureMessage;
 public class PostEntryPoint {
 
     @GET
-    @Path("/flagged")
+    @Path("/flagged") 
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
     public List<PostTemplate> getFlaggedPosts() {
