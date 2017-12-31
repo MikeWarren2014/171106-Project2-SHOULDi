@@ -12,6 +12,10 @@ import { UserRoles } from "../../../models/userRoles";
 
 export class MenuComponent
 {
-    currentUser : User = JSON.parse(localStorage.getItem('currentUser'));
+    currentUser : User;
     TEST : number = 0;
+    constructor(){
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(this.currentUser);
+    }
 }
