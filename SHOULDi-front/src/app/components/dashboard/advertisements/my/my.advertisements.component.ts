@@ -25,7 +25,9 @@ export class MyAdvertisementsComponent{
             this.advertisementService.getAllAdvertisementsByUser(JSON.parse(localStorage.getItem("currentUser")))
                 // .subscribe(message => this.message = message);
                 .subscribe(data => {
-                    this.advertisements = JSON.parse(data);
+                    // this.advertisements = JSON.parse(data);
+                    console.log("data.length == " + data.length)
+                    this.advertisements = data;
                     if (this.advertisements) {
                         // instantiate currentAdvertisement
                         this.currentAdvertisement = this.advertisements[0];
