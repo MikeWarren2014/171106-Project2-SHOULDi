@@ -1,9 +1,11 @@
-<div>
+<div *ngIf="user; else noContent">
     <h2 class="textCenter">Flagged Posts</h2>
     <!-- TODO: implement user -->
     {{user.username}}
     {{user.lastName}}
     {{user.email}}
     {{user.score}}
-
 </div>
+<ng-template #noContent>
+    No flagged posts at this time.
+</ng-template>

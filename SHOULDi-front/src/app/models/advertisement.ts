@@ -4,5 +4,5 @@ export class Advertisement extends Post{
     _id     : number;
     url     : string;
     clicks  : number;
-    skips   : number;
+    views   : number;
 }

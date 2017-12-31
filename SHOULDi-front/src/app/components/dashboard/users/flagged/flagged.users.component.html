@@ -1,7 +1,7 @@
 <div>
     <h2 class="textCenter">Flagged Users</h2>
     <!-- TODO: fill this with the content for the "flagged comments screen" -->
-    <table *ngIf="flaggedUsers.length; else noFlaggedUsers">
+    <table *ngIf="flaggedUsers; else noFlaggedUsers">
         <thead>
             <tr>
                 <th>User ID</th>

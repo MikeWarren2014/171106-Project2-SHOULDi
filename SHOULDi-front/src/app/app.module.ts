@@ -42,6 +42,7 @@ import { CreateMessagesComponent } from './components/dashboard/messages/create/
 import { PopularUsersComponent } from './components/dashboard/users/popular/popular.users.component';
 import { MyAdvertisementsComponent } from './components/dashboard/advertisements/my/my.advertisements.component';
 import { CreateAdvertisementsComponent } from './components/dashboard/advertisements/create/create.advertisements.component';
+import { AdvertisementService } from './services/advertisement.service';
 
 @NgModule({
   declarations: [
@@ -82,8 +83,7 @@ import { CreateAdvertisementsComponent } from './components/dashboard/advertisem
     MessageService,
     CommentService,
     RegistrationGuard,
-    MyMessagesComponent,
-    CreateMessagesComponent,
+    AdvertisementService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

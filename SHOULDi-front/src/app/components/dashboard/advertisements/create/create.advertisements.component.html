@@ -1,0 +1,9 @@
+<div>
+    <div class="textCenter">Create Advertisement</div>
+    <form (ngSubmit)="createAdvertisement()" class="table" >
+        <input type="file" id="advertisementImage" name="advertisementImage" accept=".jpg, .jpeg, .png">
+        url
+        <input type="text" id="advertisementURL" name="advertisementURL" [(ngModel)]="advertisement.url">
+        <input type="submit">
+    </form>
+</div>

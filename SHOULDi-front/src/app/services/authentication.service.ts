@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { HttpService } from './http.service';
 import { TokenService } from './token.service';
+import { UserRoles } from '../models/userRoles';
 
 @Injectable()
 export class AuthenticationService extends HttpService{
@@ -13,12 +14,12 @@ export class AuthenticationService extends HttpService{
           email : email,
           password : password  
         }).map((response: Response) => {
-            let user = response.json();
-            if(user && user.token) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
+            let data = response.json();
+            if(data && data.token) {
+                localStorage.setItem('currentUser', JSON.stringify(data));
+                console.log(localStorage.getItem('currentUser'));
             }
-
-            return user;
+            return true;
         });
     }
 
