@@ -2,7 +2,7 @@
     <!-- 
         To be shown when there's no content
     -->
-    <div *ngIf="!posts || !posts.length; else feed">
+    <div *ngIf="!posts">
         <h2>No content yet!</h2>
 
         <p class="pageCenter">
@@ -10,10 +10,10 @@
         </p>
 
     </div>
-    <ng-template #feed>
+    <div *ngIf="posts">
         <div id="feedContent">
             
-            <div id="imageContainer" [ngClass]="{ flagged : currentPost.isFlagged }">
+            <div *ngIf="currentPost && currentPost.image" id="imageContainer">
                 <img
                     id="currentImage"
                     class="center"
@@ -48,8 +48,7 @@
                         {{newComment.content}}
                     </div>
                 </ng-template>
+                </div>
             </div>
         </div>
-        
-    </ng-template>
 </div>

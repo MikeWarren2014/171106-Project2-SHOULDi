@@ -70,14 +70,14 @@ export class FeedComponent
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
-            //console.log("posts == %s", JSON.stringify(posts, null, '\t'));
-            this.posts = posts;
-            //console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'));
-            if (this.posts) {
+            if (posts) {
                 // instantiate currentPost
+                this.posts = posts;
                 this.currentPost = this.posts[0];
                 return true;
             } else {
+                this.posts = null;
+                this.currentPost = null;
                 return false;
             }
         });
@@ -89,11 +89,13 @@ export class FeedComponent
     nextImage()
     {
         this.newComment.content = '';
-        if (this.postIndex < this.posts.length - 1){
+        if ((this.postIndex < this.posts.length - 1) && this.posts[this.postIndex+1]){
             this.posts[this.postIndex] = null;
+            this.currentPost = null;
             return this.posts[++this.postIndex];
         } 
         this.postIndex = this.posts.length - 1;
+        this.currentPost = null;
         return null;
     }
     
@@ -110,15 +112,17 @@ export class FeedComponent
 
     upvote()
     {
+        console.log(this.currentPost)
         this.postService.like(this.currentPost, this.newComment).subscribe(data => {
-            this.data
+            this.data = data;
             // try to load next post
             let nextPost = this.nextImage();
             // if there was no next post to load, load in more posts (from the server)
             if (!nextPost)
             {
                 if(!this.loadPosts()){
-                    this.posts = [];
+                    this.posts = null
+                    this.currentPost = null;
                 }
             } else {
                 this.currentPost = nextPost;
@@ -137,7 +141,8 @@ export class FeedComponent
             if (!nextPost)
             {
                 if(!this.loadPosts()){
-                    this.posts = [];
+                    this.posts = null;
+                    this.currentPost = null;
                 }
             } else {
                 this.currentPost = nextPost;
@@ -156,10 +161,8 @@ export class FeedComponent
 
     flagPost(post)
     {
-        console.log("Flagging Post");
         this.postService.flagPost(post).map((res : Response) => {
             let message = res.json().message.toString().toUpperCase();
-            console.log(message);
             if (message === "SUCCESS")
             {
                 post.isFlagged = true;
