@@ -3,10 +3,10 @@ package com.zenith.test;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Assert;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import com.zenith.Beans.DislikeBean;
 import com.zenith.Beans.LikeBean;
@@ -20,12 +20,12 @@ import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.RatingModel;
 import com.zenith.templates.PostTemplate;
 
-public class PostDaoTest {
+public class JPostDaoTest {
 	Session session=null;
 	PostDAO pdao=new PostDAO();
 	UserDAO udao= new UserDAO();
 	
-	  @Before
+	  @BeforeTest
 	    public void beforeTest() {
 	    	session.beginTransaction();
 	    	UserBean user= new UserBean();
@@ -44,7 +44,7 @@ public class PostDaoTest {
 	    	session.getTransaction().commit();
 	    }
 
-	    @After
+	    @AfterTest
 	    public void afterTest() {
 	    	UserBean user=udao.getUserById(-3);
 	    	session.delete(user);

@@ -3,11 +3,10 @@ package com.zenith.test;
 import java.util.List;
 
 import org.hibernate.Session;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Assert;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import com.zenith.Beans.CommentBean;
 import com.zenith.Beans.PostBean;
@@ -18,13 +17,13 @@ import com.zenith.DAO.UserDAO;
 import com.zenith.request.model.CommentModel;
 import com.zenith.templates.CommentTemplate;
 
-public class CommentDaoTest {
+public class JCommentDaoTest {
 	Session session=null;
 	PostDAO pdao=new PostDAO();
 	UserDAO udao= new UserDAO();
 	CommentDAO cdao= new CommentDAO();
 	
-	  @Before
+	  @BeforeTest
 	    public void beforeTest() {
 	    	session.beginTransaction();
 	    	UserBean user= new UserBean();
@@ -48,7 +47,7 @@ public class CommentDaoTest {
 	    	session.getTransaction().commit();
 	    }
 
-	    @After
+	    @AfterTest
 	    public void afterTest() {
 	    	CommentBean comment= udao.getUserById(-3).getUser_comments().get(0);
 	    	session.delete(comment);

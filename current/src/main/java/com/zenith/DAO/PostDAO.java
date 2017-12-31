@@ -416,7 +416,7 @@ public class PostDAO {
      */
     private static long getDateDiff(Date date1, Date date2) {
         long difference = date2.getTime() - date1.getTime();
-        difference = difference / 1000 / 60 / 60 / 24;//millisecods to days
+        difference = difference / 1000 / 60 / 60 / 24;//Milliseconds to days
         return difference;
     }
 

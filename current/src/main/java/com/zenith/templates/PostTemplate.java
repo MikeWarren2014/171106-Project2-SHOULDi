@@ -182,6 +182,19 @@ public class PostTemplate {
     public void setIs_ad(int is_ad) {
         this.is_ad = is_ad;
     }
+    /**
+     * @return - occasion
+     */
+	public String getOccasion() {
+		return occasion;
+	}
+	
+	/**
+	 * @param occasion - occasion to set
+	 */
+	public void setOccasion(String occasion) {
+		this.occasion = occasion;
+	}
     
     
 }

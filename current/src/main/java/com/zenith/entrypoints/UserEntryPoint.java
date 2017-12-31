@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zenith.Beans.UserBean;
 import com.zenith.interfaces.UserService;
+import com.zenith.request.model.CommentModel;
 import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.UserLoginModel;
 import com.zenith.request.model.UserSignUpModel;
@@ -29,9 +30,6 @@ import com.zenith.templates.UserTemplate;
 import com.zenith.user.response.FavoriteUserWrapper;
 import com.zenith.user.response.GenericSuccessOrFailureMessage;
 import com.zenith.user.response.ScoreWrapper;
-import java.util.ArrayList;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.Response;
 
 
 /**
@@ -134,10 +132,20 @@ public class UserEntryPoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/lock")
-	public void lockUser(GenericGetModel user)
+	public void lockUser(CommentModel user)
 	{
 		UserServiceImpl service= new UserServiceImpl();
 		service.lockUser(user);
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/balance")
+	public int lockUser(GenericGetModel user)
+	{
+		UserServiceImpl service= new UserServiceImpl();
+		return service.getBalance(user);
 	}
 
 }

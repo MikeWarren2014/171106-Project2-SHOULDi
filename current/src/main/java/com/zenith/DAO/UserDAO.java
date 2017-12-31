@@ -8,21 +8,17 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query; 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.zenith.Beans.CommentBean;
-import com.zenith.Beans.PostBean; 
 import com.zenith.Beans.UserBean;
-import com.zenith.ImageUtils.ImageConversionUtil;
 import com.zenith.hibernate.utils.HibernateUtil;
 import com.zenith.hibernate.utils.HibernateUtils;
+import com.zenith.request.model.CommentModel;
 import com.zenith.request.model.GenericGetModel;
-
-import com.zenith.templates.PostTemplate;
 import com.zenith.templates.UserTemplate;
 
 
@@ -205,9 +201,9 @@ public class UserDAO {
      * Lock a user
      * @param - token of user
      */
-	public void lockUser(GenericGetModel user) {
+	public void lockUser(CommentModel user) {
 		UserBean lockUser = null;
-		UserBean u=getUserByToken(user.getToken());
+		UserBean u=getUserById(user.getCommentID());
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		try {
@@ -225,6 +221,12 @@ public class UserDAO {
 		} finally {
 			session.close();
 		}
-
+	}
+	
+	public int getBalance(GenericGetModel user)
+	{
+		session.beginTransaction()
+		UserBean spon= getUserByToken(user.getToken());
+		return spon.getBalance();
 	}
 }
