@@ -6,9 +6,8 @@ Feature: Log into SHOULDi
 
   Scenario Outline: Logging into SHOULDi
     Given I am at login 
-    When I login with "<username>" and "<password>"
+    When I login with "username" and "password"
     Then I arrive at dashboard
     Examples: 
       | username | password |
-			# username,password goes here
       |          |          |
