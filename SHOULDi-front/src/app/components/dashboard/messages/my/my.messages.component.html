@@ -1,0 +1,18 @@
+<div>
+    <div *ngIf="!messages">
+        <div id="noContent">
+
+        </div>
+    </div>
+    <div *ngIf="messages">
+        <div *ngFor="let msg in messages">
+            <div id="messageHeader">
+                from: {{msg.from}}
+            <button (click)="deleteMessage(msg)">Delete</button>
+            </div>
+            <div id="messageContent">
+                message: {{msg.content}}
+            </div>  
+        </div>
+    </div>
+</div>

@@ -40,8 +40,7 @@
                         *ngFor="let comment of currentPost.comments"
                         [ngClass]="{ flagged : comment.isFlagged }"
                     >
-                        <!-- TODO:  style this -->
-                        <h4>{{comment.commenter}}</h4> 
+                        <!-- TODO:  style this --> 
                         <p>
                             {{comment.content}}
                         </p>

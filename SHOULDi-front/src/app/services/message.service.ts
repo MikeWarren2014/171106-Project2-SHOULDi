@@ -19,18 +19,18 @@ export class MessageService extends HttpService
             userID : user._id
         }).map((res : Response) => res.json());
     }
-    getByRecipient(user : User) // TODO: get the endpoint
+    getByRecipient() // TODO: get the endpoint
     {
         return this.http.post(this.BASE_URL + '/api/messages', {
-            token : TokenService.getToken(),
-            userID : user._id
+            token : TokenService.getToken()
         }).map((res : Response) => res.json());
     }
-    createBySender(user : User) // TODO: get the endpoint
+    createBySender(message : any) // TODO: get the endpoint
     {
         return this.http.post(this.BASE_URL + '/api/messages/send', {
             token : TokenService.getToken(),
-            user : user
+            recipientEmail : message._recipientId,
+            message : message.content
         }).map((res : Response) => res.json());
     }
     deleteMessage(message : Message){
