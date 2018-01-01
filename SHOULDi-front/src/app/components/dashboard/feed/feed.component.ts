@@ -21,6 +21,7 @@ import { Response } from "@angular/http/src/static_response";
 export class FeedComponent
 {
     private USE_MOCK_DATA : boolean = false;
+    data : any;
     // a feed has a logged on user
     currentUser: User;
     // since this component will only have one post at a time, it has currentPost, too
@@ -69,13 +70,16 @@ export class FeedComponent
      */
     private loadPosts() {
         this.postService.getSomeFeed().subscribe(posts => { 
-            console.log("posts == %s", JSON.stringify(posts, null, '\t'))
-            this.posts = posts; 
-            console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'))
-            if (posts) {
+            //console.log("posts == %s", JSON.stringify(posts, null, '\t'));
+            this.posts = posts;
+            //console.log("this.posts == %s", JSON.stringify(this.posts, null, '\t'));
+            if (this.posts) {
                 // instantiate currentPost
-                this.currentPost = posts[0];
-            } 
+                this.currentPost = this.posts[0];
+                return true;
+            } else {
+                return false;
+            }
         });
     }
 
@@ -85,9 +89,11 @@ export class FeedComponent
     nextImage()
     {
         this.newComment.content = '';
-        if (this.postIndex < this.posts.length - 1) return (this.currentPost = this.posts[++this.postIndex]);
+        if (this.postIndex < this.posts.length - 1){
+            this.posts[this.postIndex] = null;
+            return this.posts[++this.postIndex];
+        } 
         this.postIndex = this.posts.length - 1;
-        this.currentPost = this.posts[this.posts.length - 1];
         return null;
     }
     
@@ -97,34 +103,50 @@ export class FeedComponent
     prevImage()
     {
         this.newComment.content = '';
-        if (this.postIndex >= 1) return (this.currentPost = this.posts[--this.postIndex]);
+        if (this.postIndex >= 1) return this.posts[--this.postIndex];
         this.postIndex = 0;
         return (this.currentPost = this.posts[0]); 
     }
 
     upvote()
     {
-        this.postService.like(this.currentPost, this.newComment);
-        // try to load next post
-        let nextPost = this.nextImage();
-        // if there was no next post to load, load in more posts (from the server)
-        if (!nextPost)
-        {
-            this.loadPosts();
-        }
+        this.postService.like(this.currentPost, this.newComment).subscribe(data => {
+            this.data = data;
+            // try to load next post
+            let nextPost = this.nextImage();
+            // if there was no next post to load, load in more posts (from the server)
+            if (!nextPost)
+            {
+                if(!this.loadPosts()){
+                    this.posts = [];
+                    this.currentPost = null;
+                }
+            } else {
+                this.currentPost = nextPost;
+            }
+            this.hasCommented = false;
+        });
     }
     
     downvote()
     {
-        
-        this.postService.dislike(this.currentPost, this.newComment);
-        // try to load next post
-        let nextPost = this.nextImage();
-        // if there was no next post to load, load in more posts (from the server)
-        if (!nextPost)
-        {
-            this.loadPosts();
-        }
+        this.postService.dislike(this.currentPost, this.newComment).subscribe(data => {
+            this.data = data;
+            // try to load next post
+            let nextPost = this.nextImage();
+            // if there was no next post to load, load in more posts (from the server)
+            if (!nextPost)
+            {
+                if(!this.loadPosts()){
+                    this.posts = [];
+                    this.currentPost = null;
+                }
+            } else {
+                this.currentPost = nextPost;
+            }
+            this.hasCommented = false;
+        });
+
     }
 
     comment()
@@ -136,8 +158,10 @@ export class FeedComponent
 
     flagPost(post)
     {
+        console.log("Flagging Post");
         this.postService.flagPost(post).map((res : Response) => {
             let message = res.json().message.toString().toUpperCase();
+            console.log(message);
             if (message === "SUCCESS")
             {
                 post.isFlagged = true;
@@ -145,7 +169,12 @@ export class FeedComponent
                 let nextPost = this.nextImage();
                 if (!nextPost)
                 {
-                    this.loadPosts();
+                    if(!this.loadPosts()){
+                        this.posts = [];
+                        this.currentPost = null;
+                    }
+                } else {
+                    this.currentPost = nextPost;
                 }
             }
             else if (message === "FAILURE")

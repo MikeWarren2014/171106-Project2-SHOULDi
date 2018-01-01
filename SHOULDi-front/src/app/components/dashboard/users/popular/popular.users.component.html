@@ -1,6 +1,6 @@
 <div>
     <h2 class="Popular Users">Popular Users</h2>
-    <table *ngIf="popularUsers.length; else noPopularUsers">
+    <table *ngIf="popularUsers; else noPopularUsers">
         <thead>
             <tr>
                 <th>User ID</th>
@@ -14,10 +14,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of popularUsers">
-                <td>{{user._id}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <!-- also to be expanded upon -->
             </tr>

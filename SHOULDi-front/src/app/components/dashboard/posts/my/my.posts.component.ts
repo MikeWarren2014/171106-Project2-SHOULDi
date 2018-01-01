@@ -40,7 +40,6 @@ export class MyPostsComponent {
                         this.currentPost = posts[0];
                     }
                 });
-
         }
     }
 

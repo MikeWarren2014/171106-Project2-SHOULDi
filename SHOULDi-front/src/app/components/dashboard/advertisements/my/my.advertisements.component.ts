@@ -9,9 +9,8 @@ import { AdvertisementService } from '../../../../services/advertisement.service
 })
 
 export class MyAdvertisementsComponent{
-    advertisements : Advertisement[] = [];
-    currentAdvertisement : Advertisement;
-    message : any;
+    advertisements : any[];
+    currentAdvertisement : any;
 
     // a feed has advertisements
     advertisementIndex = 0;
@@ -25,14 +24,15 @@ export class MyAdvertisementsComponent{
         {
             this.advertisementService.getAllAdvertisementsByUser(JSON.parse(localStorage.getItem("currentUser")))
                 // .subscribe(message => this.message = message);
-                .subscribe(advertisements => {
-                    this.advertisements = advertisements
-                    if (advertisements) {
+                .subscribe(data => {
+                    // this.advertisements = JSON.parse(data);
+                    console.log("data.length == " + data.length)
+                    this.advertisements = data;
+                    if (this.advertisements) {
                         // instantiate currentAdvertisement
-                        this.currentAdvertisement = advertisements[0];
+                        this.currentAdvertisement = this.advertisements[0];
                     }
                 });
-
         }
     }
 

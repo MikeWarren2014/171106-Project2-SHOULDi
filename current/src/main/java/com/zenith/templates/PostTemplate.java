@@ -15,40 +15,43 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PostTemplate {
-    
+
     private int post_id;
-    private String image; 
+    private String image;
     private int likes;
     private int dislikes;
     private String occasion;
     private List<String> comments; 
     private String url; 
     private int num_clicked;
-    private int num_shown; 
-    private int is_ad; 
-    
+    private int num_shown;
+    private int is_ad;
+    private int poster_id;
 
-    public PostTemplate(){}
-    public PostTemplate(int post_id,  int likes, String image, int dislikes, List<String> comments){
+    public PostTemplate() {
+    }
+
+    public PostTemplate(int post_id, int likes, String image, int dislikes, List<String> comments) {
         this.post_id = post_id;
         this.image = image;
-        /* Mark it as a png */ 
-        this.image = "data:image/png;base64," + image; 
+        /* Mark it as a png */
+        this.image = "data:image/png;base64," + image;
         this.likes = likes;
-        this.dislikes = dislikes; 
+        this.dislikes = dislikes;
         this.comments = comments;
-      
+
     }
-    
+
     public PostTemplate(int num_clicked, int num_shown, String image, String url, int is_ad, int adID) {
         this.num_clicked = num_clicked;
         this.num_shown = num_shown;
         this.image = "data:image/png;base64," + image;
-        this.url = url; 
-        this.is_ad = is_ad; 
-        this.post_id = adID; 
+        this.url = url;
+        this.is_ad = is_ad;
+        this.post_id = adID;
     }
-    public PostTemplate(int post_id, String image) {
+
+    public PostTemplate(int post_id, String image, int poster_id) {
         this.post_id = post_id;
         this.image = "data:image/png;base64," + image;
 	}
@@ -57,7 +60,8 @@ public class PostTemplate {
 		image= convertToB64;
 		this.occasion=occasion;
 	}
-	/**
+
+    /**
      * @return the post_id
      */
     public int getPost_id() {
@@ -196,5 +200,19 @@ public class PostTemplate {
 		this.occasion = occasion;
 	}
     
-    
+
+    /**
+     * @return the poster_id
+     */
+    public int getPoster_id() {
+        return poster_id;
+    }
+
+    /**
+     * @param poster_id the poster_id to set
+     */
+    public void setPoster_id(int poster_id) {
+        this.poster_id = poster_id;
+    }
+
 }
