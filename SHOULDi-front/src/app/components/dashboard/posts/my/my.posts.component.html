@@ -9,7 +9,7 @@
                 <div id="noImageContainer">
                     <img id="noContentImage" src="../../../../../assets/images/SHOULDi-suit.png">
                 </div>
-                Sorry, you have no content content yet. Wanna <a routerLink="../create-posts">create some</a>?
+                Sorry, you have no content yet. Wanna <a routerLink="../create-posts">create some</a>?
             </div>
         </div>
     </div>
@@ -40,8 +40,7 @@
                         *ngFor="let comment of currentPost.comments"
                         [ngClass]="{ flagged : comment.isFlagged }"
                     >
-                        <!-- TODO:  style this -->
-                        <h4>{{comment.commenter}}</h4> 
+                        <!-- TODO:  style this --> 
                         <p>
                             {{comment.content}}
                         </p>

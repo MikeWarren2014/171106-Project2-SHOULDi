@@ -1,1 +1,7 @@
-/* TODO: style create.posts.component.html here */
+#postContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}

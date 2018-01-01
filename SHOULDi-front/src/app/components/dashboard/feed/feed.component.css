@@ -3,11 +3,20 @@
 .feedContainer {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #feedContent
 {
     width: 100%;
+}
+
+.feedPage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #imageContainer
@@ -17,6 +26,44 @@
     max-height: 540px;
     min-width: 550px;
     flex-grow: 2;
+}
+
+#ratingsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#imageActions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#commentsContainer{
+    padding-left: 10px;
+    float: right;
+}
+
+#addComment > button{
+    background: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: black;
+}
+
+#newComment{
+    height: 200px;
+    width: 150px;
+}
+
+#currentImage{
+    max-height: 700px;
+    max-width: 700px;
 }
 
 #imageActions {

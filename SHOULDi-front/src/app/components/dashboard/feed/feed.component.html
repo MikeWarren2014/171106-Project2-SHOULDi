@@ -2,18 +2,19 @@
     <!-- 
         To be shown when there's no content
     -->
-    <div *ngIf="!posts || !posts.length; else feed">
-        <h2>No content yet!</h2>
+    <div class="feedPage" *ngIf="!currentPost">
 
         <p class="pageCenter">
             Sorry, there's no feed content yet. Wanna <a routerLink="../create-posts">create some</a>?
         </p>
 
     </div>
-    <ng-template #feed>
+    <div class="feedPage" *ngIf="currentPost && currentPost.image">
+
         <div id="feedContent">
             
-            <div id="imageContainer" [ngClass]="{ flagged : currentPost.isFlagged }">
+            <div *ngIf="currentPost && currentPost.image" id="imageContainer">
+
                 <img
                     id="currentImage"
                     class="center"
@@ -42,15 +43,14 @@
                 <h3>Comments</h3>
                 <form *ngIf="!hasCommented; else showMyComment" id="addComment">
                     <textarea cols="40" id="newComment" name="newComment" [(ngModel)]="this.newComment.content"></textarea>
-                    <button value="Post Comment" (click)="comment()"></button>
+                    <button value="Post Comment" (click)="comment()">Comment</button>
                 </form>
                 <ng-template #showMyComment>
                     <div id="myComment">
                         {{newComment.content}}
                     </div>
                 </ng-template>
+                </div>
             </div>
         </div>
-        
-    </ng-template>
 </div>

@@ -8,8 +8,8 @@ package com.zenith.request.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
+ *Model used in flagging posts
+ *@author Xavier Garibay and Caleb Schumake
  */
 @XmlRootElement
 public class FlagPostModel {

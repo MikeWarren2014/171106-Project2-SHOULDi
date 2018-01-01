@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Message } from '../../../../models/message';
+import { MessageService } from '../../../../services/message.service';
 
 @Component({
     selector: "create-messages",
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
 })
 
 export class CreateMessagesComponent{
-    
+    message : Message;
+    constructor(private messageService : MessageService){
+
+    }
+    createMessage(){
+        this.messageService.createBySender(this.message).subscribe();
+    }
 }

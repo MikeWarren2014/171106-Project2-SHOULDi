@@ -7,7 +7,6 @@
             <li><button class="menuButton" routerLink="score">Score</button></li>
             <li><button class="menuButton" routerLink="my-posts">My Posts</button></li>
             <li><button class="menuButton" routerLink="create-posts">Create Posts</button></li>
-            <li><button class="menuButton" routerLink="edit-posts">Edit Posts</button></li>
             <li><button class="menuButton" routerLink="my-messages">My Messages</button></li>
         </ul>
         <ul *ngIf="(this.currentUser && (this.currentUser.role == this.MODERATOR)) || (TEST == 2)" class="nav navbar-nav">

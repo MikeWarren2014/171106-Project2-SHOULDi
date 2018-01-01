@@ -15,8 +15,9 @@ import { FlaggedCommentsComponent } from "../../comments/flagged/flagged.comment
 export class FlaggedUsersComponent{
     flaggedUsers : any[];
     flaggedUser : any;
+    data : any;
 
-    constructor(){
+    constructor(private userService : UserService){
         
     }
 
@@ -27,5 +28,9 @@ export class FlaggedUsersComponent{
     viewFlaggedComments(user : any)
     {
         this.flaggedUser = user;
+    }
+
+    lockUser(user : any){
+        this.userService.lockUser(user).subscribe(data => this.data = data);
     }
 }

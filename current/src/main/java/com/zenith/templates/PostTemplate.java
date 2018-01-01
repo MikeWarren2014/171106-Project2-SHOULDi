@@ -10,8 +10,8 @@ import javax.ws.rs.core.GenericEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
+ *Template to return a post or advertisement
+ * @author Xavier Garibay and Caleb Schumake
  */
 @XmlRootElement
 public class PostTemplate {
@@ -20,11 +20,9 @@ public class PostTemplate {
     private String image;
     private int likes;
     private int dislikes;
-    private List<String> comments;
-    /* Xavier, this field is needed so we can group ads and user posts together, we have to use same object since collections 
-       must hold same type 
-     */
-    private String url;
+    private String occasion;
+    private List<String> comments; 
+    private String url; 
     private int num_clicked;
     private int num_shown;
     private int is_ad;
@@ -56,8 +54,12 @@ public class PostTemplate {
     public PostTemplate(int post_id, String image, int poster_id) {
         this.post_id = post_id;
         this.image = "data:image/png;base64," + image;
-        this.poster_id = poster_id;
-    }
+	}
+	public PostTemplate(int post_id2, String convertToB64, String occasion) {
+		post_id=post_id2;
+		image= convertToB64;
+		this.occasion=occasion;
+	}
 
     /**
      * @return the post_id
@@ -184,6 +186,20 @@ public class PostTemplate {
     public void setIs_ad(int is_ad) {
         this.is_ad = is_ad;
     }
+    /**
+     * @return - occasion
+     */
+	public String getOccasion() {
+		return occasion;
+	}
+	
+	/**
+	 * @param occasion - occasion to set
+	 */
+	public void setOccasion(String occasion) {
+		this.occasion = occasion;
+	}
+    
 
     /**
      * @return the poster_id

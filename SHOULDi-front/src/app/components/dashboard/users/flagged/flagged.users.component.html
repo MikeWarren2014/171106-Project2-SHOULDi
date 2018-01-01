@@ -15,10 +15,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of flaggedUsers">
-                <td>{{user._id}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <!-- also to be expanded upon -->
                 <button (click)="lockUser()">Lock User</button>

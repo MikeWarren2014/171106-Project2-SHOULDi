@@ -6,8 +6,8 @@
 package com.zenith.request.model;
 
 /**
- *
- * @author wayne
+ * Model used in posting an advertisement
+ * @author Caleb Schumake
  */
 public class AdPostModel {
     

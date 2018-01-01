@@ -12,11 +12,16 @@ import com.zenith.request.model.GenderedGetModel;
 import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.PostModel;
 import com.zenith.request.model.RatingModel;
+import com.zenith.request.model.UserGetModel;
 import com.zenith.request.model.ViewedAdModel;
 import com.zenith.templates.AdPostTemplate;
-import org.hibernate.HibernateException;
 import com.zenith.templates.PostTemplate;
 
+/**
+ * Service layer of posts functions that connects dao to entrypoints
+ * @author Caleb Schumake and Xavier Garibay
+ *
+ */
 public class PostsService {
 
     PostDAO database;
@@ -25,10 +30,10 @@ public class PostsService {
         this.database = new PostDAO();
     }
 
-    public List<PostTemplate> getFlaggedPosts() {
+    public List<PostTemplate> getFlaggedPosts(UserGetModel user) {
         try {
             this.database.openConnection();
-            return database.getFlaggedPosts();
+            return database.getFlaggedPosts(user);
         } finally {
             database.closeConnection();
         }

@@ -8,8 +8,8 @@ package com.zenith.request.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
+ *Model used when working with comments
+ * @author Xavier Garibay and Caleb Schumake
  */
 @XmlRootElement
 public class CommentModel {

@@ -5,22 +5,27 @@
             <label for="firstName" class="tableCell">first name</label>
             <input type="text" id="firstName" name="firstName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.firstName" required>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
             <label for="lastName" class="tableCell">last name</label>
             <input type="text" id="lastName" name="lastName" class="tableCell" pattern="[A-Za-z]+" [(ngModel)]="model.lastName" required>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
             <label for="userName" class="tableCell">user name</label>
             <input type="text" id="userName" name="userName" class="tableCell" pattern="\w+" [(ngModel)]="model.userName" required>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
             <label for="password" class="tableCell">password</label>
             <input type="password" id="password" name="password" class="tableCell" [(ngModel)]="model.password" required>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
             <label for="confirmPassword" class="tableCell">confirm password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" class="tableCell" [(ngModel)]="model.confirmPassword" required>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
             <label for="gender"  class="tableCell">gender</label>
             <input list="genders" class="tableCell" id="gender" name="gender" [(ngModel)]="model.gender">
@@ -28,12 +33,14 @@
                 <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
             </datalist>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
             <label class="tableCell" for="email">e-mail</label> 
             <input type="email" class="tableCell" id="email" name="email" [(ngModel)]="model.email" required>
         </span>
+        <div id="spacing"></div>
         <span class="tableRow">
-            <label class="tableCell">Register as sponsor: </label>
+            <label class="tableCell">Register as sponsor</label>
             <input type="checkbox" 
                 name="isSponsor" 
                 id="isSponsor" 
@@ -42,11 +49,11 @@
                 >
             </span>
         <div *ngIf="isSponsor" class="tableRowGroup">
-            <h3 class="textCenter tableRow">Sponsor Info </h3>
             <span class="tableRow">
                 <label class="tableCell" for="company">company name</label>
                 <input type="text" class="tableCell" id="company" name="company" [(ngModel)]="model.company" required>
             </span>
+            <div id="spacing"></div>
             <span class="tableRow" title="The amount of money you wish to use for sponsoring">
                 <label class="tableCell" for="balance">balance</label>
                 <label class="tableCell">
@@ -54,11 +61,12 @@
                 </label>
             </span>
         </div>
+        <div id="bigSpacing"></div>
         <span class="tableRow buttonRow">
             <label class="tableCell">
                 <input type="reset" value="Reset">
             </label>
-            <button [disabled]="loading" class="tableCell">Register</button>
+            <button [disabled]="loading" class="tableCell" id="registerButton">Register</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </span>
     </form>

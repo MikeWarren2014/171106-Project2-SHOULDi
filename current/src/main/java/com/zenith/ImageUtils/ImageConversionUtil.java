@@ -10,8 +10,8 @@ import java.util.Base64;
 import org.hibernate.Hibernate;
 
 /**
- *
- * @author wayne
+ * Used in image conversion between a string and BLOB
+ * @author Caleb Schumake
  */
 public class ImageConversionUtil {
     

@@ -15,9 +15,9 @@ import { AutoUnsubscribe } from "../../../../autoUnsubscribe";
 @AutoUnsubscribe
 export class UsersFlaggedComponent{
     data        : any;
-    users       : User[];
-    posts       : Post[][];
-    comments    : Comment[][];
+    users       : any[];
+    posts       : any[][];
+    comments    : any[][];
 
     constructor(private userService : UserService, private postService : PostService, private commentService : CommentService){
     }

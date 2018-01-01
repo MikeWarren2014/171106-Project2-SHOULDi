@@ -9,8 +9,8 @@ import com.zenith.ImageUtils.ImageConversionUtil;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
+ *Template to return advertisements with info
+ * @author Caleb Schumake
  */
 @XmlRootElement
 public class AdPostTemplate {

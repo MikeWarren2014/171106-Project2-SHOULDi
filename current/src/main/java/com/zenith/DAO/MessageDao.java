@@ -6,19 +6,25 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import com.zenith.Beans.CommentBean;
 import com.zenith.Beans.MessageBean;
+import com.zenith.Beans.PostBean;
 import com.zenith.Beans.UserBean;
+import com.zenith.ImageUtils.ImageConversionUtil;
 import com.zenith.hibernate.utils.HibernateUtil;
 import com.zenith.hibernate.utils.HibernateUtils;
 import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.MessageModel;
-
+import com.zenith.request.model.UserGetModel;
+import com.zenith.templates.CommentTemplate;
 import com.zenith.templates.MessageTemplate;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.zenith.templates.PostTemplate;
+/**
+ *DAO layer to access database in regards to messages.
+ * @author Xavier Garibay and Caleb Schumake
+ */
 public class MessageDao {
 
     Session session = null;
@@ -33,7 +39,10 @@ public class MessageDao {
 	            session.close();
 	        }
 	    }
-	    
+	/**
+	 * Create a new message in the database
+	 * @param message - sender, reciever, text
+	 */
 	public void sendMessage(MessageModel message) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
@@ -43,6 +52,10 @@ public class MessageDao {
 		tx.commit();
 	}
 	
+	/**
+	 * Get all messages sent to user
+	 * @return - list of messages sent to user with username of sender and receiver along with message
+	 */
 	public List<MessageTemplate> getUserMessages(GenericGetModel user) {
 	       session.beginTransaction();
 	       UserDAO dao= new UserDAO();
@@ -58,12 +71,15 @@ public class MessageDao {
 	}
 
 
-    
+	/**
+	 * Get all messages sent to user
+	 * @return - list of messages sent to user with username of sender and receiver along with message
+	 */
     public List<String> getMyMessages(GenericGetModel getModel){
         UserDAO userDAO = new UserDAO();
         userDAO.openConnection();
         UserBean userBean = userDAO.getUserByToken(getModel.getToken()); 
-        List<MessageBean> messages = userBean.getMessages(); 
+        List<MessageBean> messages = userBean.getTo(); 
         
         List<String> userMessages = new ArrayList<String>(); 
         for (MessageBean message : messages) {
@@ -75,5 +91,6 @@ public class MessageDao {
         
     }
     
+
     
 }
