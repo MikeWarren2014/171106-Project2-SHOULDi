@@ -2,16 +2,24 @@
 .myPostsContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 #myPostsContent
 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
 #imageContainer
 {
-    max-height: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 550px;
     max-width: 550px;
     flex-grow: 2;
 }
@@ -67,4 +75,11 @@
     position: relative !important;
     max-height: 250px;
     max-width: 250px;
+}
+
+
+
+#currentImage{
+    max-height: 500px;
+    max-width: 500px;
 }

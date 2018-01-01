@@ -5,7 +5,7 @@
         </div>
     </div>
     <div *ngIf="messages">
-        <div *ngFor="let msg in messages">
+        <div *ngFor="let msg of messages">
             <div id="messageHeader">
                 from: {{msg.from}}
             <button (click)="deleteMessage(msg)">Delete</button>
