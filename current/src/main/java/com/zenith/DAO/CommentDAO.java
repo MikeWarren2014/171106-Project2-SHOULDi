@@ -18,11 +18,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.zenith.Beans.CommentBean;
-import com.zenith.Beans.PostBean;
 import com.zenith.Beans.UserBean;
 import com.zenith.hibernate.utils.HibernateUtils;
 import com.zenith.interfaces.DAO;
 import com.zenith.request.model.CommentModel;
+import com.zenith.request.model.UserGetModel;
 import com.zenith.templates.CommentTemplate;
 
 /**
@@ -46,16 +46,18 @@ public class CommentDAO implements DAO {
     /**
      * Get all comments flagged for moderator to review
      */
-    public List<CommentTemplate> getFlaggedComments() {
+    public List<CommentTemplate> getFlaggedComments(UserGetModel user) {
         session.beginTransaction();
         Criteria criteria;
 		
 		List<CommentBean> flagged=session.createCriteria(CommentBean.class).list();
 		List<CommentTemplate> comments= new ArrayList<CommentTemplate>();
-		flagged= session.createCriteria(CommentBean.class).add(Restrictions.eq("is_flagged", 1)).list();
+		flagged= session.createCriteria(CommentBean.class).add(Restrictions.eq("isFlagged", 1)).list();
 		for(CommentBean comment: flagged)
 		{
+			if(comment.getCommentor().getUser_id()==user.getUser()) {
 			comments.add(new CommentTemplate(comment.getCommentor().getUser_id(), comment.getPostBean().getPost_id(), comment.getComment_text()));
+			}
 		}
 		return comments;
     }

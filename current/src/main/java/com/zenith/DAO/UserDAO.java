@@ -225,7 +225,7 @@ public class UserDAO {
 	
 	public int getBalance(GenericGetModel user)
 	{
-		session.beginTransaction()
+		session.beginTransaction();
 		UserBean spon= getUserByToken(user.getToken());
 		return spon.getBalance();
 	}

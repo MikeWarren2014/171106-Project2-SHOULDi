@@ -34,6 +34,7 @@ import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.PostComp;
 import com.zenith.request.model.PostModel;
 import com.zenith.request.model.RatingModel;
+import com.zenith.request.model.UserGetModel;
 import com.zenith.service.UserServiceImpl;
 import com.google.gson.Gson;
 import com.zenith.Beans.AdvertisementBean;
@@ -227,15 +228,15 @@ public class PostDAO {
     }
 
     /**
-     * Get all flagged posts for moderator review
+     * Get specified user's flagged posts for moderator review
      * @return - List of posts that are flagged
      */
-    public List<PostTemplate> getFlaggedPosts() {
+    public List<PostTemplate> getFlaggedPosts(UserGetModel user) {
 
         session.beginTransaction();
         List<String> comments = new ArrayList<String>(); 
         List<PostBean> flagged = session.createCriteria(PostBean.class).list();
-        flagged = session.createCriteria(PostBean.class).add(Restrictions.eq("flagged", 1)).list();
+        flagged = session.createCriteria(PostBean.class).add(Restrictions.eq("flag", 1)).list();//all flagged
         List<PostTemplate> templates=new ArrayList<PostTemplate>();
         for(PostBean post: flagged)
         {
@@ -244,7 +245,10 @@ public class PostDAO {
             for (CommentBean comment : commentBean) {
                 comments.add(comment.getComment_text()); 
             }
-            templates.add(new PostTemplate(post.getPost_id(), post.getLikes().size(), image, post.getDislikes().size(), comments)); 
+            if(user.getUser()==post.getPoster().getUser_id())
+            {
+            	templates.add(new PostTemplate(post.getPost_id(), post.getLikes().size(), image, post.getDislikes().size(), comments)); 
+            }
         }
         return templates;
     }

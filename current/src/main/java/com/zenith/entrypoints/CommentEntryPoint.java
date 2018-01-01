@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.zenith.request.model.CommentModel;
+import com.zenith.request.model.UserGetModel;
 import com.zenith.service.CommentService;
 import com.zenith.service.VerifyTokenCredentials;
 import com.zenith.templates.CommentTemplate;
@@ -25,9 +26,9 @@ public class CommentEntryPoint {
     @Path("/flagged")
     @Consumes(MediaType.APPLICATION_JSON) // our method consumes or takes in json data
     @Produces({MediaType.APPLICATION_JSON})
-    public List<CommentTemplate> getFlaggedComments() {
+    public List<CommentTemplate> getFlaggedComments(UserGetModel user) {
         CommentService service = new CommentService();
-        return service.getFlaggedComments();
+        return service.getFlaggedComments(user);
     }
 
     @PUT

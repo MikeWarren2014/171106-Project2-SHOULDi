@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zenith.DAO.CommentDAO;
 import com.zenith.request.model.CommentModel;
+import com.zenith.request.model.UserGetModel;
 import com.zenith.templates.CommentTemplate;
 /**
  * Service layer of comment functions that connects dao to entrypoints
@@ -18,10 +19,10 @@ public class CommentService {
         this.database = new CommentDAO();
     }
 
-    public List<CommentTemplate> getFlaggedComments() {
+    public List<CommentTemplate> getFlaggedComments(UserGetModel user) {
         try {
             this.database.openConnection();
-            return database.getFlaggedComments();
+            return database.getFlaggedComments(user);
         } finally {
             database.closeConnection();
         }
