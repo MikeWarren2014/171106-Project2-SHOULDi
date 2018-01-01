@@ -2,6 +2,7 @@ package com.zenith.service;
 
 import java.util.List;
 
+import com.zenith.Beans.CommentBean;
 import com.zenith.DAO.CommentDAO;
 import com.zenith.request.model.CommentModel;
 import com.zenith.request.model.UserGetModel;
@@ -32,6 +33,15 @@ public class CommentService {
         try {
             this.database.openConnection();
             return database.flagComment(commentModel); 
+        } finally {
+            database.closeConnection();
+        }
+    }
+    
+    public void removeComment(CommentModel comment){
+        try {
+            this.database.openConnection();
+            database.removeComment(comment); 
         } finally {
             database.closeConnection();
         }
