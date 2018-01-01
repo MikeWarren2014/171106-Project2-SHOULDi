@@ -1,5 +1,9 @@
 package com.zenith.request.model;
 
+/**
+*Model used in requesting posts with a gender specified
+*@author Xavier Garibay and Caleb Schumake
+*/
 public class GenderedGetModel {
 
     private String token;
@@ -20,13 +24,19 @@ public class GenderedGetModel {
         this.token = token;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    /**
+     * @return - gender
+     */
+	public String getGender() {
+		return gender;
+	}
+	
+	/**
+	 * @param - gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
     /**
      * @return the amountToPay

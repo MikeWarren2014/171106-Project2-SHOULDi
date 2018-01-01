@@ -8,24 +8,24 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query; 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.zenith.Beans.CommentBean;
-import com.zenith.Beans.PostBean; 
 import com.zenith.Beans.UserBean;
-import com.zenith.ImageUtils.ImageConversionUtil;
 import com.zenith.hibernate.utils.HibernateUtil;
 import com.zenith.hibernate.utils.HibernateUtils;
+import com.zenith.request.model.CommentModel;
 import com.zenith.request.model.GenericGetModel;
-
-import com.zenith.templates.PostTemplate;
 import com.zenith.templates.UserTemplate;
 
 
+/**
+ *DAO layer to access database in regards to users.
+ * @author Xavier Garibay and Caleb Schumake
+ */
 
 public class UserDAO {
 
@@ -42,6 +42,11 @@ public class UserDAO {
         }
     }
     
+    /**
+     * Get score of current user
+     * @param requestModel - token to identify user
+     * @return - score of user
+     */
     public int getUserScore(GenericGetModel requestModel){
         this.openConnection();
         UserBean user = this.getUserByToken(requestModel.getToken()); 
@@ -49,6 +54,11 @@ public class UserDAO {
         return user.getScore(); 
     }
 
+    /**
+     * Get  user by its email
+     * @param email - email to identify user
+     * @return - user
+     */
     public UserBean getUserByEmail(String email) {
 
         UserBean user = null;
@@ -70,6 +80,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Get  user by its id
+     * @param username - id to identify user
+     * @return - user
+     */
 	public UserBean getUserById(int username) {
 
 		/* make sure value is not null */
@@ -92,6 +107,11 @@ public class UserDAO {
 		return userBean;
 	}
 	
+    /**
+     * Get  user by its token
+     * @param token - token to identify user
+     * @return - user
+     */
     public UserBean getUserByToken(String token) {
 
         UserBean user = null;
@@ -114,6 +134,10 @@ public class UserDAO {
 
     }
     
+    /**
+     * Get all flagged users
+     * @return - list of flagged users
+     */
     public List<UserTemplate> getFlaggedUsers()
     {
         session.beginTransaction();
@@ -128,6 +152,10 @@ public class UserDAO {
         return templates;
     }
 
+    /**
+     * Save changes to user
+     * @param user - user to save
+     */
     public void saveUser(UserBean user) {
 
         session.beginTransaction();
@@ -136,6 +164,10 @@ public class UserDAO {
 
     }
 
+    /**
+     * Save changes to user
+     * @param user - user to save
+     */
     public void updateUser(UserBean user) {
 
         session.beginTransaction();
@@ -144,6 +176,10 @@ public class UserDAO {
 
     }
 
+    /**
+     * Get all users with a score of over 2000
+     * @return - list of favorite users
+     */
     public List<UserTemplate> getFavoriteUsers() {
 
         session.beginTransaction();
@@ -160,10 +196,14 @@ public class UserDAO {
         return templates;
 
     }
-    
-	public void lockUser(GenericGetModel user) {
+    //change form getmodel will lock itself
+    /**
+     * Lock a user
+     * @param - token of user
+     */
+	public void lockUser(CommentModel user) {
 		UserBean lockUser = null;
-		UserBean u=getUserByToken(user.getToken());
+		UserBean u=getUserById(user.getCommentID());
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		try {
@@ -181,6 +221,12 @@ public class UserDAO {
 		} finally {
 			session.close();
 		}
-
+	}
+	
+	public int getBalance(GenericGetModel user)
+	{
+		session.beginTransaction();
+		UserBean spon= getUserByToken(user.getToken());
+		return spon.getBalance();
 	}
 }

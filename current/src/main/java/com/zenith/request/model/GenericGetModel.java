@@ -8,9 +8,9 @@ package com.zenith.request.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
- */
+*Model used for requests only requiring user verification
+*@author Caleb Schumake
+*/
 public class GenericGetModel {
     
     private String token; 

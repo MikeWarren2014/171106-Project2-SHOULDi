@@ -10,7 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ * Bean for holding viewed post records, serves as a sort of join table. Holds user who viewed and post viewed.
+ * @author Xavier Garibay and Caleb Schumake
+ *
+ */
 @Entity
 @XmlRootElement
 @Table(name = "Viewed_Posts")

@@ -7,6 +7,11 @@ import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.MessageModel;
 import com.zenith.templates.MessageTemplate;
 
+/**
+ * Service layer of message functions that connects dao to entrypoints
+ * @author Caleb Schumake and Xavier Garibay
+ *
+ */
 public class MessageService {
 
     MessageDao database = null;

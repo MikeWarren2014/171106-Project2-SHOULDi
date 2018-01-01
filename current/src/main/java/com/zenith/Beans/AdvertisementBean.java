@@ -19,6 +19,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * Bean for advertisement. Differs from Posts in that they contain a url to click through along with the statistics on how
+ * often shown and clicked on.
+ * @author Caleb Schumake
+ */
 @Entity
 @Table(name = "AdTable")
 public class AdvertisementBean implements Serializable {

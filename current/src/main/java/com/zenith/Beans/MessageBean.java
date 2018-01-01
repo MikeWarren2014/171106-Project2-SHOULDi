@@ -19,8 +19,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author calebschumake
+ *Bean to hold Messages. Holds sender and receiver UserBeans along with the text of the message
+ * @author Caleb Schumake
  */
 @Entity
 @XmlRootElement
@@ -52,34 +52,58 @@ public class MessageBean implements Serializable {
     @Column(name = "CONTENT")
     private String content;
 
+    /**
+     * @return - id of the message
+     */
     public int getMessage_id() {
         return message_id;
     }
 
+    /**
+     * @param message_id - id of the message to set
+     */
     public void setMessage_id(int message_id) {
         this.message_id = message_id;
     }
 
+    /**
+     * @return - user the message is to
+     */
     public UserBean getTo() {
         return to;
     }
 
+    /**
+     * @param to - set the user to which the message is sent
+     */
     public void setTo(UserBean to) {
         this.to = to;
     }
 
+    /**
+     * @return - user the message is from
+     */
     public UserBean getFrom() {
         return from;
     }
 
+    /**
+     * @param to - set the user from which the message is sent
+     */
     public void setFrom(UserBean from) {
         this.from = from;
     }
-
+    
+    /**
+     * @return - text of the comment
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * @return - set the text of the comment
+     */
     public void setContent(String content) {
         this.content = content;
     }

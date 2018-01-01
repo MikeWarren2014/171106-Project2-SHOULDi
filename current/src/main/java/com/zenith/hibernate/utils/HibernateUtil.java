@@ -3,7 +3,11 @@ package com.zenith.hibernate.utils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+/**
+ * Used in making connections to database
+ * @author Xavier Garibay
+ *
+ */
 public class HibernateUtil {
 	private static SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
 	//configure method can take a filename but by default it looks for a configuration file

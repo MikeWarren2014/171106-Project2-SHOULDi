@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -30,8 +31,10 @@ import com.zenith.request.model.AdPostModel;
 import com.zenith.request.model.FlagPostModel;
 import com.zenith.request.model.GenderedGetModel;
 import com.zenith.request.model.GenericGetModel;
+import com.zenith.request.model.PostComp;
 import com.zenith.request.model.PostModel;
 import com.zenith.request.model.RatingModel;
+import com.zenith.request.model.UserGetModel;
 import com.zenith.service.UserServiceImpl;
 import com.google.gson.Gson;
 import com.zenith.Beans.AdvertisementBean;
@@ -44,6 +47,10 @@ import com.zenith.templates.AdPostTemplate;
 import com.zenith.templates.PostTemplate;
 import java.util.Random;
 
+/**
+ *DAO layer to access database in regards to posts.
+ * @author Xavier Garibay and Caleb Schumake
+ */
 public class PostDAO {
 
     Session session = null;
@@ -58,7 +65,11 @@ public class PostDAO {
             session.close();
         }
     }
-
+    
+    /**
+     * Score a single post
+     * @param rating - post to be scored and token
+     */
     public void finalize(RatingModel rating) {
         session.beginTransaction();
         String hql = "From PostBean E WHERE E.post_id = :_id";
@@ -71,12 +82,12 @@ public class PostDAO {
         List<DislikeBean> dislikes = postBean.getDislikes();
         List<Integer> ids = new ArrayList<Integer>();
         int flag = 0;
-        if (likes.size() > dislikes.size()) {
+        if (likes.size() > dislikes.size()) {//if more likes than dislikes give points to likers
             flag = 1;
             for (LikeBean like : likes) {
                 ids.add(like.getUser().getUser_id());
             }
-        } else if (likes.size() < dislikes.size()) {
+        } else if (likes.size() < dislikes.size()) {//if more dislikes than likes give points to likers
             flag = 1;
             for (DislikeBean dislike : dislikes) {
                 ids.add(dislike.getUser().getUser_id());
@@ -105,7 +116,11 @@ public class PostDAO {
         }
 
     }
-
+    
+    /**
+     * Update advertisement's statistics after being shown
+     * @param - token, ad id, and whether clicked or not
+     */
     public void updateAd(ViewedAdModel viewedAdModel) {
 
         /* Get post based on ID */
@@ -126,7 +141,11 @@ public class PostDAO {
         }
 
     }
-
+    
+    /**
+     * Get a random ad to display
+     * @return - random advertisement
+     */
     private PostTemplate getRandomAd() {
 
 
@@ -149,6 +168,11 @@ public class PostDAO {
 
     }
 
+    /**
+     * Get user's advertisements' information for review
+     * @param - token to identify user
+     * @return - list of advertisements and statistics
+     */
     public List<AdPostTemplate> adGetMyPosts(GenericGetModel getModel) {
 
         String token = getModel.getToken();
@@ -172,6 +196,11 @@ public class PostDAO {
         return postTemplate;
     }
 
+    /**
+     * Get user's posts' information for review
+     * @param - token to identify user
+     * @return - list of posts and statistics
+     */
     public List<PostTemplate> getMyPosts(GenericGetModel getModel) {
         String token = getModel.getToken();
         UserServiceImpl service = new UserServiceImpl();
@@ -199,20 +228,28 @@ public class PostDAO {
         return postTemplate;
     }
 
-    public List<PostTemplate> getFlaggedPosts() {
+    /**
+     * Get specified user's flagged posts for moderator review
+     * @return - List of posts that are flagged
+     */
+    public List<PostTemplate> getFlaggedPosts(UserGetModel user) {
 
         session.beginTransaction();
         List<String> comments = new ArrayList<String>();
         List<PostBean> flagged = session.createCriteria(PostBean.class).list();
-        flagged = session.createCriteria(PostBean.class).add(Restrictions.eq("flagged", 1)).list();
-        List<PostTemplate> templates = new ArrayList<PostTemplate>();
-        for (PostBean post : flagged) {
-            String image = ImageConversionUtil.convertToB64(post.getImage());
-            List<CommentBean> commentBean = post.getPost_comments();
+        flagged = session.createCriteria(PostBean.class).add(Restrictions.eq("flag", 1)).list();//all flagged
+        List<PostTemplate> templates=new ArrayList<PostTemplate>();
+        for(PostBean post: flagged)
+        {
+        	String image = ImageConversionUtil.convertToB64(post.getImage());
+            List<CommentBean> commentBean = post.getPost_comments(); 
             for (CommentBean comment : commentBean) {
                 comments.add(comment.getComment_text());
             }
-            templates.add(new PostTemplate(post.getPost_id(), post.getLikes().size(), image, post.getDislikes().size(), comments));
+            if(user.getUser()==post.getPoster().getUser_id())
+            {
+            	templates.add(new PostTemplate(post.getPost_id(), post.getLikes().size(), image, post.getDislikes().size(), comments)); 
+            }
         }
         return templates;
     }
@@ -234,31 +271,44 @@ public class PostDAO {
 
     }
 
-    /*
     public List<PostTemplate> getHall() {
-        List<PostBean> posts = session.createCriteria(PostBean.class).s
-        posts.sort(c);;
-        events= posts.
-        PostBean highest = null;
-        for (PostBean post : posts) {
-            if (highest == null) {
-                highest = post;
-            } else {
-                if (highest.getLikes().size() < post.getLikes().size()) {
-                    highest = post;
-                }
-            }
+        List<PostBean> posts = session.createCriteria(PostBean.class).list();
+        Collections.sort(posts, new PostComp());//sort by occasion
+        List<PostBean> highest= new ArrayList<PostBean>();
+        PostBean curHigh=posts.get(0);
+        for(int i= 1; i<posts.size(); i++)
+        {//whenever not same occasion add to list and set new highest for new occasion
+        	if(!curHigh.getOccasion().equalsIgnoreCase(posts.get(i).getOccasion()))
+        	{
+        		highest.add(curHigh);
+        		curHigh=posts.get(i);
+        	}
+        	else//if same occasion check if likes are higher
+        	{
+        		if(curHigh.getLikes().size()<posts.get(i).getLikes().size())
+        			curHigh=posts.get(i);
+        	}        		
         }
-        return highest;
+        List<PostTemplate> templates= new ArrayList<PostTemplate>();
+        for(PostBean bean: highest)//add all highest to list to return
+        {
+        	templates.add(new PostTemplate(bean.getPost_id(), ImageConversionUtil.convertToB64(bean.getImage()), bean.getOccasion()));
+        }
+        return templates;
+    }
 
-    }*/
+    /**
+     * Return list of posts and an advertisement to be reviewed
+     * @param - token to identify user
+     * @return - list of posts and an ad
+     */
+
     public List<PostTemplate> getUnseenPost(GenericGetModel user) {
 
         session.beginTransaction();
         UserDAO dao = new UserDAO();
         List<PostBean> choosable = session.createCriteria(PostBean.class).list();
-        choosable = session.createCriteria(PostBean.class).add(Restrictions.eq("completed", 0)).list();
-
+        choosable = session.createCriteria(PostBean.class).add(Restrictions.eq("completed", 0)).list();//all not completed
         dao.openConnection();
         UserBean viewer = dao.getUserByToken(user.getToken());
         List<VPBean> seen = viewer.getViewed_posts();
@@ -341,24 +391,28 @@ public class PostDAO {
 
             dao.closeConnection();
             return finalReturn;
-
         }
     }
 
+    /**
+     * Return list of posts of a single gender and an advertisement to be reviewed
+     * @param - token to identify user
+     * @return - list of posts and an ad
+     */
     public List<PostTemplate> getUnseenPostGendered(GenderedGetModel request) {
         session.beginTransaction();
         UserDAO udao = new UserDAO();
         UserBean user = udao.getUserByToken(request.getToken());
         List<PostBean> choosable = session.createCriteria(PostBean.class).list();
-        choosable = session.createCriteria(PostBean.class).add(Restrictions.eq("completed", 0)).list();
+        choosable = session.createCriteria(PostBean.class).add(Restrictions.eq("completed", 0)).list();//all not completed
 
         List<VPBean> seen = user.getViewed_posts();
         List<PostBean> left = new ArrayList<PostBean>();
-        for (VPBean vp : seen) {
+        for (VPBean vp : seen) {//filter seen posts
             choosable.remove(vp.getViewed());
         }
         List<PostBean> remove = new ArrayList<PostBean>();
-        for (PostBean post : choosable) {
+        for (PostBean post : choosable) {//filter to only posts of correct gender
             String postGender = post.getPoster().getGender();
             if (!request.getGender().equalsIgnoreCase(postGender)) {
                 remove.add(post);
@@ -377,6 +431,9 @@ public class PostDAO {
         return posts;
     }
 
+    /**
+     * For posts older than a week, mark as complete and score
+     */
     public void checkScore() {
         List<PostBean> posts = session.createCriteria(PostBean.class).list();
         posts = session.createCriteria(PostBean.class).add(Restrictions.eq("completed", 0)).list();
@@ -389,6 +446,10 @@ public class PostDAO {
         }
     }
 
+    /**
+     * Check if generally liked or disliked and award points to the winning side's voters
+     * @param - post to be scored
+     */
     private void score(PostBean post) {
         List<LikeBean> likes = post.getLikes();
         List<DislikeBean> dislikes = post.getDislikes();
@@ -408,12 +469,20 @@ public class PostDAO {
 
     }
 
+    /**
+     * Get difference in days between two dates
+     */
     private static long getDateDiff(Date date1, Date date2) {
         long difference = date2.getTime() - date1.getTime();
-        difference = difference / 1000 / 60 / 60 / 24;//millisecods to days
+        difference = difference / 1000 / 60 / 60 / 24;//Milliseconds to days
         return difference;
     }
 
+    /**
+     * Create post in the database
+     * @param - post information and token for user identification
+     * @return - confirmation of creation
+     */
     public boolean createPost(PostModel postModel) {
 
         /* Creates new post */
@@ -429,6 +498,7 @@ public class PostDAO {
         session.getTransaction().commit();
         return true;
     }
+
 
     public boolean createAd(AdPostModel adPostModel) {
 
@@ -454,6 +524,10 @@ public class PostDAO {
         return true;
     }
 
+    /**
+     * Remove post from database, done by moderator
+     * @param post - post to be removed
+     */
     public void removePost(PostBean post) {
         PostBean delPost = null;
         Transaction tx = session.getTransaction();
@@ -474,6 +548,10 @@ public class PostDAO {
         }
     }
 
+    /**
+     * Like a post and create comment if requested
+     * @param rating - user and post information
+     */
     public void like(RatingModel rating) {
         PostBean post = null;
         UserServiceImpl service = new UserServiceImpl();
@@ -504,6 +582,10 @@ public class PostDAO {
         }
     }
 
+    /**
+     * Dislike a post and create comment if requested
+     * @param rating - user and post information
+     */
     public void dislike(RatingModel rating) {
         PostBean post = null;
         UserServiceImpl service = new UserServiceImpl();
@@ -533,6 +615,11 @@ public class PostDAO {
         }
     }
 
+    /**
+     * Flag a post to be viewed by a moderator
+     * @param flagPostModel - post to be flagged and token for user verification
+     * @return - confirmation of flag
+     */
     public boolean flagPost(FlagPostModel flagPostModel) {
 
         int post_id = flagPostModel.getPostID();
@@ -558,7 +645,10 @@ public class PostDAO {
 
     }
 
-    /* Should make a check so user cannot go into negative balance */
+    /**
+     * Change balance of a sponsor
+     * @param adPostModel - amount to be changed and token for user
+     */
     private void saveNewBalance(AdPostModel adPostModel) {
 
         UserDAO userdao = new UserDAO();
@@ -576,6 +666,11 @@ public class PostDAO {
 
     }
 
+    /**
+     * Get a post from database by its id
+     * @param id- id of desired post
+     * @return - post
+     */
     public PostBean getPostById(int id) {
 
         /* make sure value is not null */

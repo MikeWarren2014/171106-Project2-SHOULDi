@@ -11,8 +11,8 @@ import java.util.Random;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author wayne
+ *Object used in user verification
+ * @author Caleb Schumake
  */
 @XmlRootElement
 public class Token {

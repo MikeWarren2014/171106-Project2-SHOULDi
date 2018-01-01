@@ -10,7 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ * Bean to hold likes. Holds user who is liking and post that is liked.
+ * @author Caleb Schumake and Xavier Garibay
+ *
+ */
 @Entity
 @XmlRootElement
 @Table(name = "Likes")

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ZenithSuite">
+	<test name="ZenithTest">
+		<classes>
+			<class name="com.zenith.test.JUserDaoTest"></class>
+			<class name="com.zenith.test.JPostDaoTest"></class>
+			<class name="com.zenith.test.JCommentDaoTest"></class>
+		</classes>
+	</test>
+</suite>

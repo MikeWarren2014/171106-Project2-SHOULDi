@@ -14,26 +14,29 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.zenith.Beans.PostBean;
-import com.zenith.Beans.UserBean;
-import com.zenith.DAO.UserDAO;
 import com.zenith.request.model.AdPostModel;
 import com.zenith.request.model.FlagPostModel;
 import com.zenith.request.model.GenderedGetModel;
 import com.zenith.request.model.GenericGetModel;
 import com.zenith.request.model.PostModel;
 import com.zenith.request.model.RatingModel;
+<<<<<<< HEAD
+import com.zenith.request.model.UserGetModel;
+import com.zenith.request.model.ViewedAdModel;
+import com.zenith.service.PostsService;
+=======
 import com.zenith.request.model.ViewedAdModel; 
 import com.zenith.service.PostsService;
 import com.zenith.service.UserServiceImpl; 
+>>>>>>> e170fef2278ca775077ed23f49ab0b669dd38ce2
 import com.zenith.service.VerifyTokenCredentials;
-
 import com.zenith.templates.AdPostTemplate;
-import com.zenith.user.response.GenericSuccessOrFailureMessage;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import com.zenith.templates.PostTemplate;
 import com.zenith.user.response.GenericSuccessOrFailureMessage;
-
+/**
+ * Entry points of post functions to connect front end to backend. Calls service layer.
+ * @author Xavier Garibay and Caleb Schumake
+ */
 @Path("/posts")
 public class PostEntryPoint {
 
@@ -41,9 +44,9 @@ public class PostEntryPoint {
     @Path("/flagged") 
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
-    public List<PostTemplate> getFlaggedPosts() {
+    public List<PostTemplate> getFlaggedPosts(UserGetModel user) {
         PostsService service = new PostsService();
-        return service.getFlaggedPosts(); 
+        return service.getFlaggedPosts(user); 
     }
 
     @POST
