@@ -56,7 +56,7 @@ public class CommentDAO implements DAO {
 		for(CommentBean comment: flagged)
 		{
 			if(comment.getCommentor().getUser_id()==user.getUser()) {
-			comments.add(new CommentTemplate(comment.getCommentor().getUser_id(), comment.getPostBean().getPost_id(), comment.getComment_text()));
+				comments.add(new CommentTemplate(comment.getCommentor().getUser_id(), comment.getPostBean().getPost_id(), comment.getComment_text()));
 			}
 		}
 		return comments;
