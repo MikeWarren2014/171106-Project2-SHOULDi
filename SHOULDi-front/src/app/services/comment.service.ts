@@ -31,11 +31,11 @@ export class CommentService extends HttpService
         }).map((res : Response) => res.json());
     }
     
-    flagComment(comment : Comment) // TODO: change the endpoints 
+    flagComment(comment : any) // TODO: change the endpoints 
     {
         return this.http.post(this.BASE_URL + '/api/commments/flag', {
             token     : TokenService.getToken(),
-            commentID : comment._id 
+            comment_id : comment.comment_id 
         }).map((res : Response) => res.json());
     }
     
@@ -48,26 +48,26 @@ export class CommentService extends HttpService
         }).map((res : Response) => res.json());
     }
 
-    getFlaggedCommentsByUser(user : User){
+    getFlaggedCommentsByUser(user : any){
         return this.http.post(this.BASE_URL + '/api/comments/flagged', {
             token : TokenService.getToken(),
-            userID : user._id
+            user_id : user.user_id
         }).map((res : Response) => res.json());
     }
     // TODO: refactor this
     
-    unflagComment(comment : Comment){
+    unflagComment(comment : any){
         return this.http.post(this.BASE_URL + '/api/comments/unflag', {
             token : TokenService.getToken(),
-            commentID : comment._id            
+            comment_id : comment.comment_id            
         }).map((res : Response) => res.json());
     }
 
-    deleteComment(comment : Comment) // TODO: change the endpoints 
+    deleteComment(comment : any) // TODO: change the endpoints 
     {
         return this.http.post(this.BASE_URL + '/api/comments/delete', {
             token : TokenService.getToken(),
-            commentID : comment._id
+            comment_id : comment.comment_id
         }).map((res : Response) => res.json());
     }    
 }

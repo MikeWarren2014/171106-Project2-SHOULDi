@@ -49,17 +49,17 @@ export class UserService extends HttpService
         }).map((res : Response) => res.json());
     }
 
-    lockUser(user : User){ // TODO: need to check endpoint
+    lockUser(user : any){ // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/users/lock', {
             token : TokenService.getToken(),
-            userID : user._id
+            user_id : user.user_id
         }).map((res : Response) => res.json());
     }
 
-    unlockUser(user : User){ // TODO: need to check endpoint
+    unlockUser(user : any){ // TODO: need to check endpoint
         return this.http.post(this.BASE_URL + '/api/users/unlock', {
             token : TokenService.getToken(),
-            userID : user._id
+            user_id : user.user_id
         }).map((res : Response) => res.json());
     }
 

@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import com.zenith.Beans.UserBean;
 import com.zenith.DAO.UserDAO;
+import com.zenith.request.model.CommentModel;
 import com.zenith.request.model.GenericGetModel;
 import com.zenith.templates.UserTemplate;
 
@@ -95,12 +96,12 @@ public class JUserDaoTest {
 	    Assert.assertTrue(found);    
     }
     
-    @Test
-    public void lockUserTest() {
-	    GenericGetModel get= new GenericGetModel();
-	    get.setToken("iii");
-	    udao.lockUser(get);
-	    UserBean user= udao.getUserByToken("iii");
-	    Assert.assertEquals(user.getLock(),1);    
-    }
+//    @Test
+//    public void lockUserTest() {
+//	    GenericGetModel get= new GenericGetModel();
+//	    get.setToken("iii");
+//	    udao.lockUser(get);
+//	    UserBean user= udao.getUserByToken("iii");
+//	    Assert.assertEquals(user.getLock(),1);    
+//    }
 }

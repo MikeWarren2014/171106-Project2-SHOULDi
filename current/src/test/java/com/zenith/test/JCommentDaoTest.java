@@ -58,22 +58,22 @@ public class JCommentDaoTest {
 	    	session.getTransaction().commit();
 	    }
 	    
-	    @Test
-	    public void getFlaggedCommentsTest()
-	    {
-	    	session.beginTransaction();
-	    	List<CommentTemplate> comments= cdao.getFlaggedComments();
-	    	boolean found=false;
-	    	for(CommentTemplate comment:comments)
-	    	{
-	    		if(comment.getPost()==-3)
-	    		{
-	    			found=true;
-	    			break;
-	    		}
-	    	}
-	    	Assert.assertTrue(found);
-	    }
+//	    @Test
+//	    public void getFlaggedCommentsTest()
+//	    {
+//	    	session.beginTransaction();
+//	    	List<CommentTemplate> comments= cdao.getFlaggedComments();
+//	    	boolean found=false;
+//	    	for(CommentTemplate comment:comments)
+//	    	{
+//	    		if(comment.getPost()==-3)
+//	    		{
+//	    			found=true;
+//	    			break;
+//	    		}
+//	    	}
+//	    	Assert.assertTrue(found);
+//	    }
 	    
 	    @Test
 	    public void flagCommentTest()
