@@ -1,7 +1,8 @@
 package com.zenith.gluecode;
 
 import static org.junit.Assert.assertFalse;
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -45,8 +46,8 @@ public class Registration {
 	    assertEquals(driver.getCurrentUrl(), TestData.getLoginUrl());
 	}
 	
-	@When("^I hit Register as Sponsor$")
-	public void i_hit_Register_as_Sponsor() throws Throwable {
+	@When("^I check Register as Sponsor$")
+	public void i_check_Register_as_Sponsor() throws Throwable {
 	    WebElement registerAsSponsor = driver.findElement(By.id("isSponsor"));
 	    // make sure registerAsSponsor is clicked 
 	    if (!registerAsSponsor.isSelected())
@@ -58,7 +59,21 @@ public class Registration {
 	     assertFalse(driver.findElements(By.xpath("//[contains(text(), \"Sponsor \")]")).isEmpty());
 	         
 	}
-	
+
+	@When("^I uncheck Register as Sponsor$")
+	public void i_uncheck_Register_as_Sponsor() throws Throwable {
+		WebElement registerAsSponsor = driver.findElement(By.id("isSponsor"));
+	    // make sure registerAsSponsor is unchecked
+	    if (registerAsSponsor.isSelected())
+	    	registerAsSponsor.click();
+	}
+
+	@Then("^Sponsor fields disappear$")
+	public void sponsor_fields_disappear() throws Throwable {
+		assertTrue(driver.findElements(By.xpath("//[contains(text(), \"Sponsor \")]")).isEmpty());
+	}
+
+
 	@After
 	public void testTeardown()
 	{

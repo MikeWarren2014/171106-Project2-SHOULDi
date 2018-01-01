@@ -29,6 +29,7 @@ Feature: Registration
     
   Scenario: Testing Register as Sponsor flag
   	Given I am at registration page
-  	When I hit Register as Sponsor
+  	When I check Register as Sponsor 
   	Then Sponsor fields appear
-
+  	When I uncheck Register as Sponsor
+  	Then Sponsor fields disappear
