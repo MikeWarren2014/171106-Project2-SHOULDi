@@ -24,6 +24,8 @@ public class Login {
 	    System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
 	    driver = new ChromeDriver();
 	    driver.get(TestData.getLoginUrl());
+	    // NOTE: This way is bad, because that class name could change. I felt I had
+	    //	no other choice, though...
 	    // assertion that we are, indeed, at the login page....
 	    assertFalse(driver.findElements(By.className("login-content")).isEmpty());
 	}

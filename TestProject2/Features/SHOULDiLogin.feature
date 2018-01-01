@@ -10,4 +10,6 @@ Feature: Log into SHOULDi
     Then I arrive at dashboard
     Examples: 
       | username | password |
-      |          |          |
+      | mwarren  | p4ssw0rd |
+      | srogers  | srogers  |
+      # other credentials that exist in the system here...
