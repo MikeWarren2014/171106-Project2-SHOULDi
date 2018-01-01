@@ -1,13 +1,13 @@
 package com.zenith.gluecode;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.zenith.constants.TestData;
@@ -43,6 +43,20 @@ public class Registration {
 	@Then("^I am at login page$")
 	public void i_am_at_login_page() throws Throwable {
 	    assertEquals(driver.getCurrentUrl(), TestData.getLoginUrl());
+	}
+	
+	@When("^I hit Register as Sponsor$")
+	public void i_hit_Register_as_Sponsor() throws Throwable {
+	    WebElement registerAsSponsor = driver.findElement(By.id("isSponsor"));
+	    // make sure registerAsSponsor is clicked 
+	    if (!registerAsSponsor.isSelected())
+	    	registerAsSponsor.click();
+	}
+
+	@Then("^Sponsor fields appear$")
+	public void sponsor_fields_appear() throws Throwable {
+	     assertFalse(driver.findElements(By.xpath("//[contains(text(), \"Sponsor \")]")).isEmpty());
+	         
 	}
 	
 	@After

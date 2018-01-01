@@ -19,11 +19,16 @@
 Feature: Registration
   Sanity testing user registration
 
-  Scenario: Registering with SHOULDi
+  Scenario: Registering with SHOULDi (happy path)
     Given I am at registration page
     When I input my firstName and lastName username and password and confirmPassword and gender and email and enter submit 
       | firstName | lastName | username  | password | confirmPassword | gender | email |
       | Mike | Warren | mwarren | p4ssw0rd | p4ssw0rd | male | mwarren@yahoo.coom |
       | Sue  | Rogers | srogers | srogers | srogers | female | srogers@gmail.com |
     Then I am at login page
+    
+  Scenario: Testing Register as Sponsor flag
+  	Given I am at registration page
+  	When I hit Register as Sponsor
+  	Then Sponsor fields appear
 
