@@ -13,13 +13,13 @@
         <div id="myAdvertisementsContent">
             
             <div id="imageContainer">
-                <a *ngIf="postIndex > 0" id="prevImage" class="imageControl" (click)="prevImage()"><</a>
+                <a *ngIf="advertisementIndex > 0" id="prevImage" class="imageControl" (click)="prevImage()"><</a>
                 <img
                     id="currentImage"
                     class="center"
                     src="{{currentAdvertisement.image}}"
                 >
-                <a *ngIf="postIndex < posts.length - 1" id="nextImage" class="imageControl" (click)="nextImage()">></a>
+                <a *ngIf="advertisementIndex < advertisements.length - 1" id="nextImage" class="imageControl" (click)="nextImage()">></a>
                 
             </div>
         </div>        

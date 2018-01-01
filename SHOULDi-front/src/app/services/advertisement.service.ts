@@ -17,7 +17,7 @@ export class AdvertisementService extends HttpService{
     }
 
     create(advertisement: Advertisement){ // TODO: need to check endpoint
-        return this.http.post(this.BASE_URL + '/api/ad/post', 
+        return this.http.post(this.BASE_URL + '/api/posts/ad/post', 
         {
             token    : TokenService.getToken(),
             image    : advertisement.image,
