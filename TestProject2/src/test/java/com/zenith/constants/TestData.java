@@ -1,4 +1,4 @@
-
+package com.zenith.constants;
 
 public class TestData {
 	public static final String IP = "localhost";

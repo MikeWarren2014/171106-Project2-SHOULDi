@@ -8,11 +8,11 @@ export class SponsorGuard implements CanActivate
     constructor(private router : Router) {}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     {
-        // if user in localStorage is not moderator 
+        // if user in localStorage is not sponsor
         if (JSON.parse(localStorage.getItem("currentUser")).role !== UserRoles.SPONSOR)
         {
             // redirect them?
-            this.router.navigate(['/login'], { queryParams : { returnUrl : state.url }});
+            this.router.navigate(['/home'], { queryParams : { returnUrl : state.url }});
             return false;
         }
         return true;

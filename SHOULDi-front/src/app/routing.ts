@@ -22,6 +22,7 @@ import { MyMessagesComponent } from './components/dashboard/messages/my/my.messa
 import { PopularUsersComponent } from './components/dashboard/users/popular/popular.users.component';
 import { MyAdvertisementsComponent } from './components/dashboard/advertisements/my/my.advertisements.component';
 import { CreateAdvertisementsComponent } from './components/dashboard/advertisements/create/create.advertisements.component';
+import { SponsorGuard } from './guards/sponsor.guard';
 
 export const appRoutes : Routes = [
     {
@@ -32,7 +33,7 @@ export const appRoutes : Routes = [
     {
         path        : 'home',
         component   : HomeComponent,
-        // canActivate : [AuthGuard], // ensures only authenticated users can see home screen
+        canActivate : [AuthGuard], // ensures only authenticated users can see home screen
         children    : [
             {
                 path       : '',
@@ -72,8 +73,9 @@ export const appRoutes : Routes = [
                 component : FlaggedCommentsComponent
             },
             {
-                path : 'balance',
-                component : BalanceComponent
+                path        : 'balance',
+                canActivate : [SponsorGuard],
+                component   : BalanceComponent
             },
             {
                 path : 'flagged-posts',
@@ -93,10 +95,12 @@ export const appRoutes : Routes = [
             },
             {
                 path: 'my-advertisements',
+                canActivate : [SponsorGuard],
                 component: MyAdvertisementsComponent
             },
             {
                 path: 'create-advertisements',
+                canActivate : [SponsorGuard],
                 component: CreateAdvertisementsComponent
             },
             // for everything else, we simply go to the default screen
