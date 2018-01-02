@@ -32,7 +32,7 @@ export const appRoutes : Routes = [
     {
         path        : 'home',
         component   : HomeComponent,
-        // canActivate : [AuthGuard], // ensures only authenticated users can see home screen
+        canActivate : [AuthGuard], // ensures only authenticated users can see home screen
         children    : [
             {
                 path       : '',
