@@ -22,6 +22,7 @@ import { MyMessagesComponent } from './components/dashboard/messages/my/my.messa
 import { PopularUsersComponent } from './components/dashboard/users/popular/popular.users.component';
 import { MyAdvertisementsComponent } from './components/dashboard/advertisements/my/my.advertisements.component';
 import { CreateAdvertisementsComponent } from './components/dashboard/advertisements/create/create.advertisements.component';
+import { SponsorGuard } from './guards/sponsor.guard';
 
 export const appRoutes : Routes = [
     {
@@ -72,8 +73,9 @@ export const appRoutes : Routes = [
                 component : FlaggedCommentsComponent
             },
             {
-                path : 'balance',
-                component : BalanceComponent
+                path        : 'balance',
+                canActivate : [SponsorGuard],
+                component   : BalanceComponent
             },
             {
                 path : 'flagged-posts',
